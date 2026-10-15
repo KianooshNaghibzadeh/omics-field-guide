@@ -1,7 +1,7 @@
 (function(){
 const LAYER = {
   genomics:["Genomics","--dna"], epigenomics:["Epigenomics","--epi"], transcriptomics:["Transcriptomics","--rna"],
-  singlecell:["Single-cell & spatial","--rna"], proteomics:["Proteomics","--prot"], metabolomics:["Metabolomics","--met"],
+  singlecell:["Single-cell & spatial","--rna"], proteomics:["Proteomics","--prot"], metabolomics:["Metabolomics","--met"], lipidomics:["Lipidomics","--met"],
   microbiome:["Microbiome","--mic"], integration:["Multi-omics integration","--int"], practice:["Workflow & practice","--int"]
 };
 const STAGE = {P:"Primary",S:"Secondary",T:"Tertiary"};

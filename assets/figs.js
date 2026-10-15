@@ -334,6 +334,58 @@ FIG.mzrt=()=>{
   return svg(940,T+H+45,h);
 };
 
+/* ---- lipidomics: triple-quad MRM ---- */
+FIG.mrm=()=>{
+  let h='<defs><marker id="ma" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--ink-2)"/></marker></defs>';
+  const box=(x,lab,sub,col)=>r(x,40,150,70,"var(--card)",'stroke="'+col+'" stroke-width="2" rx="6"')+t(x+75,68,lab,'font-size="13" font-weight="600" text-anchor="middle"')+t(x+75,88,sub,'font-size="10" text-anchor="middle" class="lbl"');
+  h+=t(20,80,"ESI",'font-size="11" font-weight="600"')+t(14,96,"source",'font-size="10" class="lbl"');
+  h+=box(80,"Q1","select precursor","var(--met)")+box(330,"q2","collision cell","var(--ink-3)")+box(580,"Q3","select fragment","var(--met)");
+  h+=r(800,58,60,34,"var(--paper-2)",'stroke="var(--ink-3)" rx="4"')+t(830,80,"detector",'font-size="10" text-anchor="middle"');
+  [[52,78],[230,328],[480,578],[730,798]].forEach(a=>{ h+=ln(a[0],75,a[1],75,'stroke="var(--ink-2)" stroke-width="1.6" marker-end="url(#ma)"'); });
+  for(let i=0;i<7;i++){ h+='<circle cx="'+(300+i*3)+'" cy="'+(66+(i%3)*8)+'" r="2.5" fill="var(--met)"/>'; }
+  h+=t(155,132,"m/z 760.6",'font-size="11" text-anchor="middle" font-weight="600"')+t(155,147,"PC 34:1 [M+H]⁺ only",'font-size="10" text-anchor="middle" class="lbl"');
+  h+=t(405,132,"N₂ gas breaks bonds",'font-size="10" text-anchor="middle" class="lbl"')+t(405,147,"(collision energy ~35 eV)",'font-size="10" text-anchor="middle" class="lbl"');
+  h+=t(655,132,"m/z 184.1",'font-size="11" text-anchor="middle" font-weight="600"')+t(655,147,"phosphocholine fragment",'font-size="10" text-anchor="middle" class="lbl"');
+  h+=t(20,180,"Transition 760.6 → 184.1 is recorded as one chromatogram. Scheduled MRM: each transition is watched only in its retention-time window.",'font-size="10.5" class="lbl"');
+  const T=200,L=150,W=700, X=v=>L+v/12*W; h+=ln(L,T+150,L+W,T+150,'stroke="var(--ink-3)"');
+  const tr=[["Cer 18:1;O2/16:0  538.5 → 264.3",2.1],["Cer 18:1;O2/24:0  650.6 → 264.3",3.0],["SM 34:1  703.6 → 184.1",5.2],["PC 34:1  760.6 → 184.1",5.9],["PC 36:2  786.6 → 184.1",6.3],["LPC 16:0  496.3 → 184.1",8.4],["IS: PC 15:0-18:1(d7)  753.6 → 184.1",5.9]];
+  tr.forEach((a,i)=>{ const y=T+i*20; h+=t(L-8,y+12,a[0].split("  ")[0],'font-size="9.5" text-anchor="end"')+r(X(a[1]-0.6),y+2,X(a[1]+0.6)-X(a[1]-0.6),13,i===6?"var(--paper-2)":"var(--met-bg)",'stroke="var(--met)" '+(i===6?'stroke-dasharray="3 2"':'')+' rx="2"')+t(X(a[1]+0.6)+6,y+12,a[0].split("  ")[1],'font-size="9" class="lbl"'); });
+  [0,2,4,6,8,10,12].forEach(v=>{ h+=t(X(v),T+164,v,'font-size="9.5" text-anchor="middle" class="lbl"'); });
+  h+=t(L+W/2,T+178,"retention time (min) · boxes = acquisition windows",'font-size="9.5" text-anchor="middle" class="lbl"');
+  return svg(900,T+186,h);
+};
+
+/* ---- lipidomics: HILIC class separation ---- */
+FIG.hilic=()=>{
+  const cls=[["TG / CE",0.9,1.0,"var(--prot)"],["Cer",1.6,0.45,"var(--mic)"],["PG",3.0,0.2,"var(--epi)"],["PI",3.9,0.35,"var(--epi)"],["PE",4.6,0.55,"var(--dna)"],["PC",6.2,1.0,"var(--rna)"],["SM",7.1,0.55,"var(--int)"],["LPC",8.6,0.4,"var(--met)"]];
+  const L=50,T=24,W=800,H=170, X=v=>L+v/10*W; let h=axis(L,T,L+W,T+H);
+  cls.forEach((c,i)=>{ let p=[]; for(let k=0;k<=200;k++){ const x=c[1]-0.6+k*0.006; const y=c[2]*Math.exp(-Math.pow(x-c[1],2)/(2*0.11*0.11)); p.push(X(x).toFixed(1)+","+(T+H-y*H*0.9).toFixed(1)); }
+    h+='<polyline points="'+p.join(" ")+'" fill="none" stroke="'+c[3]+'" stroke-width="1.8"/>';
+    let q=[]; for(let k=0;k<=200;k++){ const x=c[1]-0.6+k*0.006+0.03; const y=0.28*c[2]*Math.exp(-Math.pow(x-c[1]-0.03,2)/(2*0.11*0.11)); q.push(X(x).toFixed(1)+","+(T+H-y*H*0.9).toFixed(1)); }
+    h+='<polyline points="'+q.join(" ")+'" fill="none" stroke="'+c[3]+'" stroke-width="1.2" stroke-dasharray="3 2"/>';
+    h+=t(X(c[1]),T+H-c[2]*H*0.9-6,c[0],'font-size="11" font-weight="600" text-anchor="middle"'); });
+  [0,2,4,6,8,10].forEach(v=>{ h+=t(X(v),T+H+15,v,'font-size="10" text-anchor="middle" class="lbl"'); });
+  h+=t(L+W/2,T+H+30,"retention time (min, HILIC)  ·  non-polar lipids elute first, polar head groups later",'font-size="10" text-anchor="middle" class="lbl"');
+  return svg(900,T+H+40,h);
+};
+
+/* ---- lipidomics: calibration curve ---- */
+FIG.calib=()=>{
+  const L=70,T=20,W=440,H=240, cx=[0,2,5,10,25,50,100,200], X=v=>L+v/200*W, Y=v=>T+H-v/2.2*H; const R=rng(41); let h=axis(L,T,L+W,T+H);
+  const slope=0.0101, icpt=0.004;
+  cx.forEach(c=>{ for(let k=0;k<3;k++){ const v=c*slope+icpt+(gauss(R)*0.012+gauss(R)*0.02*c*slope); h+='<circle cx="'+(X(c)+(k-1)*3).toFixed(1)+'" cy="'+Y(Math.max(0,v)).toFixed(1)+'" r="3" fill="var(--met)" opacity=".8"/>'; } });
+  h+=ln(X(0),Y(icpt),X(200),Y(200*slope+icpt),'stroke="var(--ink)" stroke-width="1.6"');
+  const lod=1.2, loq=4; h+=r(X(0),T,X(loq)-X(0),H,"var(--paper-2)",'opacity=".8"')+ln(X(lod),T,X(lod),T+H,'stroke="var(--ink-3)" stroke-dasharray="2 3"')+ln(X(loq),T,X(loq),T+H,'stroke="var(--ink-2)" stroke-dasharray="4 3"');
+  h+=t(X(loq)+4,T+14,"LOQ",'font-size="10"')+t(X(lod)+4,T+30,"LOD",'font-size="10" class="lbl"');
+  const unk=0.62, uc=(unk-icpt)/slope; h+=ln(L,Y(unk),X(uc),Y(unk),'stroke="var(--rna)" stroke-dasharray="4 3"')+ln(X(uc),Y(unk),X(uc),T+H,'stroke="var(--rna)" stroke-dasharray="4 3"')+'<circle cx="'+X(uc)+'" cy="'+Y(unk)+'" r="5" fill="var(--rna)"/>';
+  h+=t(X(uc)+8,Y(unk)-8,"sample: ratio 0.62 → "+uc.toFixed(0)+" nM",'font-size="10.5" font-weight="600" fill="var(--rna)"');
+  [0,50,100,150,200].forEach(v=>{ h+=t(X(v),T+H+15,v,'font-size="10" text-anchor="middle" class="lbl"'); }); [0,0.5,1,1.5,2].forEach(v=>{ h+=t(L-8,Y(v)+4,v,'font-size="10" text-anchor="end" class="lbl"'); });
+  h+=t(L+W/2,T+H+32,"standard concentration (nM)",'font-size="10.5" text-anchor="middle" class="lbl"')+t(18,T+H/2,"area ratio analyte / IS",'font-size="10.5" class="lbl" transform="rotate(-90 18 '+(T+H/2)+')" text-anchor="middle"');
+  const lx=L+W+40; h+=t(lx,T+20,"Reading the curve",'font-size="12" font-weight="600"');
+  ["8 calibration levels × 3 replicates,","fitted by weighted linear regression","(1/x weighting is common).","Grey zone: below the LOQ, where","precision is too poor to report a value.","An unknown sample's ratio is converted","to concentration through the fit, then","multiplied by any dilution factor."].forEach((l,i)=>{ h+=t(lx,T+44+i*16,l,'font-size="10.5" class="lbl"'); });
+  return svg(900,T+H+45,h);
+};
+
 /* ---- 16S rRNA gene ---- */
 FIG.s16=()=>{
   const V=[[69,99],[137,242],[433,497],[576,682],[822,879],[986,1043],[1117,1173],[1243,1294],[1435,1465]];
