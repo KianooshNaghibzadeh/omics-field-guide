@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Integrating multi-omics data | The Omics Field Guide</title>
+<meta name="description" content="Integration means analysing two or more layers jointly so that the result is more than the sum of separate analyses. The right method depends on the…">
+<link rel="canonical" href="https://kianooshnaghibzadeh.github.io/omics-field-guide/multi-omics-integration/">
+<meta name="robots" content="index,follow"><meta name="author" content="Kianoosh Naghibzadeh">
+<meta property="og:type" content="website"><meta property="og:site_name" content="The Omics Field Guide">
+<meta property="og:title" content="Integrating multi-omics data | The Omics Field Guide"><meta property="og:description" content="Integration means analysing two or more layers jointly so that the result is more than the sum of separate analyses. The right method depends on the…"><meta property="og:url" content="https://kianooshnaghibzadeh.github.io/omics-field-guide/multi-omics-integration/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Integrating multi-omics data | The Omics Field Guide", "url": "https://kianooshnaghibzadeh.github.io/omics-field-guide/multi-omics-integration/", "description": "Integration means analysing two or more layers jointly so that the result is more than the sum of separate analyses. The right method depends on the\u2026", "inLanguage": "en", "author": {"@type": "Person", "name": "Kianoosh Naghibzadeh"}, "isPartOf": {"@type": "WebSite", "name": "The Omics Field Guide", "url": "https://kianooshnaghibzadeh.github.io/omics-field-guide/"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap">
+<link rel="stylesheet" href="../assets/style.css">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)} body{margin:0} img{max-width:100%} [hidden]{display:none!important}</style>
+</head><body>
+
+<div class="topbar">
+  <a class="brand" href="../"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="brand-name">Omics Field Guide</span></a>
+  <button class="menu-btn" id="menuBtn" aria-controls="rail" aria-expanded="false">Chapters</button>
+</div>
+<aside class="rail" id="rail" aria-label="Chapters">
+  <div class="rail-head">
+    <a class="brand" href="../"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="brand-name">The Omics Field Guide<small>genome → phenome</small></span></a>
+    <div class="search">
+      <svg viewBox="0 0 16 16" fill="none" stroke-width="1.6" aria-hidden="true"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4"/></svg>
+      <input id="q" type="search" placeholder="Search topics, tools…" autocomplete="off" aria-label="Search the guide">
+      <div class="results" id="results" role="listbox"></div>
+    </div>
+  </div>
+  <nav class="toc" id="toc"><div class="toc-part">Start</div>
+<a href="../" data-id="home"><span class="sw" style="--c:var(--int)"></span><span>Start here</span></a>
+<div class="toc-part">I · Foundations</div>
+<a href="../genome-genes-chromatin/" data-id="cell"><span class="sw" style="--c:var(--dna)"></span><span>Genome, genes &amp; chromatin</span></a>
+<a href="../central-dogma/" data-id="dogma"><span class="sw" style="--c:var(--rna)"></span><span>The central dogma</span></a>
+<a href="../splicing/" data-id="splicing"><span class="sw" style="--c:var(--rna)"></span><span>Splicing &amp; isoforms</span></a>
+<a href="../mutations-genetic-variation/" data-id="mutations"><span class="sw" style="--c:var(--met)"></span><span>Mutations &amp; variation</span></a>
+<div class="toc-part">II · The omics layers</div>
+<a href="../types-of-omics/" data-id="omes"><span class="sw" style="--c:var(--int)"></span><span>Map of the -omes</span></a>
+<a href="../genomics/" data-id="genomics"><span class="sw" style="--c:var(--dna)"></span><span>Genomics</span></a>
+<a href="../epigenomics/" data-id="epigenomics"><span class="sw" style="--c:var(--epi)"></span><span>Epigenomics</span></a>
+<a href="../transcriptomics/" data-id="transcriptomics"><span class="sw" style="--c:var(--rna)"></span><span>Transcriptomics (bulk)</span></a>
+<a href="../single-cell-spatial-omics/" data-id="singlecell"><span class="sw" style="--c:var(--rna)"></span><span>Single-cell &amp; spatial</span></a>
+<a href="../proteomics/" data-id="proteomics"><span class="sw" style="--c:var(--prot)"></span><span>Proteomics</span></a>
+<a href="../metabolomics-lipidomics/" data-id="metabolomics"><span class="sw" style="--c:var(--met)"></span><span>Metabolomics &amp; lipidomics</span></a>
+<a href="../metagenomics-microbiome/" data-id="microbiome"><span class="sw" style="--c:var(--mic)"></span><span>Metagenomics &amp; microbiome</span></a>
+<a href="../other-omics/" data-id="more"><span class="sw" style="--c:var(--int)"></span><span>More omics</span></a>
+<div class="toc-part">III · Connecting layers</div>
+<a href="../multi-omics-biology/" data-id="relations"><span class="sw" style="--c:var(--int)"></span><span>How the layers talk</span></a>
+<a href="../multi-omics-integration/" data-id="integration" aria-current="page"><span class="sw" style="--c:var(--int)"></span><span>Integrating multi-omics data</span></a>
+<a href="../workflow-reproducibility/" data-id="practice"><span class="sw" style="--c:var(--int)"></span><span>Workflow &amp; reproducibility</span></a>
+<div class="toc-part">IV · Research</div>
+<a href="../bioinformatics-tool-atlas/" data-id="atlas"><span class="sw" style="--c:var(--prot)"></span><span>Tool atlas</span></a>
+<a href="../benchmarks/" data-id="benchmarks"><span class="sw" style="--c:var(--prot)"></span><span>Benchmark hub</span></a>
+<a href="../research-gaps/" data-id="gaps"><span class="sw" style="--c:var(--mic)"></span><span>Research questions &amp; gaps</span></a>
+<a href="../learning-path-glossary/" data-id="learn"><span class="sw" style="--c:var(--int)"></span><span>Learning path &amp; glossary</span></a></nav>
+  <div class="rail-foot"><span id="ver">Edition 2026.10</span><button class="theme-btn" id="themeBtn" type="button">Theme: light</button></div>
+</aside>
+<main id="main">
+<section class="chapter on" id="integration" data-part="III · Connecting layers" data-title="Integrating multi-omics data" data-c="--int">
+<header class="chap-head"><div class="track"><span class="chip" style="--c:var(--int);--cb:var(--int-bg)">Multi-omics · methods</span><span>Chapter 15</span></div>
+<h1>Integrating multi-omics data</h1>
+<p class="dek">Integration means analysing two or more layers jointly so that the result is more than the sum of separate analyses. The right method depends on the question, on whether layers come from the same samples or cells, and on how much prior knowledge you want to impose.</p></header>
+
+<h2>First, define the integration task</h2>
+<div class="tbl"><table>
+<tr><th>Goal</th><th>Question</th><th>Method families</th></tr>
+<tr><td>Subtyping</td><td class="wrap">Are there patient groups visible across layers?</td><td class="wrap">Multi-view clustering (SNF, iClusterBayes, intNMF, NEMO), latent factors + clustering</td></tr>
+<tr><td>Factor discovery</td><td class="wrap">What shared and layer-specific axes of variation exist?</td><td class="wrap">MOFA+, JIVE, MCIA, RGCCA, GFA</td></tr>
+<tr><td>Prediction</td><td class="wrap">Which combination of features predicts outcome?</td><td class="wrap">DIABLO (sparse PLS-DA), stacked/late-fusion models, multi-modal deep learning, penalised Cox models</td></tr>
+<tr><td>Mechanism</td><td class="wrap">Which molecular chain links genotype to phenotype?</td><td class="wrap">QTL + colocalisation + MR, mediation analysis, causal networks</td></tr>
+<tr><td>Network / pathway</td><td class="wrap">Which pathways are dysregulated across layers?</td><td class="wrap">Multi-layer networks, prize-collecting Steiner trees (Omics Integrator), PARADIGM, COSMOS, multi-omics GSEA (mitch, ActivePathways, multiGSEA)</td></tr>
+<tr><td>Cell-level alignment</td><td class="wrap">Match cells across modalities</td><td class="wrap">WNN (Seurat v4/5), totalVI, MultiVI, GLUE, MOFA+, Cobolt, StabMap, MIDAS</td></tr>
+</table></div>
+
+<h2>When to combine: early, intermediate, late</h2>
+<figure class="wide"><div class="fig"><svg viewBox="0 0 960 260" role="img" aria-label="Early, intermediate and late integration strategies">
+<defs><marker id="ia" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--ink-2)"/></marker></defs>
+<g font-size="12" font-weight="600"><text x="20" y="24">Early (concatenation)</text><text x="340" y="24">Intermediate (joint latent space)</text><text x="680" y="24">Late (combine results)</text></g>
+<g><rect x="20" y="44" width="30" height="80" fill="var(--rna)"/><rect x="54" y="44" width="22" height="80" fill="var(--prot)"/><rect x="80" y="44" width="16" height="80" fill="var(--met)"/>
+<line x1="100" y1="84" x2="150" y2="84" stroke="var(--ink-2)" stroke-width="1.5" marker-end="url(#ia)"/><rect x="154" y="54" width="110" height="60" fill="var(--card)" stroke="var(--ink-3)"/><text x="209" y="88" text-anchor="middle" font-size="11">one model</text></g>
+<g><rect x="340" y="44" width="28" height="40" fill="var(--rna)"/><rect x="340" y="90" width="28" height="34" fill="var(--prot)"/><rect x="340" y="130" width="28" height="26" fill="var(--met)"/>
+<path d="M372 64 L450 96 M372 107 L450 100 M372 143 L450 104" stroke="var(--ink-2)" stroke-width="1.5" fill="none" marker-end="url(#ia)"/>
+<rect x="454" y="78" width="64" height="44" fill="var(--int-bg)" stroke="var(--int)"/><text x="486" y="104" text-anchor="middle" font-size="11">Z</text>
+<line x1="520" y1="100" x2="560" y2="100" stroke="var(--ink-2)" stroke-width="1.5" marker-end="url(#ia)"/><text x="565" y="96" font-size="10">factors,</text><text x="565" y="110" font-size="10">clusters</text></g>
+<g><rect x="680" y="44" width="28" height="30" fill="var(--rna)"/><rect x="680" y="84" width="28" height="30" fill="var(--prot)"/><rect x="680" y="124" width="28" height="30" fill="var(--met)"/>
+<line x1="712" y1="59" x2="750" y2="59" stroke="var(--ink-2)" marker-end="url(#ia)"/><line x1="712" y1="99" x2="750" y2="99" stroke="var(--ink-2)" marker-end="url(#ia)"/><line x1="712" y1="139" x2="750" y2="139" stroke="var(--ink-2)" marker-end="url(#ia)"/>
+<rect x="754" y="47" width="40" height="24" fill="var(--card)" stroke="var(--ink-3)"/><rect x="754" y="87" width="40" height="24" fill="var(--card)" stroke="var(--ink-3)"/><rect x="754" y="127" width="40" height="24" fill="var(--card)" stroke="var(--ink-3)"/>
+<path d="M796 59 L850 96 M796 99 L850 99 M796 139 L850 102" stroke="var(--ink-2)" fill="none" marker-end="url(#ia)"/><rect x="854" y="82" width="90" height="34" fill="var(--int-bg)" stroke="var(--int)"/><text x="899" y="103" text-anchor="middle" font-size="11">vote / stack</text></g>
+<g font-size="10" fill="var(--ink-2)"><text x="20" y="190">+ simple, captures cross-layer interactions</text><text x="20" y="206">− dominated by the largest or noisiest layer</text><text x="20" y="222">− needs aggressive feature selection and scaling</text>
+<text x="340" y="190">+ models shared and specific variation</text><text x="340" y="206">+ handles different noise models per layer</text><text x="340" y="222">− factors need biological interpretation</text>
+<text x="680" y="190">+ robust; each layer modelled natively</text><text x="680" y="206">+ tolerates missing layers per sample</text><text x="680" y="222">− misses interactions between layers</text></g>
+</svg></div><figcaption>Fig. 15.1 · The three integration strategies. Most current methods are intermediate: they learn a latent representation Z shared across layers.</figcaption></figure>
+
+<h2>Sample structure determines what is possible</h2>
+<div class="cols">
+<div class="card"><h4>Matched (vertical)</h4><p>All layers measured on the same samples or cells. Allows true joint models (MOFA+, DIABLO, WNN, totalVI). The anchor is the sample.</p></div>
+<div class="card"><h4>Unmatched (diagonal)</h4><p>Different samples or cells per layer, same biology. Needs feature-level links (gene activity from ATAC, prior graphs): GLUE, LIGER/UINMF, Seurat bridge integration. Riskier assumptions.</p></div>
+<div class="card"><h4>Mosaic</h4><p>Some samples have some layers. Methods: MultiVI, StabMap, MIDAS, Cobolt. Common in real consortia data.</p></div>
+<div class="card"><h4>Horizontal</h4><p>Same layer across batches or studies. This is batch integration (Harmony, scVI), not multi-omics, but usually comes first.</p></div>
+</div>
+
+<h2>Core method families explained</h2>
+<h3>Matrix factorisation and latent factor models</h3>
+<p>Each layer X<sub>m</sub> (samples × features) is approximated as Z·W<sub>m</sub><sup>T</sup>, where Z (samples × K factors) is shared and W<sub>m</sub> holds layer-specific weights. <strong>MOFA/MOFA+</strong> is a Bayesian group factor analysis with sparsity priors and per-layer likelihoods (Gaussian, Bernoulli, Poisson); it reports variance explained per factor per layer, so you see which factors are shared and which are private. <strong>JIVE</strong> separates joint from individual structure explicitly. <strong>MCIA</strong> and <strong>RGCCA</strong> maximise covariance between layer-specific projections. <strong>intNMF</strong> uses non-negative factorisation suited to clustering. <strong>iCluster/iClusterBayes</strong> fit a joint latent variable model for subtype discovery.</p>
+<h3>Similarity and network fusion</h3>
+<p><strong>SNF</strong> builds a patient-similarity network per layer and iteratively fuses them through message passing until they converge; spectral clustering of the fused network gives subtypes. Robust to different scales and noise, easy to apply, but feature-level interpretation is indirect. <strong>NEMO</strong> extends this to partial data.</p>
+<h3>Supervised multi-block methods</h3>
+<p><strong>DIABLO</strong> (mixOmics) finds sparse components that are correlated across layers and discriminate a categorical outcome, controlled by a design matrix of how strongly layers should correlate. Good for biomarker panels with cross-validation. <strong>Multi-block sPLS</strong> and penalised regression with layer-specific penalties (priority-Lasso, IPF-Lasso) are alternatives.</p>
+<h3>Deep generative models</h3>
+<p>Variational autoencoders with modality-specific encoders and decoders learn a joint latent space while modelling count noise properly: <strong>totalVI</strong> (RNA + surface proteins), <strong>MultiVI</strong> (RNA + ATAC, with mosaic support), <strong>PeakVI</strong>, <strong>GLUE</strong> (uses a prior regulatory graph to link unpaired modalities), <strong>scMM</strong>, <strong>MIDAS</strong>. Bulk-level examples include multi-omics autoencoders for survival (e.g. in TCGA). Graph neural networks operate on biological networks with omics features as node attributes. These models are flexible but need more data and careful evaluation against simple baselines.</p>
+<h3>Knowledge-driven integration</h3>
+<p>Instead of letting the data discover structure, map all layers onto prior networks: pathways (Reactome, KEGG), signalling (OmniPath), metabolic models (Human-GEM), regulatory networks (CollecTRI). <strong>COSMOS</strong> links phosphoproteomics, transcriptomics and metabolomics through a causal prior knowledge network using integer linear programming. <strong>Omics Integrator</strong> solves a prize-collecting Steiner forest to connect measured hits through the interactome. <strong>ActivePathways</strong> merges p-values across layers per pathway. These are more interpretable but limited by the completeness and bias of the prior knowledge.</p>
+
+<h2>A practical recipe</h2>
+<ol>
+<li><strong>Write down the question and the relationship you expect</strong> (previous chapter). Pick the method family from the task table.</li>
+<li><strong>Process each layer well on its own first</strong>: QC, normalisation, batch correction, and single-layer results. If a layer is uninformative alone, integration rarely rescues it.</li>
+<li><strong>Harmonise samples and identifiers</strong>: one sample sheet with IDs per layer; check sample identity across layers (genotype concordance from RNA and DNA, sex markers) to detect swaps.</li>
+<li><strong>Transform to comparable scales</strong>: variance-stabilised counts, log intensities, M-values, CLR for compositions. Scale features or weight layers so the largest layer does not dominate.</li>
+<li><strong>Select features</strong> (highly variable per layer) to keep layers balanced and reduce noise.</li>
+<li><strong>Handle missing data</strong> explicitly: methods that tolerate missing views (MOFA+, MultiVI, late fusion) are better than imputing whole layers.</li>
+<li><strong>Fit, then inspect</strong>: variance explained per layer, factor–covariate associations (batch must not drive factors), stability across random seeds and subsamples.</li>
+<li><strong>Interpret</strong> with feature weights, enrichment per factor, and links back to known biology.</li>
+<li><strong>Validate</strong> on an independent cohort or with an orthogonal experiment. For prediction, nest feature selection inside cross-validation to avoid leakage.</li>
+</ol>
+
+<h2>Tools</h2>
+<div class="tooltable" data-omics="integration"></div>
+<h2>Benchmarks</h2>
+<div class="benchlist" data-omics="integration"></div>
+<div class="note key"><span class="lbl">The honest summary of the benchmarks</span><p>No integration method wins everywhere. Adding layers does not automatically improve subtyping or prediction; a well-processed single layer (often transcriptomics) can match multi-omics models. Gains are largest when layers carry complementary information and sample sizes are adequate. Simple baselines (concatenated PCA, late fusion of separately trained models) should always be reported.</p></div>
+<div class="note gap"><span class="lbl">Research gap</span><ul><li>Benchmarks with real ground truth for multi-omics (spike-in designs, simulations calibrated to real data, perturbation experiments).</li><li>Integration that respects causal direction and time, rather than symmetric correlation.</li><li>Uncertainty quantification for latent factors and integrated predictions.</li><li>Scalable, privacy-preserving (federated) integration across cohorts that cannot share data.</li><li>Interpretable deep integration: tying latent dimensions back to pathways and mechanisms.</li><li>Mosaic integration with many missing layers, typical of clinical cohorts.</li></ul></div>
+<div class="pager"><a href="../multi-omics-biology/"><span>← Previous</span><b>How the layers talk</b></a><a class="nx" href="../workflow-reproducibility/"><span>Next →</span><b>Workflow &amp; reproducibility</b></a></div>
+</section>
+</main>
+<script>window.ROOT="../";</script>
+<script src="../assets/data.js"></script><script src="../assets/site.js"></script><script src="../assets/app.js"></script>
+</body></html>

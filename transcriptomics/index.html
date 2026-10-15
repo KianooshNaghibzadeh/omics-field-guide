@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Transcriptomics (bulk) | The Omics Field Guide</title>
+<meta name="description" content="Measuring which genes are expressed, how much, and in which isoform. Bulk RNA-seq is the most widely used omics assay in biology, and its statistical…">
+<link rel="canonical" href="https://kianooshnaghibzadeh.github.io/omics-field-guide/transcriptomics/">
+<meta name="robots" content="index,follow"><meta name="author" content="Kianoosh Naghibzadeh">
+<meta property="og:type" content="website"><meta property="og:site_name" content="The Omics Field Guide">
+<meta property="og:title" content="Transcriptomics (bulk) | The Omics Field Guide"><meta property="og:description" content="Measuring which genes are expressed, how much, and in which isoform. Bulk RNA-seq is the most widely used omics assay in biology, and its statistical…"><meta property="og:url" content="https://kianooshnaghibzadeh.github.io/omics-field-guide/transcriptomics/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Transcriptomics (bulk) | The Omics Field Guide", "url": "https://kianooshnaghibzadeh.github.io/omics-field-guide/transcriptomics/", "description": "Measuring which genes are expressed, how much, and in which isoform. Bulk RNA-seq is the most widely used omics assay in biology, and its statistical\u2026", "inLanguage": "en", "author": {"@type": "Person", "name": "Kianoosh Naghibzadeh"}, "isPartOf": {"@type": "WebSite", "name": "The Omics Field Guide", "url": "https://kianooshnaghibzadeh.github.io/omics-field-guide/"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap">
+<link rel="stylesheet" href="../assets/style.css">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)} body{margin:0} img{max-width:100%} [hidden]{display:none!important}</style>
+</head><body>
+
+<div class="topbar">
+  <a class="brand" href="../"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="brand-name">Omics Field Guide</span></a>
+  <button class="menu-btn" id="menuBtn" aria-controls="rail" aria-expanded="false">Chapters</button>
+</div>
+<aside class="rail" id="rail" aria-label="Chapters">
+  <div class="rail-head">
+    <a class="brand" href="../"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="brand-name">The Omics Field Guide<small>genome → phenome</small></span></a>
+    <div class="search">
+      <svg viewBox="0 0 16 16" fill="none" stroke-width="1.6" aria-hidden="true"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4"/></svg>
+      <input id="q" type="search" placeholder="Search topics, tools…" autocomplete="off" aria-label="Search the guide">
+      <div class="results" id="results" role="listbox"></div>
+    </div>
+  </div>
+  <nav class="toc" id="toc"><div class="toc-part">Start</div>
+<a href="../" data-id="home"><span class="sw" style="--c:var(--int)"></span><span>Start here</span></a>
+<div class="toc-part">I · Foundations</div>
+<a href="../genome-genes-chromatin/" data-id="cell"><span class="sw" style="--c:var(--dna)"></span><span>Genome, genes &amp; chromatin</span></a>
+<a href="../central-dogma/" data-id="dogma"><span class="sw" style="--c:var(--rna)"></span><span>The central dogma</span></a>
+<a href="../splicing/" data-id="splicing"><span class="sw" style="--c:var(--rna)"></span><span>Splicing &amp; isoforms</span></a>
+<a href="../mutations-genetic-variation/" data-id="mutations"><span class="sw" style="--c:var(--met)"></span><span>Mutations &amp; variation</span></a>
+<div class="toc-part">II · The omics layers</div>
+<a href="../types-of-omics/" data-id="omes"><span class="sw" style="--c:var(--int)"></span><span>Map of the -omes</span></a>
+<a href="../genomics/" data-id="genomics"><span class="sw" style="--c:var(--dna)"></span><span>Genomics</span></a>
+<a href="../epigenomics/" data-id="epigenomics"><span class="sw" style="--c:var(--epi)"></span><span>Epigenomics</span></a>
+<a href="../transcriptomics/" data-id="transcriptomics" aria-current="page"><span class="sw" style="--c:var(--rna)"></span><span>Transcriptomics (bulk)</span></a>
+<a href="../single-cell-spatial-omics/" data-id="singlecell"><span class="sw" style="--c:var(--rna)"></span><span>Single-cell &amp; spatial</span></a>
+<a href="../proteomics/" data-id="proteomics"><span class="sw" style="--c:var(--prot)"></span><span>Proteomics</span></a>
+<a href="../metabolomics-lipidomics/" data-id="metabolomics"><span class="sw" style="--c:var(--met)"></span><span>Metabolomics &amp; lipidomics</span></a>
+<a href="../metagenomics-microbiome/" data-id="microbiome"><span class="sw" style="--c:var(--mic)"></span><span>Metagenomics &amp; microbiome</span></a>
+<a href="../other-omics/" data-id="more"><span class="sw" style="--c:var(--int)"></span><span>More omics</span></a>
+<div class="toc-part">III · Connecting layers</div>
+<a href="../multi-omics-biology/" data-id="relations"><span class="sw" style="--c:var(--int)"></span><span>How the layers talk</span></a>
+<a href="../multi-omics-integration/" data-id="integration"><span class="sw" style="--c:var(--int)"></span><span>Integrating multi-omics data</span></a>
+<a href="../workflow-reproducibility/" data-id="practice"><span class="sw" style="--c:var(--int)"></span><span>Workflow &amp; reproducibility</span></a>
+<div class="toc-part">IV · Research</div>
+<a href="../bioinformatics-tool-atlas/" data-id="atlas"><span class="sw" style="--c:var(--prot)"></span><span>Tool atlas</span></a>
+<a href="../benchmarks/" data-id="benchmarks"><span class="sw" style="--c:var(--prot)"></span><span>Benchmark hub</span></a>
+<a href="../research-gaps/" data-id="gaps"><span class="sw" style="--c:var(--mic)"></span><span>Research questions &amp; gaps</span></a>
+<a href="../learning-path-glossary/" data-id="learn"><span class="sw" style="--c:var(--int)"></span><span>Learning path &amp; glossary</span></a></nav>
+  <div class="rail-foot"><span id="ver">Edition 2026.10</span><button class="theme-btn" id="themeBtn" type="button">Theme: light</button></div>
+</aside>
+<main id="main">
+<section class="chapter on" id="transcriptomics" data-part="II · The omics layers" data-title="Transcriptomics (bulk)" data-c="--rna">
+<header class="chap-head"><div class="track"><span class="chip" style="--c:var(--rna);--cb:var(--rna-bg)">RNA layer</span><span>Chapter 8</span></div>
+<h1>Transcriptomics</h1>
+<p class="dek">Measuring which genes are expressed, how much, and in which isoform. Bulk RNA-seq is the most widely used omics assay in biology, and its statistical tooling is the most mature, so it is the best place to learn the logic that every other layer reuses.</p></header>
+
+<h2>Research questions</h2>
+<ul>
+<li>Which genes change between conditions (disease vs control, treated vs untreated, time points)?</li>
+<li>Which pathways and programmes are active, and which upstream regulators explain them?</li>
+<li>Which isoforms, fusions, editing sites or allele-specific expression patterns are present?</li>
+<li>Can expression classify patients (subtypes, prognosis, treatment response)?</li>
+<li>How do genetic variants affect expression (eQTLs) and splicing (sQTLs)?</li>
+</ul>
+
+<h2>Experimental choices that decide what you can analyse</h2>
+<div class="cols">
+<div class="card"><h4>RNA selection</h4><p>Poly(A)+ captures mature mRNA; rRNA depletion keeps non-polyadenylated and pre-mRNA (intronic reads). Small-RNA libraries for miRNA. Degraded samples (FFPE) need depletion or capture.</p></div>
+<div class="card"><h4>Strandedness and length</h4><p>Stranded libraries (dUTP) resolve antisense transcription. Paired-end 2×100–150 bp helps isoforms and fusions. 3′-tag methods (QuantSeq, BRB-seq) are cheap for gene counts but blind to isoforms.</p></div>
+<div class="card"><h4>Depth and replicates</h4><p>~20–30M reads per sample is typical for gene-level DE; isoform work needs more. Biological replicates matter more than depth: aim for six or more per group when you can.</p></div>
+</div>
+
+<h2>The standard pipeline</h2>
+<ol>
+<li><strong>QC</strong>: FastQC/MultiQC, rRNA content, strand check (RSeQC infer_experiment, salmon's automatic library type), gene body coverage (3′ bias indicates degradation), RIN or DV200 from the lab.</li>
+<li><strong>Quantification</strong>, two routes:
+<ul><li><em>Alignment-based</em>: STAR or HISAT2 to the genome, then featureCounts or HTSeq for gene counts; RSEM for isoforms. Gives BAMs for visual inspection, novel junctions and variant calling.</li>
+<li><em>Pseudoalignment / selective alignment</em>: salmon or kallisto match reads to transcript sequences and resolve multi-mapping reads with an EM algorithm. Fast and accurate for annotated transcripts; use salmon with a decoy-aware index. Import with tximport/tximeta to gene level.</li></ul></li>
+<li><strong>Filtering and normalisation</strong>: remove genes with very low counts (edgeR filterByExpr). Between-sample normalisation with DESeq2's median-of-ratios or edgeR's TMM. TPM and FPKM are within-sample units for display; do not feed them into count-based DE models.</li>
+<li><strong>Exploration</strong>: variance-stabilising transform (vst/rlog), PCA, sample-distance heatmaps. Look for outliers, batch effects, sex mismatches (<i>XIST</i>, chrY genes) and sample swaps.</li>
+<li><strong>Differential expression</strong>: negative binomial GLMs (DESeq2, edgeR) or linear models on log-CPM with precision weights (limma-voom). Include batch and covariates in the design matrix. Use empirical Bayes shrinkage of dispersions and of fold changes (apeglm, ashr) for ranking.</li>
+<li><strong>Multiple testing</strong>: Benjamini–Hochberg FDR. IHW (independent hypothesis weighting) can increase power.</li>
+<li><strong>Interpretation</strong>: over-representation (clusterProfiler, g:Profiler, Enrichr), rank-based GSEA (fgsea, GSEA), sample-level scores (GSVA, ssGSEA, singscore), TF and pathway activity from footprints (DoRothEA/CollecTRI with decoupleR, PROGENy), co-expression modules (WGCNA, hdWGCNA for single-cell).</li>
+</ol>
+<div class="note key"><span class="lbl">Why the negative binomial</span><p>Counts from technical replicates are roughly Poisson (variance = mean). Biological replicates vary more, so variance = μ + αμ², where α is the dispersion. With three replicates you cannot estimate α per gene reliably, so DESeq2 and edgeR borrow information across genes: they shrink each gene's dispersion toward a trend fitted against mean expression. That shrinkage is the main reason these tools work with small sample sizes.</p></div>
+
+<h2>Beyond gene counts</h2>
+<ul>
+<li><strong>Isoforms</strong>: short-read isoform quantification is uncertain when isoforms share most exons. Long-read RNA-seq (PacBio Kinnex/Iso-Seq, ONT cDNA or direct RNA) sequences full transcripts. Tools: IsoQuant, Bambu, FLAIR, StringTie2, TALON, ESPRESSO; SQANTI3 classifies and filters isoforms against the annotation.</li>
+<li><strong>Splicing</strong>: see the <a href="../splicing/">splicing chapter</a> (rMATS, LeafCutter, MAJIQ, SUPPA2).</li>
+<li><strong>Fusion genes</strong>: STAR-Fusion, Arriba, FusionCatcher; important in leukaemia (BCR::ABL1), sarcomas and prostate cancer (TMPRSS2::ERG).</li>
+<li><strong>Allele-specific expression</strong>: phASER, GATK ASEReadCounter; WASP-style filtering corrects reference mapping bias.</li>
+<li><strong>RNA editing</strong>: REDItools, SPRINT, JACUSA2.</li>
+<li><strong>Small RNA</strong>: miRDeep2, sRNAbench, nf-core/smrnaseq; miRNA target prediction with TargetScan and miRDB.</li>
+<li><strong>Deconvolution</strong>: estimate cell-type proportions from bulk with CIBERSORTx, MuSiC, BayesPrism, EPIC, quanTIseq, using single-cell references.</li>
+<li><strong>Nascent and decay</strong>: PRO-seq, TT-seq and metabolic labelling (SLAM-seq) separate transcription from degradation.</li>
+</ul>
+
+<h2>Tools</h2>
+<div class="tooltable" data-omics="transcriptomics"></div>
+<h2>Benchmarks</h2>
+<div class="benchlist" data-omics="transcriptomics"></div>
+<div class="note pit"><span class="lbl">Pitfalls</span><ul><li>Confounded design: if all cases were sequenced in batch 1 and all controls in batch 2, no software can separate batch from biology.</li><li>Pseudoreplication: multiple wells from one donor are not independent biological replicates.</li><li>Calling a pathway "activated" from an over-representation test that ignores direction and gene–gene correlation.</li><li>Using a genome-wide background for enrichment when only expressed genes could have been detected.</li><li>Treating "not significant" as "not changed"; with low power, absence of evidence is not evidence of absence.</li></ul></div>
+<div class="note gap"><span class="lbl">Research gap</span><ul><li>Accurate isoform-level quantification and differential testing, especially from long reads at modest depth.</li><li>Calibrated DE in large heterogeneous cohorts, where standard parametric tools can inflate false positives.</li><li>Separating transcriptional from post-transcriptional regulation in standard steady-state data.</li><li>Robust deconvolution when reference single-cell data come from a different platform or disease state.</li></ul></div>
+<div class="pager"><a href="../epigenomics/"><span>← Previous</span><b>Epigenomics</b></a><a class="nx" href="../single-cell-spatial-omics/"><span>Next →</span><b>Single-cell &amp; spatial</b></a></div>
+</section>
+</main>
+<script>window.ROOT="../";</script>
+<script src="../assets/data.js"></script><script src="../assets/site.js"></script><script src="../assets/app.js"></script>
+</body></html>

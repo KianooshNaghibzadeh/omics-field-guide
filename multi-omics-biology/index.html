@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>How the layers talk | The Omics Field Guide</title>
+<meta name="description" content="Before integrating data computationally, decide what biological relationship you expect between the layers. The relationship determines which features you…">
+<link rel="canonical" href="https://kianooshnaghibzadeh.github.io/omics-field-guide/multi-omics-biology/">
+<meta name="robots" content="index,follow"><meta name="author" content="Kianoosh Naghibzadeh">
+<meta property="og:type" content="website"><meta property="og:site_name" content="The Omics Field Guide">
+<meta property="og:title" content="How the layers talk | The Omics Field Guide"><meta property="og:description" content="Before integrating data computationally, decide what biological relationship you expect between the layers. The relationship determines which features you…"><meta property="og:url" content="https://kianooshnaghibzadeh.github.io/omics-field-guide/multi-omics-biology/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "How the layers talk | The Omics Field Guide", "url": "https://kianooshnaghibzadeh.github.io/omics-field-guide/multi-omics-biology/", "description": "Before integrating data computationally, decide what biological relationship you expect between the layers. The relationship determines which features you\u2026", "inLanguage": "en", "author": {"@type": "Person", "name": "Kianoosh Naghibzadeh"}, "isPartOf": {"@type": "WebSite", "name": "The Omics Field Guide", "url": "https://kianooshnaghibzadeh.github.io/omics-field-guide/"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap">
+<link rel="stylesheet" href="../assets/style.css">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)} body{margin:0} img{max-width:100%} [hidden]{display:none!important}</style>
+</head><body>
+
+<div class="topbar">
+  <a class="brand" href="../"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="brand-name">Omics Field Guide</span></a>
+  <button class="menu-btn" id="menuBtn" aria-controls="rail" aria-expanded="false">Chapters</button>
+</div>
+<aside class="rail" id="rail" aria-label="Chapters">
+  <div class="rail-head">
+    <a class="brand" href="../"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="brand-name">The Omics Field Guide<small>genome → phenome</small></span></a>
+    <div class="search">
+      <svg viewBox="0 0 16 16" fill="none" stroke-width="1.6" aria-hidden="true"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4"/></svg>
+      <input id="q" type="search" placeholder="Search topics, tools…" autocomplete="off" aria-label="Search the guide">
+      <div class="results" id="results" role="listbox"></div>
+    </div>
+  </div>
+  <nav class="toc" id="toc"><div class="toc-part">Start</div>
+<a href="../" data-id="home"><span class="sw" style="--c:var(--int)"></span><span>Start here</span></a>
+<div class="toc-part">I · Foundations</div>
+<a href="../genome-genes-chromatin/" data-id="cell"><span class="sw" style="--c:var(--dna)"></span><span>Genome, genes &amp; chromatin</span></a>
+<a href="../central-dogma/" data-id="dogma"><span class="sw" style="--c:var(--rna)"></span><span>The central dogma</span></a>
+<a href="../splicing/" data-id="splicing"><span class="sw" style="--c:var(--rna)"></span><span>Splicing &amp; isoforms</span></a>
+<a href="../mutations-genetic-variation/" data-id="mutations"><span class="sw" style="--c:var(--met)"></span><span>Mutations &amp; variation</span></a>
+<div class="toc-part">II · The omics layers</div>
+<a href="../types-of-omics/" data-id="omes"><span class="sw" style="--c:var(--int)"></span><span>Map of the -omes</span></a>
+<a href="../genomics/" data-id="genomics"><span class="sw" style="--c:var(--dna)"></span><span>Genomics</span></a>
+<a href="../epigenomics/" data-id="epigenomics"><span class="sw" style="--c:var(--epi)"></span><span>Epigenomics</span></a>
+<a href="../transcriptomics/" data-id="transcriptomics"><span class="sw" style="--c:var(--rna)"></span><span>Transcriptomics (bulk)</span></a>
+<a href="../single-cell-spatial-omics/" data-id="singlecell"><span class="sw" style="--c:var(--rna)"></span><span>Single-cell &amp; spatial</span></a>
+<a href="../proteomics/" data-id="proteomics"><span class="sw" style="--c:var(--prot)"></span><span>Proteomics</span></a>
+<a href="../metabolomics-lipidomics/" data-id="metabolomics"><span class="sw" style="--c:var(--met)"></span><span>Metabolomics &amp; lipidomics</span></a>
+<a href="../metagenomics-microbiome/" data-id="microbiome"><span class="sw" style="--c:var(--mic)"></span><span>Metagenomics &amp; microbiome</span></a>
+<a href="../other-omics/" data-id="more"><span class="sw" style="--c:var(--int)"></span><span>More omics</span></a>
+<div class="toc-part">III · Connecting layers</div>
+<a href="../multi-omics-biology/" data-id="relations" aria-current="page"><span class="sw" style="--c:var(--int)"></span><span>How the layers talk</span></a>
+<a href="../multi-omics-integration/" data-id="integration"><span class="sw" style="--c:var(--int)"></span><span>Integrating multi-omics data</span></a>
+<a href="../workflow-reproducibility/" data-id="practice"><span class="sw" style="--c:var(--int)"></span><span>Workflow &amp; reproducibility</span></a>
+<div class="toc-part">IV · Research</div>
+<a href="../bioinformatics-tool-atlas/" data-id="atlas"><span class="sw" style="--c:var(--prot)"></span><span>Tool atlas</span></a>
+<a href="../benchmarks/" data-id="benchmarks"><span class="sw" style="--c:var(--prot)"></span><span>Benchmark hub</span></a>
+<a href="../research-gaps/" data-id="gaps"><span class="sw" style="--c:var(--mic)"></span><span>Research questions &amp; gaps</span></a>
+<a href="../learning-path-glossary/" data-id="learn"><span class="sw" style="--c:var(--int)"></span><span>Learning path &amp; glossary</span></a></nav>
+  <div class="rail-foot"><span id="ver">Edition 2026.10</span><button class="theme-btn" id="themeBtn" type="button">Theme: light</button></div>
+</aside>
+<main id="main">
+<section class="chapter on" id="relations" data-part="III · Connecting layers" data-title="How the layers talk" data-c="--int">
+<header class="chap-head"><div class="track"><span class="chip" style="--c:var(--int);--cb:var(--int-bg)">Multi-omics · biology</span><span>Chapter 14</span></div>
+<h1>How the layers talk to each other</h1>
+<p class="dek">Before integrating data computationally, decide what biological relationship you expect between the layers. The relationship determines which features you can link, which direction effects flow, how strong correlations should be, and which method is appropriate.</p></header>
+
+<h2>Six kinds of relationship</h2>
+<div class="tbl wide"><table>
+<tr><th>Relationship</th><th>Mechanism</th><th>How to link features</th><th>Expected signal</th></tr>
+<tr><td>Genome → every layer (cis)</td><td class="wrap">A variant changes its own gene's regulation, splicing, coding sequence or structure</td><td class="wrap">Genomic position: variant within ±1 Mb of the gene (cis window)</td><td class="wrap">QTLs: strong, replicable, often small effect on traits</td></tr>
+<tr><td>Genome → every layer (trans)</td><td class="wrap">A variant in a TF, enzyme or receptor affects distant genes or metabolites</td><td class="wrap">Genome-wide scan; network propagation</td><td class="wrap">Weaker, harder to detect; large sample sizes needed</td></tr>
+<tr><td>Epigenome → transcriptome</td><td class="wrap">Accessibility and marks at promoters and enhancers control transcription</td><td class="wrap">Peak-to-gene links: distance, Hi-C contacts, correlation across samples or cells</td><td class="wrap">Promoter accessibility correlates positively, promoter CpG-island methylation negatively, with expression</td></tr>
+<tr><td>Transcriptome → proteome</td><td class="wrap">mRNA is template for protein; translation and decay modulate the result</td><td class="wrap">Gene ↔ protein ID mapping (Ensembl, UniProt); isoform ↔ proteoform</td><td class="wrap">Moderate positive correlation; time-lagged; buffered for complex subunits</td></tr>
+<tr><td>Proteome → metabolome</td><td class="wrap">Enzymes convert substrates; transporters move them</td><td class="wrap">Reaction networks (KEGG, Reactome, Recon3D/Human-GEM): enzyme ↔ substrate/product</td><td class="wrap">Weak and often non-monotonic; flux depends on substrate, cofactors and allostery, not only enzyme level</td></tr>
+<tr><td>Metabolome → epigenome, proteome</td><td class="wrap">Metabolites as cofactors (SAM, acetyl-CoA, α-KG, NAD<sup>+</sup>) and allosteric regulators</td><td class="wrap">Prior knowledge of cofactor-dependent enzymes</td><td class="wrap">Feedback loops; hard to see without perturbation or time series</td></tr>
+</table></div>
+
+<h2>Why layers disagree</h2>
+<p>A frequent surprise is that layers measured on the same samples correlate less than expected. That disagreement is usually biology, not a failed experiment:</p>
+<ul>
+<li><strong>Different timescales.</strong> Metabolites turn over in seconds, mRNAs in minutes to hours, proteins in hours to weeks. After a stimulus, mRNA peaks and falls before protein rises. Snapshot data at one time point capture different phases.</li>
+<li><strong>Post-transcriptional regulation.</strong> Translation efficiency, microRNAs, RNA-binding proteins and protein degradation (ubiquitin–proteasome, autophagy) all intervene between mRNA and protein.</li>
+<li><strong>Buffering and dosage compensation.</strong> Subunits of complexes are degraded when produced in excess, so an extra chromosome copy (aneuploidy) raises mRNA more than protein for complex members.</li>
+<li><strong>Enzyme kinetics.</strong> Flux depends on substrate concentration relative to K<sub>m</sub>, on allosteric control and on cofactors. A doubled enzyme often does not double flux.</li>
+<li><strong>Compartments and cell types.</strong> Bulk tissue mixes cells; a metabolite may come from a different cell type, or from microbes, than the enzyme you measured.</li>
+<li><strong>Technical noise and detection limits.</strong> Each platform measures a different subset with different dynamic range and missingness.</li>
+</ul>
+<div class="note bench"><span class="lbl">Evidence</span><p>Reviews of mRNA–protein relationships conclude that mRNA levels explain a substantial but incomplete part of protein variation across genes, and much less across samples for the same gene, with translation rates and protein turnover accounting for much of the rest (<cite style="font-style:normal"><a href="https://pubmed.ncbi.nlm.nih.gov/?term=On+the+dependency+of+cellular+protein+levels+on+mRNA+abundance" target="_blank" rel="noopener">Liu, Beyer &amp; Aebersold 2016, Cell</a></cite>; <cite style="font-style:normal"><a href="https://pubmed.ncbi.nlm.nih.gov/?term=mRNAs,+proteins+and+the+emerging+principles+of+gene+expression+control" target="_blank" rel="noopener">Buccitelli &amp; Selbach 2020, Nature Reviews Genetics</a></cite>). In tumour cohorts (CPTAC), mRNA–protein correlation per gene across samples has a median around 0.4–0.5, lowest for stable housekeeping and complex proteins.</p></div>
+
+<h2>The QTL framework: genetics as the anchor</h2>
+<p>Genotype is fixed at conception and is not changed by disease, so associations from genotype to a molecular trait have a known causal direction. This makes <strong>molecular QTL mapping</strong> the backbone of most multi-omics interpretation:</p>
+<figure><div class="fig"><svg viewBox="0 0 900 230" role="img" aria-label="QTL types linking a variant to each layer">
+<defs><marker id="qa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--ink-2)"/></marker></defs>
+<circle cx="80" cy="115" r="42" fill="var(--dna-bg)" stroke="var(--dna)" stroke-width="2"/><text x="80" y="111" text-anchor="middle" font-size="13" font-weight="600">variant</text><text x="80" y="127" text-anchor="middle" font-size="10">rs…</text>
+<g font-size="12">
+<rect x="250" y="12" width="140" height="34" fill="var(--epi-bg)" stroke="var(--epi)"/><text x="320" y="34" text-anchor="middle">accessibility · methylation</text>
+<rect x="250" y="62" width="140" height="34" fill="var(--rna-bg)" stroke="var(--rna)"/><text x="320" y="84" text-anchor="middle">expression</text>
+<rect x="250" y="112" width="140" height="34" fill="var(--rna-bg)" stroke="var(--rna)"/><text x="320" y="134" text-anchor="middle">splicing</text>
+<rect x="250" y="162" width="140" height="34" fill="var(--prot-bg)" stroke="var(--prot)"/><text x="320" y="184" text-anchor="middle">protein level</text>
+<rect x="520" y="87" width="140" height="34" fill="var(--met-bg)" stroke="var(--met)"/><text x="590" y="109" text-anchor="middle">metabolite</text>
+<rect x="740" y="87" width="140" height="34" fill="var(--int-bg)" stroke="var(--int)"/><text x="810" y="109" text-anchor="middle">disease / trait</text>
+</g>
+<g stroke="var(--ink-2)" stroke-width="1.5" fill="none" marker-end="url(#qa)">
+<path d="M120 100 L248 30"/><path d="M122 108 L248 79"/><path d="M122 120 L248 129"/><path d="M118 132 L248 179"/>
+<path d="M390 79 L518 100"/><path d="M390 179 L518 112"/><path d="M660 104 L738 104"/><path d="M390 30 C 600 30, 700 60, 790 85"/>
+</g>
+<g font-size="10" fill="var(--ink-3)"><text x="170" y="52">caQTL / meQTL</text><text x="185" y="88">eQTL</text><text x="185" y="140">sQTL</text><text x="165" y="182">pQTL</text><text x="430" y="78">mediation</text><text x="672" y="96">GWAS</text><text x="530" y="160">metabolite QTL (mQTL)</text></g>
+</svg></div><figcaption>Fig. 14.1 · Molecular QTLs connect one variant to each layer. If the same causal variant drives a molecular QTL and a GWAS signal, that molecule is a candidate mediator of the trait.</figcaption></figure>
+<ul>
+<li><strong>Mapping</strong>: linear regression of normalised molecular phenotype on genotype dosage with covariates (genotype PCs, hidden factors from PEER or PCA). Tools: tensorQTL (GPU), QTLtools, FastQTL, MatrixEQTL; single-cell: pseudobulk per cell type or SAIGE-QTL, jaxQTL.</li>
+<li><strong>Resources</strong>: GTEx (49 tissues, eQTL and sQTL), eQTLGen (blood eQTLs, ~31,000 samples), the eQTL Catalogue (uniformly processed studies), OneK1K (single-cell blood eQTLs), UK Biobank PPP and deCODE (pQTLs), and the GoDMC (methylation QTLs).</li>
+</ul>
+
+<h2>From association to causation</h2>
+<div class="cols">
+<div class="card"><h4>Colocalisation</h4><p>Do the GWAS and QTL signals share one causal variant, or are they two distinct variants in LD? <strong>coloc</strong> (Bayesian; posterior H4 for shared variant), coloc-SuSiE for multiple signals, eCAVIAR, HyPrColoc for many traits at once.</p></div>
+<div class="card"><h4>TWAS / PWAS</h4><p>Predict gene expression (or protein) from genotype in a reference panel, then associate predicted expression with the trait in GWAS summary statistics (PrediXcan/S-PrediXcan, FUSION, UTMOST). Fast, but hits can reflect LD and co-regulation, not causal genes.</p></div>
+<div class="card"><h4>Mendelian randomisation</h4><p>Use variants as instruments for an exposure (e.g. a cis-pQTL for a protein) to estimate its causal effect on an outcome. Assumes relevance, independence and no horizontal pleiotropy. Tools: TwoSampleMR, MendelianRandomization, MR-PRESSO, SMR with HEIDI test. Cis-pQTL MR is now used to prioritise drug targets.</p></div>
+</div>
+<div class="note eg"><span class="lbl">Example: PCSK9 across the layers</span><p>Rare loss-of-function variants in <i>PCSK9</i> lower LDL cholesterol and coronary disease risk (genome → phenome). PCSK9 protein binds the LDL receptor and targets it for degradation (proteome), so less PCSK9 means more receptors and lower plasma LDL (metabolome/lipidome). The genetics predicted that inhibiting PCSK9 would be safe and effective, and antibody (evolocumab, alirocumab) and siRNA (inclisiran) drugs followed. Drug programmes with human genetic support are roughly two to three times more likely to reach approval (<cite style="font-style:normal"><a href="https://pubmed.ncbi.nlm.nih.gov/?term=Refining+the+impact+of+genetic+evidence+on+clinical+success" target="_blank" rel="noopener">Minikel et al. 2024, Nature</a></cite>).</p></div>
+
+<h2>Linking features between layers in practice</h2>
+<div class="tbl"><table>
+<tr><th>From → to</th><th>Key</th><th>Resources</th><th>Watch out for</th></tr>
+<tr><td>Variant → gene</td><td class="wrap">Coordinates + regulatory links</td><td class="wrap">VEP, Open Targets Locus-to-Gene (L2G), ABC/rE2G predictions, cS2G</td><td class="wrap">Nearest gene is often wrong for non-coding variants</td></tr>
+<tr><td>Peak → gene</td><td class="wrap">Distance, contacts, correlation</td><td class="wrap">GREAT, ChIPseeker, ArchR/Signac peak-to-gene links</td><td class="wrap">One peak can regulate several genes and vice versa</td></tr>
+<tr><td>CpG → gene</td><td class="wrap">Probe annotation</td><td class="wrap">Illumina manifests, IlluminaHumanMethylationEPICv2anno</td><td class="wrap">Gene-body vs promoter methylation have opposite associations</td></tr>
+<tr><td>Gene → transcript → protein</td><td class="wrap">Ensembl gene/transcript/protein IDs, UniProt accession</td><td class="wrap">biomaRt, org.Hs.eg.db, UniProt ID mapping, MyGene.info</td><td class="wrap">Many-to-many mappings; protein groups contain several genes</td></tr>
+<tr><td>Protein → metabolite</td><td class="wrap">EC numbers, reaction IDs</td><td class="wrap">KEGG, Reactome, Rhea, Recon3D, Human-GEM, MetaNetX</td><td class="wrap">Promiscuous enzymes; metabolites in many reactions (ATP, NADH)</td></tr>
+<tr><td>Metabolite IDs</td><td class="wrap">InChIKey, HMDB, ChEBI, KEGG, PubChem CID</td><td class="wrap">RefMet, MetaboAnalyst ID converter, BridgeDb</td><td class="wrap">Isomers and lipid annotation levels map ambiguously</td></tr>
+<tr><td>Taxon → function → metabolite</td><td class="wrap">Gene families (UniRef90, KEGG KO)</td><td class="wrap">HUMAnN, AGORA2, gutMGene, MiMeNet</td><td class="wrap">Genetic potential is not activity</td></tr>
+</table></div>
+<div class="note gap"><span class="lbl">Research gap</span><ul><li>Many GWAS loci do not colocalise with any known eQTL ("missing regulation"); context-specific, single-cell and developmental QTLs may close the gap (<cite style="font-style:normal"><a href="https://pubmed.ncbi.nlm.nih.gov/?term=Systematic+differences+in+discovery+of+genetic+effects+on+gene+expression+and+complex+traits" target="_blank" rel="noopener">Mostafavi et al. 2023, Nature Genetics</a></cite>).</li><li>Time-resolved multi-omics that captures lags between layers.</li><li>Causal models across more than two layers (variant → methylation → expression → protein → trait) with proper uncertainty.</li><li>Protein-to-metabolite links that account for flux, not just enzyme abundance.</li></ul></div>
+<div class="pager"><a href="../other-omics/"><span>← Previous</span><b>More omics</b></a><a class="nx" href="../multi-omics-integration/"><span>Next →</span><b>Integrating multi-omics data</b></a></div>
+</section>
+</main>
+<script>window.ROOT="../";</script>
+<script src="../assets/data.js"></script><script src="../assets/site.js"></script><script src="../assets/app.js"></script>
+</body></html>
