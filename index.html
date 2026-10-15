@@ -11,7 +11,7 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "The Omics Field Guide: genome to metabolome, tools, benchmarks and multi-omics", "url": "https://kianooshnaghibzadeh.github.io/omics-field-guide/", "description": "This guide walks from the chemistry of DNA to the algorithms that turn sequencers, mass spectrometers and microscopes into biological knowledge. For each\u2026", "inLanguage": "en", "author": {"@type": "Person", "name": "Kianoosh Naghibzadeh"}, "isPartOf": {"@type": "WebSite", "name": "The Omics Field Guide", "url": "https://kianooshnaghibzadeh.github.io/omics-field-guide/"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap">
 <link rel="stylesheet" href="assets/style.css">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)} body{margin:0} img{max-width:100%} [hidden]{display:none!important}</style>
 </head><body>
@@ -38,6 +38,7 @@
 <a href="mutations-genetic-variation/" data-id="mutations"><span class="sw" style="--c:var(--met)"></span><span>Mutations &amp; variation</span></a>
 <div class="toc-part">II · The omics layers</div>
 <a href="types-of-omics/" data-id="omes"><span class="sw" style="--c:var(--int)"></span><span>Map of the -omes</span></a>
+<a href="how-omics-data-are-generated/" data-id="generation"><span class="sw" style="--c:var(--int)"></span><span>How omics data are generated</span></a>
 <a href="genomics/" data-id="genomics"><span class="sw" style="--c:var(--dna)"></span><span>Genomics</span></a>
 <a href="epigenomics/" data-id="epigenomics"><span class="sw" style="--c:var(--epi)"></span><span>Epigenomics</span></a>
 <a href="transcriptomics/" data-id="transcriptomics"><span class="sw" style="--c:var(--rna)"></span><span>Transcriptomics (bulk)</span></a>
@@ -54,7 +55,9 @@
 <a href="bioinformatics-tool-atlas/" data-id="atlas"><span class="sw" style="--c:var(--prot)"></span><span>Tool atlas</span></a>
 <a href="benchmarks/" data-id="benchmarks"><span class="sw" style="--c:var(--prot)"></span><span>Benchmark hub</span></a>
 <a href="research-gaps/" data-id="gaps"><span class="sw" style="--c:var(--mic)"></span><span>Research questions &amp; gaps</span></a>
-<a href="learning-path-glossary/" data-id="learn"><span class="sw" style="--c:var(--int)"></span><span>Learning path &amp; glossary</span></a></nav>
+<a href="learning-path-glossary/" data-id="learn"><span class="sw" style="--c:var(--int)"></span><span>Learning path &amp; glossary</span></a>
+<div class="toc-part">About</div>
+<a href="contact/" data-id="contact"><span class="sw" style="--c:var(--int)"></span><span>Contact</span></a></nav>
   <div class="rail-foot"><span id="ver">Edition 2026.10</span><button class="theme-btn" id="themeBtn" type="button">Theme: light</button></div>
 </aside>
 <main id="main">
@@ -63,6 +66,7 @@
     <div class="eyebrow">A field guide for bioinformaticians · from first principles to open problems</div>
     <h1>Every layer of the cell, <span class="l">read as data.</span></h1>
     <p class="dek">This guide walks from the chemistry of DNA to the algorithms that turn sequencers, mass spectrometers and microscopes into biological knowledge. For each omics layer it explains what is measured, why it matters, how the data are processed, which tools do each step, what independent benchmarks found, and which questions are still open.</p>
+    <p class="byline">Written and maintained by <a href="contact/">Kianoosh Naghibzadeh</a> · Toronto Metropolitan University · The Hospital for Sick Children (SickKids) · McMaster University · Toronto</p>
     <canvas id="trace" aria-label="Animated four-colour sequencing chromatogram"></canvas>
     <div class="trace-cap"><span>Fig. 0 · A Sanger-style chromatogram of a coding sequence. The four trace colours are reused for the four molecular layers throughout the guide.</span><span class="seq" id="traceSeq"></span></div>
   </div>
@@ -110,5 +114,5 @@
 <div class="pager"><a class="nx" href="genome-genes-chromatin/"><span>Begin →</span><b>Genome, genes &amp; chromatin</b></a></div></section>
 </main>
 <script>window.ROOT="./";</script>
-<script src="assets/data.js"></script><script src="assets/site.js"></script><script>(function(){var h=location.hash.slice(1),p=(typeof PAGES!=="undefined")&&PAGES.find(function(x){return x.id===h&&x.slug;});if(p)location.replace(p.slug+"/");})();</script><script src="assets/app.js"></script>
+<script src="assets/data.js"></script><script src="assets/site.js"></script><script>(function(){var h=location.hash.slice(1),p=(typeof PAGES!=="undefined")&&PAGES.find(function(x){return x.id===h&&x.slug;});if(p)location.replace(p.slug+"/");})();</script><script src="assets/app.js"></script><script src="assets/figs.js"></script>
 </body></html>

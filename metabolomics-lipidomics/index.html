@@ -11,7 +11,7 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Metabolomics & lipidomics | The Omics Field Guide", "url": "https://kianooshnaghibzadeh.github.io/omics-field-guide/metabolomics-lipidomics/", "description": "Metabolites are the substrates, products and signals of biochemistry: sugars, amino acids, nucleotides, lipids, cofactors, drugs and microbial products.\u2026", "inLanguage": "en", "author": {"@type": "Person", "name": "Kianoosh Naghibzadeh"}, "isPartOf": {"@type": "WebSite", "name": "The Omics Field Guide", "url": "https://kianooshnaghibzadeh.github.io/omics-field-guide/"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap">
 <link rel="stylesheet" href="../assets/style.css">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)} body{margin:0} img{max-width:100%} [hidden]{display:none!important}</style>
 </head><body>
@@ -38,6 +38,7 @@
 <a href="../mutations-genetic-variation/" data-id="mutations"><span class="sw" style="--c:var(--met)"></span><span>Mutations &amp; variation</span></a>
 <div class="toc-part">II · The omics layers</div>
 <a href="../types-of-omics/" data-id="omes"><span class="sw" style="--c:var(--int)"></span><span>Map of the -omes</span></a>
+<a href="../how-omics-data-are-generated/" data-id="generation"><span class="sw" style="--c:var(--int)"></span><span>How omics data are generated</span></a>
 <a href="../genomics/" data-id="genomics"><span class="sw" style="--c:var(--dna)"></span><span>Genomics</span></a>
 <a href="../epigenomics/" data-id="epigenomics"><span class="sw" style="--c:var(--epi)"></span><span>Epigenomics</span></a>
 <a href="../transcriptomics/" data-id="transcriptomics"><span class="sw" style="--c:var(--rna)"></span><span>Transcriptomics (bulk)</span></a>
@@ -54,12 +55,14 @@
 <a href="../bioinformatics-tool-atlas/" data-id="atlas"><span class="sw" style="--c:var(--prot)"></span><span>Tool atlas</span></a>
 <a href="../benchmarks/" data-id="benchmarks"><span class="sw" style="--c:var(--prot)"></span><span>Benchmark hub</span></a>
 <a href="../research-gaps/" data-id="gaps"><span class="sw" style="--c:var(--mic)"></span><span>Research questions &amp; gaps</span></a>
-<a href="../learning-path-glossary/" data-id="learn"><span class="sw" style="--c:var(--int)"></span><span>Learning path &amp; glossary</span></a></nav>
+<a href="../learning-path-glossary/" data-id="learn"><span class="sw" style="--c:var(--int)"></span><span>Learning path &amp; glossary</span></a>
+<div class="toc-part">About</div>
+<a href="../contact/" data-id="contact"><span class="sw" style="--c:var(--int)"></span><span>Contact</span></a></nav>
   <div class="rail-foot"><span id="ver">Edition 2026.10</span><button class="theme-btn" id="themeBtn" type="button">Theme: light</button></div>
 </aside>
 <main id="main">
 <section class="chapter on" id="metabolomics" data-part="II · The omics layers" data-title="Metabolomics &amp; lipidomics" data-c="--met">
-<header class="chap-head"><div class="track"><span class="chip" style="--c:var(--met);--cb:var(--met-bg)">Small-molecule layer</span><span>Chapter 11</span></div>
+<header class="chap-head"><div class="track"><span class="chip" style="--c:var(--met);--cb:var(--met-bg)">Small-molecule layer</span><span class="chnum"></span></div>
 <h1>Metabolomics and lipidomics</h1>
 <p class="dek">Metabolites are the substrates, products and signals of biochemistry: sugars, amino acids, nucleotides, lipids, cofactors, drugs and microbial products. They change within seconds and integrate genes, environment, diet and microbiome, which makes them the omics layer closest to phenotype.</p></header>
 
@@ -81,6 +84,18 @@
 <tr><td>Targeted triple-quad MRM</td><td class="wrap">Absolute quantification with standards</td><td class="wrap">Only predefined metabolites</td><td class="wrap">Validation, clinical assays (Biocrates kits)</td></tr>
 <tr><td>MS imaging (MALDI, DESI)</td><td class="wrap">Spatial distribution in tissue</td><td class="wrap">Identification and quantification hard</td><td class="wrap">Spatial metabolomics</td></tr>
 </table></div>
+
+<h2>How metabolomic data are generated</h2>
+<ol class="steps" style="--c:var(--met)">
+<li><b>Collect &amp; quench</b><span>Stop metabolism instantly: cold methanol, liquid nitrogen; process plasma within ~30 min on ice</span></li>
+<li><b>Extract</b><span>Methanol/acetonitrile for polar metabolites; MTBE or Folch/Bligh–Dyer for lipids; add internal standards</span></li>
+<li><b>Prepare</b><span>Dry and reconstitute; derivatise for GC-MS; make a pooled QC from all samples</span></li>
+<li><b>Run order</b><span>Randomise samples; inject blanks and pooled QCs every 5–10 samples; MS/MS on pooled QCs for identification</span></li>
+<li><b>LC-MS / GC-MS / NMR</b><span>Reversed phase (lipids, non-polar) and HILIC (polar), positive and negative ionisation</span></li>
+<li><b>Raw output</b><span>Vendor files → mzML; NMR free-induction decays → spectra</span></li>
+</ol>
+<div class="figx" data-fig="mzrt" data-cap="Fig. · All features detected in one untargeted LC-MS run of plasma. Simulated data."></div>
+<div class="figx" data-fig="lcms" data-cap="Fig. · Zooming in on one feature: its chromatographic peak and the mass spectrum at the apex, showing how one compound produces several ions. Simulated data for glucose (monoisotopic mass 180.063 Da)."></div>
 
 <h2>Untargeted LC-MS workflow</h2>
 <ol>
@@ -108,5 +123,5 @@
 </section>
 </main>
 <script>window.ROOT="../";</script>
-<script src="../assets/data.js"></script><script src="../assets/site.js"></script><script src="../assets/app.js"></script>
+<script src="../assets/data.js"></script><script src="../assets/site.js"></script><script src="../assets/app.js"></script><script src="../assets/figs.js"></script>
 </body></html>

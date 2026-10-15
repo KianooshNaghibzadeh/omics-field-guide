@@ -11,7 +11,7 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Proteomics | The Omics Field Guide", "url": "https://kianooshnaghibzadeh.github.io/omics-field-guide/proteomics/", "description": "Proteins do most of the work in a cell and are the targets of most drugs. Proteomics identifies and quantifies them, their modifications and their\u2026", "inLanguage": "en", "author": {"@type": "Person", "name": "Kianoosh Naghibzadeh"}, "isPartOf": {"@type": "WebSite", "name": "The Omics Field Guide", "url": "https://kianooshnaghibzadeh.github.io/omics-field-guide/"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap">
 <link rel="stylesheet" href="../assets/style.css">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)} body{margin:0} img{max-width:100%} [hidden]{display:none!important}</style>
 </head><body>
@@ -38,6 +38,7 @@
 <a href="../mutations-genetic-variation/" data-id="mutations"><span class="sw" style="--c:var(--met)"></span><span>Mutations &amp; variation</span></a>
 <div class="toc-part">II · The omics layers</div>
 <a href="../types-of-omics/" data-id="omes"><span class="sw" style="--c:var(--int)"></span><span>Map of the -omes</span></a>
+<a href="../how-omics-data-are-generated/" data-id="generation"><span class="sw" style="--c:var(--int)"></span><span>How omics data are generated</span></a>
 <a href="../genomics/" data-id="genomics"><span class="sw" style="--c:var(--dna)"></span><span>Genomics</span></a>
 <a href="../epigenomics/" data-id="epigenomics"><span class="sw" style="--c:var(--epi)"></span><span>Epigenomics</span></a>
 <a href="../transcriptomics/" data-id="transcriptomics"><span class="sw" style="--c:var(--rna)"></span><span>Transcriptomics (bulk)</span></a>
@@ -54,12 +55,14 @@
 <a href="../bioinformatics-tool-atlas/" data-id="atlas"><span class="sw" style="--c:var(--prot)"></span><span>Tool atlas</span></a>
 <a href="../benchmarks/" data-id="benchmarks"><span class="sw" style="--c:var(--prot)"></span><span>Benchmark hub</span></a>
 <a href="../research-gaps/" data-id="gaps"><span class="sw" style="--c:var(--mic)"></span><span>Research questions &amp; gaps</span></a>
-<a href="../learning-path-glossary/" data-id="learn"><span class="sw" style="--c:var(--int)"></span><span>Learning path &amp; glossary</span></a></nav>
+<a href="../learning-path-glossary/" data-id="learn"><span class="sw" style="--c:var(--int)"></span><span>Learning path &amp; glossary</span></a>
+<div class="toc-part">About</div>
+<a href="../contact/" data-id="contact"><span class="sw" style="--c:var(--int)"></span><span>Contact</span></a></nav>
   <div class="rail-foot"><span id="ver">Edition 2026.10</span><button class="theme-btn" id="themeBtn" type="button">Theme: light</button></div>
 </aside>
 <main id="main">
 <section class="chapter on" id="proteomics" data-part="II · The omics layers" data-title="Proteomics" data-c="--prot">
-<header class="chap-head"><div class="track"><span class="chip" style="--c:var(--prot);--cb:var(--prot-bg)">Protein layer</span><span>Chapter 10</span></div>
+<header class="chap-head"><div class="track"><span class="chip" style="--c:var(--prot);--cb:var(--prot-bg)">Protein layer</span><span class="chnum"></span></div>
 <h1>Proteomics</h1>
 <p class="dek">Proteins do most of the work in a cell and are the targets of most drugs. Proteomics identifies and quantifies them, their modifications and their interactions. There is no protein equivalent of PCR, so the field relies on mass spectrometry and affinity reagents, each with its own statistics.</p></header>
 
@@ -71,6 +74,17 @@
 <li>Which proteins form complexes, where are they located, and how do structures explain variant effects?</li>
 <li>Which drug binds which protein (chemoproteomics, thermal proteome profiling)?</li>
 </ul>
+
+<h2>How proteomic data are generated</h2>
+<ol class="steps" style="--c:var(--prot)">
+<li><b>Sample</b><span>Cells, tissue, plasma or serum (EDTA plasma preferred); avoid haemolysis and keratin contamination</span></li>
+<li><b>Lysis &amp; quantify</b><span>Detergent or urea buffers; protein amount by BCA assay</span></li>
+<li><b>Reduce &amp; alkylate</b><span>Break disulfide bonds (DTT/TCEP) and cap cysteines (iodoacetamide)</span></li>
+<li><b>Digest</b><span>Trypsin overnight (or S-Trap/SP3 workflows); optional TMT labelling or PTM enrichment</span></li>
+<li><b>Clean up</b><span>Desalt peptides (C18); measure peptide amount</span></li>
+<li><b>LC-MS/MS</b><span>Nano- or micro-flow LC into an Orbitrap or timsTOF; DDA or DIA acquisition, 30–120 min per sample</span></li>
+</ol>
+<p>Affinity platforms differ: Olink incubates plasma with pairs of DNA-tagged antibodies (a signal only forms when both bind the same protein), and SomaScan uses modified aptamers. Both convert protein amounts into nucleic-acid or fluorescence readouts and need only microlitres of plasma.</p>
 
 <h2>How bottom-up mass spectrometry works</h2>
 <ol>
@@ -87,6 +101,8 @@
 <div class="card"><h4>Affinity proteomics</h4><p>Olink (proximity extension assay; DNA-barcoded antibody pairs read by sequencing; ~5,400 proteins in Explore HT) and SomaScan (modified aptamers; ~11,000 assays). Scalable to biobanks (UK Biobank Pharma Proteomics Project). Platforms agree only moderately for many proteins, and epitope effects can create artefactual pQTLs.</p></div>
 <div class="card"><h4>Single-cell and spatial</h4><p>SCoPE2, plexDIA and Astral-based single-cell proteomics quantify ~1,000–5,000 proteins per cell. Deep Visual Proteomics combines imaging, laser microdissection and MS. CODEX/PhenoCycler and IMC image ~40–100 proteins in tissue.</p></div>
 </div>
+
+<div class="figx" data-fig="msms" data-cap="Fig. · From protein to peptide identification. Fragment masses are computed from real monoisotopic residue masses for LVNEVTEFAK; peak heights and background peaks are simulated. A search engine scores how well the observed fragments match each candidate peptide."></div>
 
 <h2>Statistical analysis</h2>
 <p>MS proteomics data have features that RNA-seq tools do not handle:</p>
@@ -111,5 +127,5 @@
 </section>
 </main>
 <script>window.ROOT="../";</script>
-<script src="../assets/data.js"></script><script src="../assets/site.js"></script><script src="../assets/app.js"></script>
+<script src="../assets/data.js"></script><script src="../assets/site.js"></script><script src="../assets/app.js"></script><script src="../assets/figs.js"></script>
 </body></html>

@@ -11,7 +11,7 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Epigenomics | The Omics Field Guide", "url": "https://kianooshnaghibzadeh.github.io/omics-field-guide/epigenomics/", "description": "Heritable or stable changes in gene activity that do not change DNA sequence: methylation of DNA, chemical marks on histones, which DNA is accessible,\u2026", "inLanguage": "en", "author": {"@type": "Person", "name": "Kianoosh Naghibzadeh"}, "isPartOf": {"@type": "WebSite", "name": "The Omics Field Guide", "url": "https://kianooshnaghibzadeh.github.io/omics-field-guide/"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap">
 <link rel="stylesheet" href="../assets/style.css">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)} body{margin:0} img{max-width:100%} [hidden]{display:none!important}</style>
 </head><body>
@@ -38,6 +38,7 @@
 <a href="../mutations-genetic-variation/" data-id="mutations"><span class="sw" style="--c:var(--met)"></span><span>Mutations &amp; variation</span></a>
 <div class="toc-part">II · The omics layers</div>
 <a href="../types-of-omics/" data-id="omes"><span class="sw" style="--c:var(--int)"></span><span>Map of the -omes</span></a>
+<a href="../how-omics-data-are-generated/" data-id="generation"><span class="sw" style="--c:var(--int)"></span><span>How omics data are generated</span></a>
 <a href="../genomics/" data-id="genomics"><span class="sw" style="--c:var(--dna)"></span><span>Genomics</span></a>
 <a href="../epigenomics/" data-id="epigenomics" aria-current="page"><span class="sw" style="--c:var(--epi)"></span><span>Epigenomics</span></a>
 <a href="../transcriptomics/" data-id="transcriptomics"><span class="sw" style="--c:var(--rna)"></span><span>Transcriptomics (bulk)</span></a>
@@ -54,12 +55,14 @@
 <a href="../bioinformatics-tool-atlas/" data-id="atlas"><span class="sw" style="--c:var(--prot)"></span><span>Tool atlas</span></a>
 <a href="../benchmarks/" data-id="benchmarks"><span class="sw" style="--c:var(--prot)"></span><span>Benchmark hub</span></a>
 <a href="../research-gaps/" data-id="gaps"><span class="sw" style="--c:var(--mic)"></span><span>Research questions &amp; gaps</span></a>
-<a href="../learning-path-glossary/" data-id="learn"><span class="sw" style="--c:var(--int)"></span><span>Learning path &amp; glossary</span></a></nav>
+<a href="../learning-path-glossary/" data-id="learn"><span class="sw" style="--c:var(--int)"></span><span>Learning path &amp; glossary</span></a>
+<div class="toc-part">About</div>
+<a href="../contact/" data-id="contact"><span class="sw" style="--c:var(--int)"></span><span>Contact</span></a></nav>
   <div class="rail-foot"><span id="ver">Edition 2026.10</span><button class="theme-btn" id="themeBtn" type="button">Theme: light</button></div>
 </aside>
 <main id="main">
 <section class="chapter on" id="epigenomics" data-part="II · The omics layers" data-title="Epigenomics" data-c="--epi">
-<header class="chap-head"><div class="track"><span class="chip" style="--c:var(--epi);--cb:var(--epi-bg)">DNA layer · regulation</span><span>Chapter 7</span></div>
+<header class="chap-head"><div class="track"><span class="chip" style="--c:var(--epi);--cb:var(--epi-bg)">DNA layer · regulation</span><span class="chnum"></span></div>
 <h1>Epigenomics</h1>
 <p class="dek">Heritable or stable changes in gene activity that do not change DNA sequence: methylation of DNA, chemical marks on histones, which DNA is accessible, where transcription factors sit, and how chromosomes fold in 3D. Epigenomics explains how one genome makes hundreds of cell types.</p></header>
 
@@ -72,6 +75,17 @@
 <li>How does 3D genome folding (loops, TADs) control enhancer–promoter communication?</li>
 </ul>
 
+<h2>How epigenomic data are generated</h2>
+<div class="tbl"><table>
+<tr><th>Assay</th><th>Wet-lab steps</th><th>Input</th><th>Readout</th></tr>
+<tr><td>WGBS / EM-seq</td><td class="wrap">Extract DNA → bisulfite or enzymatic conversion of unmethylated C → library → sequence 2 × 150 bp to ~30×</td><td class="wrap">10 ng–1 µg DNA</td><td class="wrap">C vs T at every CpG</td></tr>
+<tr><td>Methylation array</td><td class="wrap">Bisulfite-convert DNA → amplify → hybridise to EPIC BeadChip → scan</td><td class="wrap">~250–500 ng</td><td class="wrap">Methylated / unmethylated intensities (IDAT)</td></tr>
+<tr><td>ATAC-seq</td><td class="wrap">Isolate nuclei → Tn5 tagmentation (cuts open DNA and inserts adapters) → PCR → sequence paired-end</td><td class="wrap">500–50,000 cells</td><td class="wrap">Fragments from accessible DNA</td></tr>
+<tr><td>ChIP-seq</td><td class="wrap">Crosslink with formaldehyde → shear chromatin → immunoprecipitate with an antibody → reverse crosslinks → library</td><td class="wrap">10<sup>5</sup>–10<sup>7</sup> cells + input control</td><td class="wrap">Fragments bound by the target protein or mark</td></tr>
+<tr><td>CUT&amp;Tag</td><td class="wrap">Permeabilised cells + antibody → protein A–Tn5 binds antibody and tagments in place → PCR</td><td class="wrap">10<sup>3</sup>–10<sup>5</sup> cells</td><td class="wrap">Low-background target fragments</td></tr>
+<tr><td>Hi-C / Micro-C</td><td class="wrap">Crosslink → digest (restriction enzyme or MNase) → fill ends with biotin → proximity ligation → shear → pull down junctions → paired-end sequencing</td><td class="wrap">10<sup>5</sup>–10<sup>6</sup> cells</td><td class="wrap">Read pairs joining DNA that touched in 3D</td></tr>
+</table></div>
+
 <h2>DNA methylation</h2>
 <p>In mammals methylation is mostly 5-methylcytosine (5mC) at CpG dinucleotides. About 70–80% of CpGs are methylated, except in CpG islands at active promoters. DNMT3A/B establish new methylation, DNMT1 maintains it through replication, and TET enzymes oxidise 5mC to 5hmC, 5fC and 5caC on the way to demethylation. Promoter methylation is associated with silencing; gene-body methylation correlates with active transcription.</p>
 <div class="tbl"><table>
@@ -83,12 +97,15 @@
 <tr><td>Nanopore / PacBio native</td><td class="wrap">Detects modified bases from raw signal or polymerase kinetics</td><td class="wrap">Genome-wide, long-range, phased</td><td class="wrap">Haplotype-resolved methylation; 5hmC on nanopore</td></tr>
 <tr><td>TAPS, 5-letter/6-base sequencing</td><td class="wrap">Chemistries that separate 5mC and 5hmC</td><td class="wrap">Genome-wide</td><td class="wrap">Newer, growing adoption</td></tr>
 </table></div>
+<div class="figx" data-fig="bisulfite" data-cap="Fig. · How bisulfite sequencing reads methylation. Unmethylated cytosines become uracil and are sequenced as T; methylated cytosines stay C. Comparing reads to the reference (highlighted C→T positions) gives, at each CpG, the fraction of molecules that were methylated. Simulated reads."></div>
 <p><strong>Analysis</strong>: bisulfite-aware alignment (Bismark, bwa-meth, BSBolt) uses three-letter alignment (C/T and G/A converted genomes). Methylation is then extracted per CpG (MethylDackel, Bismark extractor). Arrays are processed with minfi, SeSAMe or ChAMP (normalisation: Noob, BMIQ, functional normalisation). Differential methylation is tested per CpG (methylKit, DSS, limma on M-values) or per region (DMRcate, bsseq/BSmooth, dmrseq, metilene). Because blood and tissue methylation is dominated by cell composition, estimate proportions (Houseman method, EpiDISH, MethylCIBERSORT) and adjust.</p>
 <div class="note eg"><span class="lbl">Epigenetic clocks</span><p>Penalised regression on methylation predicts age with striking accuracy: Horvath's multi-tissue clock (353 CpGs, 2013) and Hannum's blood clock. Later clocks predict health outcomes rather than chronological age: PhenoAge, GrimAge and the pace-of-ageing measure DunedinPACE. Their biological meaning, and whether interventions that change them change health, are open questions.</p></div>
 
 <h2>Chromatin accessibility</h2>
 <p><strong>ATAC-seq</strong> uses hyperactive Tn5 transposase to insert sequencing adapters into open chromatin. It needs ~50,000 cells (or single nuclei in scATAC). Fragment lengths show nucleosome-free (&lt;100 bp), mono-nucleosome (~200 bp) and di-nucleosome peaks; the TSS enrichment score and fragment-size periodicity are the main QC metrics. DNase-seq and MNase-seq are older alternatives.</p>
 <p><strong>Pipeline</strong>: trim (Nextera adapters), align (Bowtie2 or BWA), remove mitochondrial reads and duplicates, shift reads +4/−5 bp for Tn5 offset, call peaks (MACS2/3, Genrich, HMMRATAC), build a consensus peak set, count (featureCounts), test differential accessibility (DESeq2/edgeR, DiffBind, csaw). Downstream: motif enrichment (HOMER, MEME-ChIP), TF footprinting (TOBIAS, HINT-ATAC), and per-sample TF activity (chromVAR).</p>
+
+<div class="figx" data-fig="atac" data-cap="Fig. · ATAC-seq. Tn5 inserts mostly into nucleosome-free DNA around bound transcription factors, so reads pile up into a peak there; the dip right at the TF is its footprint. Right: fragment lengths show a nucleosome ladder (nucleosome-free &lt;100 bp, mono- ~200 bp, di- ~400 bp), a key QC signal. Simulated data."></div>
 
 <h2>Histone marks and transcription factor binding</h2>
 <div class="tbl"><table>
@@ -105,6 +122,8 @@
 <h2>3D genome</h2>
 <p><strong>Hi-C</strong> crosslinks chromatin, digests it, ligates nearby fragments and sequences the junctions, giving a genome-wide contact matrix. <strong>Micro-C</strong> uses MNase for nucleosome resolution; capture Hi-C, HiChIP and PLAC-seq focus on promoters or protein-anchored contacts. Processing (Juicer, HiC-Pro, distiller, HiCExplorer) produces <code>.hic</code> or <code>.cool/.mcool</code> files, normalised by iterative correction (ICE) or Knight–Ruiz balancing. Features are then called: A/B compartments (eigenvector of the correlation matrix), TADs (insulation score, Arrowhead, TopDom), loops (HiCCUPS, Mustache, chromosight), and differential contacts (diffHic, multiHiCcompare, CHESS). Contact frequency drops with genomic distance, so all comparisons must account for that distance decay.</p>
 
+<div class="figx" data-fig="hic" data-cap="Fig. · A Hi-C contact map of a 1.2 Mb region. Simulated data with four TADs and one loop."></div>
+
 <h2>Linking regulatory elements to genes</h2>
 <p>The nearest-gene assumption is wrong for a large share of enhancers. Better approaches use activity and contact together: the <strong>Activity-by-Contact (ABC) model</strong> (enhancer activity × Hi-C contact), correlations between accessibility and expression across samples or single cells (peak-to-gene links in ArchR, Signac), and CRISPRi screens as ground truth (e.g. ENCODE-rE2G models trained on CRISPR perturbation data).</p>
 
@@ -118,5 +137,5 @@
 </section>
 </main>
 <script>window.ROOT="../";</script>
-<script src="../assets/data.js"></script><script src="../assets/site.js"></script><script src="../assets/app.js"></script>
+<script src="../assets/data.js"></script><script src="../assets/site.js"></script><script src="../assets/app.js"></script><script src="../assets/figs.js"></script>
 </body></html>

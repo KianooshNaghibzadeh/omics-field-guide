@@ -11,7 +11,7 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Single-cell & spatial | The Omics Field Guide", "url": "https://kianooshnaghibzadeh.github.io/omics-field-guide/single-cell-spatial-omics/", "description": "Bulk profiles average thousands of cells. Single-cell methods measure each cell separately, revealing cell types, rare populations, continuous\u2026", "inLanguage": "en", "author": {"@type": "Person", "name": "Kianoosh Naghibzadeh"}, "isPartOf": {"@type": "WebSite", "name": "The Omics Field Guide", "url": "https://kianooshnaghibzadeh.github.io/omics-field-guide/"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap">
 <link rel="stylesheet" href="../assets/style.css">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)} body{margin:0} img{max-width:100%} [hidden]{display:none!important}</style>
 </head><body>
@@ -38,6 +38,7 @@
 <a href="../mutations-genetic-variation/" data-id="mutations"><span class="sw" style="--c:var(--met)"></span><span>Mutations &amp; variation</span></a>
 <div class="toc-part">II · The omics layers</div>
 <a href="../types-of-omics/" data-id="omes"><span class="sw" style="--c:var(--int)"></span><span>Map of the -omes</span></a>
+<a href="../how-omics-data-are-generated/" data-id="generation"><span class="sw" style="--c:var(--int)"></span><span>How omics data are generated</span></a>
 <a href="../genomics/" data-id="genomics"><span class="sw" style="--c:var(--dna)"></span><span>Genomics</span></a>
 <a href="../epigenomics/" data-id="epigenomics"><span class="sw" style="--c:var(--epi)"></span><span>Epigenomics</span></a>
 <a href="../transcriptomics/" data-id="transcriptomics"><span class="sw" style="--c:var(--rna)"></span><span>Transcriptomics (bulk)</span></a>
@@ -54,12 +55,14 @@
 <a href="../bioinformatics-tool-atlas/" data-id="atlas"><span class="sw" style="--c:var(--prot)"></span><span>Tool atlas</span></a>
 <a href="../benchmarks/" data-id="benchmarks"><span class="sw" style="--c:var(--prot)"></span><span>Benchmark hub</span></a>
 <a href="../research-gaps/" data-id="gaps"><span class="sw" style="--c:var(--mic)"></span><span>Research questions &amp; gaps</span></a>
-<a href="../learning-path-glossary/" data-id="learn"><span class="sw" style="--c:var(--int)"></span><span>Learning path &amp; glossary</span></a></nav>
+<a href="../learning-path-glossary/" data-id="learn"><span class="sw" style="--c:var(--int)"></span><span>Learning path &amp; glossary</span></a>
+<div class="toc-part">About</div>
+<a href="../contact/" data-id="contact"><span class="sw" style="--c:var(--int)"></span><span>Contact</span></a></nav>
   <div class="rail-foot"><span id="ver">Edition 2026.10</span><button class="theme-btn" id="themeBtn" type="button">Theme: light</button></div>
 </aside>
 <main id="main">
 <section class="chapter on" id="singlecell" data-part="II · The omics layers" data-title="Single-cell &amp; spatial" data-c="--rna">
-<header class="chap-head"><div class="track"><span class="chip" style="--c:var(--rna);--cb:var(--rna-bg)">RNA layer · resolution</span><span>Chapter 9</span></div>
+<header class="chap-head"><div class="track"><span class="chip" style="--c:var(--rna);--cb:var(--rna-bg)">RNA layer · resolution</span><span class="chnum"></span></div>
 <h1>Single-cell and spatial omics</h1>
 <p class="dek">Bulk profiles average thousands of cells. Single-cell methods measure each cell separately, revealing cell types, rare populations, continuous trajectories and cell-to-cell communication. Spatial methods add where each cell sits in the tissue.</p></header>
 
@@ -85,6 +88,18 @@
 <tr><td>Imaging-based spatial</td><td class="wrap">Xenium, MERFISH/MERSCOPE, CosMx, seqFISH+, CODEX/PhenoCycler (protein), IMC</td><td class="wrap">10<sup>2</sup>–10<sup>3</sup>+ genes, subcellular</td><td class="wrap">Single-cell or subcellular resolution; targeted gene panels; segmentation errors matter</td></tr>
 </table></div>
 
+<h2>How single-cell and spatial data are generated</h2>
+<ol class="steps" style="--c:var(--rna)">
+<li><b>Tissue to cells</b><span>Enzymatic + mechanical dissociation, or nuclei isolation from frozen tissue; keep cold and fast to limit stress genes</span></li>
+<li><b>Cell QC</b><span>Count and viability (&gt;80–90%); remove debris and dead cells; optional sorting or hashtag multiplexing</span></li>
+<li><b>Partition</b><span>Microfluidics pairs each cell with one barcoded gel bead in an oil droplet (or barcodes are added in rounds of split-pool)</span></li>
+<li><b>Barcode in droplet</b><span>Cell lyses; mRNA poly(A) tails bind bead oligos; reverse transcription writes cell barcode + UMI into each cDNA</span></li>
+<li><b>Pool &amp; amplify</b><span>Break the emulsion, amplify cDNA, build gene-expression (and VDJ, protein, ATAC) libraries</span></li>
+<li><b>Sequence</b><span>~20,000–50,000 reads per cell; Read 1 = barcode + UMI, Read 2 = transcript</span></li>
+</ol>
+<div class="figx" data-fig="scread" data-cap="Fig. · What one droplet-based single-cell read encodes (10x Genomics 3′ chemistry). The barcode and UMI are the reason single-cell data can be counted molecule by molecule."></div>
+<p>Spatial methods skip dissociation. In <strong>spot-based</strong> methods (Visium, Stereo-seq), a tissue section is placed on a slide printed with barcoded capture probes whose positions are known; RNA diffuses onto the probes, so each barcode doubles as a coordinate. In <strong>imaging-based</strong> methods (Xenium, MERFISH, CosMx), gene-specific probes are hybridised in the intact section and decoded by repeated rounds of fluorescence imaging, giving the position of each transcript.</p>
+
 <h2>The scRNA-seq workflow</h2>
 <ol>
 <li><strong>Pre-processing</strong>: demultiplex cell barcodes and UMIs, align and count (Cell Ranger, STARsolo, alevin-fry, kallisto|bustools). Output: a sparse cells × genes count matrix (h5ad, h5, mtx).</li>
@@ -99,11 +114,15 @@
 </ol>
 <div class="note key"><span class="lbl">The unit of replication is the donor, not the cell</span><p>Ten thousand cells from two patients are two biological replicates. Single-cell DE tests that treat cells as independent produce floods of false positives. Aggregate counts per sample and cell type (pseudobulk) and use DESeq2, edgeR or limma, or use mixed models with a donor random effect. This is the most important statistical lesson of the field.</p></div>
 
+<div class="figx" data-fig="umap" data-cap="Fig. · A UMAP of blood immune cells (PBMCs), the most common single-cell figure. Simulated data shaped like a typical PBMC dataset."></div>
+
 <h2>Trajectories, velocity and fate</h2>
 <p><strong>Pseudotime</strong> orders cells along a continuous process (Monocle 3, Slingshot, PAGA, Palantir, diffusion pseudotime). <strong>RNA velocity</strong> uses the ratio of unspliced to spliced reads to estimate the direction of change (velocyto, scVelo, with newer models such as veloVI, UniTVelo and dynamo); its assumptions (constant rates, steady-state kinetics) often fail, so treat velocity arrows as hypotheses. <strong>CellRank</strong> combines velocity, pseudotime or real time points into fate probabilities. <strong>Lineage tracing</strong> with heritable barcodes (CRISPR scars, LARRY, mitochondrial variants) provides ground truth that computational trajectories cannot.</p>
 
 <h2>Communication and regulation</h2>
 <p>Ligand–receptor inference (CellPhoneDB, CellChat, NicheNet, LIANA+) scores co-expression of ligand in sender cells and receptor in receiver cells using curated databases. These are hypotheses: mRNA co-expression does not prove protein signalling, and results depend heavily on the resource used. Gene-regulatory network inference (SCENIC/pySCENIC: GRNBoost2 co-expression + cis-regulatory motif pruning; CellOracle; SCENIC+ with multiome data) identifies regulons and TF activity.</p>
+
+<div class="figx" data-fig="spatial" data-cap="Fig. · Spot-level spatial transcriptomics coloured by spatial domain. Simulated tissue section."></div>
 
 <h2>Spatial analysis</h2>
 <ul>
@@ -127,5 +146,5 @@
 </section>
 </main>
 <script>window.ROOT="../";</script>
-<script src="../assets/data.js"></script><script src="../assets/site.js"></script><script src="../assets/app.js"></script>
+<script src="../assets/data.js"></script><script src="../assets/site.js"></script><script src="../assets/app.js"></script><script src="../assets/figs.js"></script>
 </body></html>

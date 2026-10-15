@@ -6,7 +6,7 @@
   --dna:#1C7F4E; --epi:#5E7D1A; --rna:#2756B8; --prot:#A86A10; --met:#B83A2A; --mic:#7A3FA0; --int:#0D6E68;
   --dna-bg:#D9EDE2; --rna-bg:#DCE5F6; --prot-bg:#F3E6CF; --met-bg:#F5DCD7; --int-bg:#D3EAE7; --mic-bg:#E9DDF1; --epi-bg:#E4ECD0;
   --accent:#0D6E68; --mark:#F4E27A;
-  --f-display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-display:"IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
   --f-body:"Literata", Georgia, "Times New Roman", serif;
   --f-mono:"IBM Plex Mono", ui-monospace, Consolas, monospace;
   --s-1:.8125rem; --s0:1.0625rem; --s1:1.25rem; --s2:1.6rem; --s3:2.2rem; --s4:3.2rem; --s5:4.6rem;
@@ -43,7 +43,7 @@ a:hover{text-decoration-thickness:2px}
 .brand-mark i{display:block; width:5px; border-radius:1px}
 .brand-mark i:nth-child(1){height:22px; background:var(--dna)} .brand-mark i:nth-child(2){height:14px; background:var(--rna)}
 .brand-mark i:nth-child(3){height:18px; background:var(--prot)} .brand-mark i:nth-child(4){height:10px; background:var(--met)}
-.brand-name{font-family:var(--f-display); font-weight:800; font-size:1.12rem; letter-spacing:-.01em; line-height:1.1}
+.brand-name{font-family:var(--f-display); font-weight:700; font-size:1.12rem; letter-spacing:-.01em; line-height:1.1}
 .brand-name small{display:block; font-family:var(--f-mono); font-weight:400; font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3)}
 .search{margin-top:14px; position:relative}
 .search input{width:100%; font:inherit; font-family:var(--f-mono); font-size:.8rem; padding:8px 10px 8px 30px; border:1px solid var(--rule); background:var(--card); color:var(--ink); border-radius:4px}
@@ -73,10 +73,10 @@ main{margin-left:var(--rail); min-height:100vh}
 .chap-head{border-bottom:1px solid var(--rule); padding-bottom:24px; margin-bottom:32px}
 .track{display:flex; gap:10px; align-items:center; font-family:var(--f-mono); font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3); flex-wrap:wrap}
 .track .chip{color:var(--c); background:var(--cb); padding:2px 8px; border-radius:2px; font-weight:600}
-h1,h2,h3,h4{font-family:var(--f-display); text-wrap:balance; line-height:1.12; letter-spacing:-.015em; margin:0}
-h1{font-size:clamp(2.2rem,5vw,var(--s5)); font-weight:800; margin-top:12px; letter-spacing:-.03em}
+h1,h2,h3,h4{font-family:var(--f-display); text-wrap:balance; line-height:1.15; letter-spacing:-.005em; margin:0}
+h1{font-size:clamp(2.1rem,4.6vw,4.2rem); font-weight:700; margin-top:12px; letter-spacing:-.02em}
 .dek{font-size:var(--s1); color:var(--ink-2); margin-top:14px; max-width:44rem; line-height:1.5}
-h2{font-size:var(--s3); font-weight:800; margin:56px 0 16px; padding-top:12px}
+h2{font-size:var(--s3); font-weight:700; margin:56px 0 16px; padding-top:12px}
 h3{font-size:var(--s1); font-weight:600; margin:32px 0 10px}
 h4{font-size:var(--s0); font-weight:600; margin:22px 0 6px}
 p{margin:0 0 1em}
@@ -137,7 +137,7 @@ figure{margin:26px 0} figcaption{font-family:var(--f-mono); font-size:.74rem; co
 .layers{margin:36px 0; border-top:1px solid var(--rule)}
 .layer{display:grid; grid-template-columns:11rem 1fr 9rem; gap:20px; align-items:center; padding:14px 4px; border-bottom:1px solid var(--rule); text-decoration:none; color:var(--ink)}
 .layer:hover{background:var(--card)}
-.layer .nm{font-family:var(--f-display); font-weight:800; font-size:1.3rem; color:var(--c)}
+.layer .nm{font-family:var(--f-display); font-weight:700; font-size:1.3rem; color:var(--c)}
 .layer .ds{font-size:.92rem; color:var(--ink-2); line-height:1.45; min-width:0}
 .layer .bar{height:10px; background:var(--cb); position:relative}
 .layer .bar i{position:absolute; inset:0 auto 0 0; background:var(--c); width:var(--w)}
@@ -168,6 +168,28 @@ figure{margin:26px 0} figcaption{font-family:var(--f-mono); font-size:.74rem; co
 .gloss dt{font-family:var(--f-display); font-weight:600; margin-top:12px}
 .gloss dd{margin:2px 0 0; color:var(--ink-2); font-size:.95rem}
 
+.byline{font-family:var(--f-mono); font-size:.78rem; color:var(--ink-2); margin-top:18px; line-height:1.6; max-width:52rem}
+.byline a{font-weight:600}
+/* generated figures */
+.figx{margin:26px 0}
+.chapter > .figx, .chapter > .anat, .chapter > .steps{max-width:68rem}
+.figx .fig svg{min-width:640px}
+.figx .fig svg .lbl{fill:var(--ink-2)} .figx .fig svg .mut{fill:var(--ink-3)}
+.illus{font-family:var(--f-mono); font-size:.68rem; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-3); border:1px solid var(--rule); padding:1px 6px; border-radius:2px; margin-left:6px}
+.anat{font-family:var(--f-mono); font-size:.8rem; background:var(--card); border:1px solid var(--rule); padding:14px 16px; overflow-x:auto; line-height:1.8; white-space:pre}
+.anat .k{color:var(--ink-3)}
+/* wet-lab step strips */
+.steps{list-style:none; padding:0; margin:20px 0 26px; display:grid; grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr)); gap:0; counter-reset:st; border:1px solid var(--rule); background:var(--card)}
+.steps li{counter-increment:st; margin:0; padding:14px 14px 14px; border-right:1px solid var(--rule); border-bottom:3px solid var(--c, var(--accent)); position:relative; min-width:0}
+.steps li::before{content:counter(st, decimal-leading-zero); display:block; font-family:var(--f-mono); font-size:.68rem; color:var(--c, var(--accent)); font-weight:600; letter-spacing:.06em}
+.steps li b{display:block; font-family:var(--f-display); font-size:.95rem; margin:2px 0 4px; line-height:1.25}
+.steps li span{display:block; font-size:.8rem; line-height:1.45; color:var(--ink-2)}
+/* contact */
+.contact{display:grid; grid-template-columns:repeat(auto-fit,minmax(16rem,1fr)); gap:0; border:1px solid var(--rule); background:var(--card); margin:20px 0}
+.contact > div{padding:18px 20px; border-right:1px solid var(--rule); border-bottom:1px solid var(--rule); min-width:0}
+.contact dt{font-family:var(--f-mono); font-size:.7rem; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-3)}
+.contact dd{margin:4px 0 0; font-family:var(--f-display); font-size:1.08rem; font-weight:500; overflow-wrap:anywhere}
+.copy{font-family:var(--f-mono); font-size:.7rem; margin-left:8px; background:none; border:1px solid var(--rule); color:var(--ink-2); padding:2px 7px; border-radius:3px; cursor:pointer}
 @media (max-width:900px){
   :root{--rail:0px}
   .topbar{display:flex; position:sticky; top:env(safe-area-inset-top,0px); z-index:30; background:var(--paper-2); border-bottom:1px solid var(--rule); padding:10px 16px; align-items:center; justify-content:space-between}

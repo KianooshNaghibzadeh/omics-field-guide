@@ -11,7 +11,7 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Metagenomics & microbiome | The Omics Field Guide", "url": "https://kianooshnaghibzadeh.github.io/omics-field-guide/metagenomics-microbiome/", "description": "Humans carry roughly as many bacterial cells as human cells, and the gut microbiome encodes far more genes than our own genome. Metagenomics sequences the\u2026", "inLanguage": "en", "author": {"@type": "Person", "name": "Kianoosh Naghibzadeh"}, "isPartOf": {"@type": "WebSite", "name": "The Omics Field Guide", "url": "https://kianooshnaghibzadeh.github.io/omics-field-guide/"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap">
 <link rel="stylesheet" href="../assets/style.css">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)} body{margin:0} img{max-width:100%} [hidden]{display:none!important}</style>
 </head><body>
@@ -38,6 +38,7 @@
 <a href="../mutations-genetic-variation/" data-id="mutations"><span class="sw" style="--c:var(--met)"></span><span>Mutations &amp; variation</span></a>
 <div class="toc-part">II · The omics layers</div>
 <a href="../types-of-omics/" data-id="omes"><span class="sw" style="--c:var(--int)"></span><span>Map of the -omes</span></a>
+<a href="../how-omics-data-are-generated/" data-id="generation"><span class="sw" style="--c:var(--int)"></span><span>How omics data are generated</span></a>
 <a href="../genomics/" data-id="genomics"><span class="sw" style="--c:var(--dna)"></span><span>Genomics</span></a>
 <a href="../epigenomics/" data-id="epigenomics"><span class="sw" style="--c:var(--epi)"></span><span>Epigenomics</span></a>
 <a href="../transcriptomics/" data-id="transcriptomics"><span class="sw" style="--c:var(--rna)"></span><span>Transcriptomics (bulk)</span></a>
@@ -54,12 +55,14 @@
 <a href="../bioinformatics-tool-atlas/" data-id="atlas"><span class="sw" style="--c:var(--prot)"></span><span>Tool atlas</span></a>
 <a href="../benchmarks/" data-id="benchmarks"><span class="sw" style="--c:var(--prot)"></span><span>Benchmark hub</span></a>
 <a href="../research-gaps/" data-id="gaps"><span class="sw" style="--c:var(--mic)"></span><span>Research questions &amp; gaps</span></a>
-<a href="../learning-path-glossary/" data-id="learn"><span class="sw" style="--c:var(--int)"></span><span>Learning path &amp; glossary</span></a></nav>
+<a href="../learning-path-glossary/" data-id="learn"><span class="sw" style="--c:var(--int)"></span><span>Learning path &amp; glossary</span></a>
+<div class="toc-part">About</div>
+<a href="../contact/" data-id="contact"><span class="sw" style="--c:var(--int)"></span><span>Contact</span></a></nav>
   <div class="rail-foot"><span id="ver">Edition 2026.10</span><button class="theme-btn" id="themeBtn" type="button">Theme: light</button></div>
 </aside>
 <main id="main">
 <section class="chapter on" id="microbiome" data-part="II · The omics layers" data-title="Metagenomics &amp; microbiome" data-c="--mic">
-<header class="chap-head"><div class="track"><span class="chip" style="--c:var(--mic);--cb:var(--mic-bg)">Community layer</span><span>Chapter 12</span></div>
+<header class="chap-head"><div class="track"><span class="chip" style="--c:var(--mic);--cb:var(--mic-bg)">Community layer</span><span class="chnum"></span></div>
 <h1>Metagenomics and the microbiome</h1>
 <p class="dek">Humans carry roughly as many bacterial cells as human cells, and the gut microbiome encodes far more genes than our own genome. Metagenomics sequences the whole community to ask who is there, what they can do, and how they interact with the host.</p></header>
 
@@ -72,12 +75,24 @@
 <li>Which genomes have never been cultured (metagenome-assembled genomes)?</li>
 </ul>
 
+<h2>How microbiome data are generated</h2>
+<ol class="steps" style="--c:var(--mic)">
+<li><b>Collect</b><span>Stool, swab, saliva, soil, water; stabilising buffer or immediate freezing; record diet, drugs, antibiotics</span></li>
+<li><b>Extract DNA</b><span>Bead-beating to break tough Gram-positive walls; include extraction blanks and a mock community</span></li>
+<li><b>Amplicon or shotgun</b><span>16S/ITS PCR with barcoded primers, or fragment all DNA for shotgun libraries</span></li>
+<li><b>Sequence</b><span>Amplicons: 2 × 250–300 bp, ~20–50k reads/sample; shotgun: 5–20 M reads/sample, long reads for genomes</span></li>
+<li><b>Controls</b><span>Negative controls to detect contamination; positive mock communities to measure bias</span></li>
+</ol>
+
 <h2>Approaches</h2>
 <div class="cols">
 <div class="card"><h4>Amplicon (16S rRNA, ITS, 18S)</h4><p>PCR of a marker gene's variable regions (e.g. V4). Cheap and sensitive; genus-level (sometimes species) taxonomy; no direct function. Denoise into exact amplicon sequence variants (ASVs) with DADA2, Deblur or UNOISE rather than 97% OTUs. Classify with SILVA, GTDB or Greengenes2. Infer function with PICRUSt2 (predicted, so interpret with care).</p></div>
 <div class="card"><h4>Shotgun metagenomics</h4><p>Sequences all DNA. Taxonomic profiling by marker genes (MetaPhlAn 4) or k-mers (Kraken 2 + Bracken, sylph); functional profiling (HUMAnN 3); assembly (MEGAHIT, metaSPAdes, metaFlye), binning into MAGs (MetaBAT 2, SemiBin2, VAMB, DAS Tool), quality with CheckM2 (MIMAG completeness and contamination standards), taxonomy with GTDB-Tk; strain tracking (StrainPhlAn, inStrain).</p></div>
 <div class="card"><h4>Meta-transcriptomics, -proteomics, -metabolomics</h4><p>Which genes are expressed (HUMAnN on RNA), which proteins are made, and which metabolites are present. Integrating these with the metagenome separates potential function from realised activity.</p></div>
 </div>
+
+<div class="figx" data-fig="s16" data-cap="Fig. · The 16S rRNA gene, the marker used for bacterial amplicon sequencing."></div>
+<div class="figx" data-fig="stackbar" data-cap="Fig. · Genus-level composition of eight stool samples, the standard microbiome bar chart. Simulated data."></div>
 
 <h2>The statistics of compositions</h2>
 <p>Microbiome counts are <strong>compositional</strong> (only relative abundances are observed), <strong>sparse</strong> (many zeros), and <strong>overdispersed</strong>. Rarefying throws away data; total-sum scaling ignores compositionality. Use compositionally aware methods: centred or additive log-ratio transforms (CLR, ALR), ANCOM-BC2, ALDEx2, LinDA, or regression frameworks such as MaAsLin 2/3 with careful normalisation. Diversity: alpha (richness, Shannon, Faith's PD) and beta (Bray–Curtis, UniFrac, Aitchison distance) tested with PERMANOVA (vegan adonis2), checking dispersion first (betadisper).</p>
@@ -92,5 +107,5 @@
 </section>
 </main>
 <script>window.ROOT="../";</script>
-<script src="../assets/data.js"></script><script src="../assets/site.js"></script><script src="../assets/app.js"></script>
+<script src="../assets/data.js"></script><script src="../assets/site.js"></script><script src="../assets/app.js"></script><script src="../assets/figs.js"></script>
 </body></html>

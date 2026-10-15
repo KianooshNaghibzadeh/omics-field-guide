@@ -11,7 +11,7 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Genomics | The Omics Field Guide", "url": "https://kianooshnaghibzadeh.github.io/omics-field-guide/genomics/", "description": "Reading DNA and finding where it differs. Germline genomics asks which inherited variants explain disease or traits; somatic genomics asks which acquired\u2026", "inLanguage": "en", "author": {"@type": "Person", "name": "Kianoosh Naghibzadeh"}, "isPartOf": {"@type": "WebSite", "name": "The Omics Field Guide", "url": "https://kianooshnaghibzadeh.github.io/omics-field-guide/"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap">
 <link rel="stylesheet" href="../assets/style.css">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)} body{margin:0} img{max-width:100%} [hidden]{display:none!important}</style>
 </head><body>
@@ -38,6 +38,7 @@
 <a href="../mutations-genetic-variation/" data-id="mutations"><span class="sw" style="--c:var(--met)"></span><span>Mutations &amp; variation</span></a>
 <div class="toc-part">II · The omics layers</div>
 <a href="../types-of-omics/" data-id="omes"><span class="sw" style="--c:var(--int)"></span><span>Map of the -omes</span></a>
+<a href="../how-omics-data-are-generated/" data-id="generation"><span class="sw" style="--c:var(--int)"></span><span>How omics data are generated</span></a>
 <a href="../genomics/" data-id="genomics" aria-current="page"><span class="sw" style="--c:var(--dna)"></span><span>Genomics</span></a>
 <a href="../epigenomics/" data-id="epigenomics"><span class="sw" style="--c:var(--epi)"></span><span>Epigenomics</span></a>
 <a href="../transcriptomics/" data-id="transcriptomics"><span class="sw" style="--c:var(--rna)"></span><span>Transcriptomics (bulk)</span></a>
@@ -54,12 +55,14 @@
 <a href="../bioinformatics-tool-atlas/" data-id="atlas"><span class="sw" style="--c:var(--prot)"></span><span>Tool atlas</span></a>
 <a href="../benchmarks/" data-id="benchmarks"><span class="sw" style="--c:var(--prot)"></span><span>Benchmark hub</span></a>
 <a href="../research-gaps/" data-id="gaps"><span class="sw" style="--c:var(--mic)"></span><span>Research questions &amp; gaps</span></a>
-<a href="../learning-path-glossary/" data-id="learn"><span class="sw" style="--c:var(--int)"></span><span>Learning path &amp; glossary</span></a></nav>
+<a href="../learning-path-glossary/" data-id="learn"><span class="sw" style="--c:var(--int)"></span><span>Learning path &amp; glossary</span></a>
+<div class="toc-part">About</div>
+<a href="../contact/" data-id="contact"><span class="sw" style="--c:var(--int)"></span><span>Contact</span></a></nav>
   <div class="rail-foot"><span id="ver">Edition 2026.10</span><button class="theme-btn" id="themeBtn" type="button">Theme: light</button></div>
 </aside>
 <main id="main">
 <section class="chapter on" id="genomics" data-part="II · The omics layers" data-title="Genomics" data-c="--dna">
-<header class="chap-head"><div class="track"><span class="chip" style="--c:var(--dna);--cb:var(--dna-bg)">DNA layer</span><span>Chapter 6</span></div>
+<header class="chap-head"><div class="track"><span class="chip" style="--c:var(--dna);--cb:var(--dna-bg)">DNA layer</span><span class="chnum"></span></div>
 <h1>Genomics</h1>
 <p class="dek">Reading DNA and finding where it differs. Germline genomics asks which inherited variants explain disease or traits; somatic genomics asks which acquired variants drive cancer and clonal expansion; assembly asks what the genome actually looks like when no reference fits.</p></header>
 
@@ -83,6 +86,31 @@
 <tr><td>Linked/optical (Bionano)</td><td class="wrap">&gt;150 kb molecules</td><td class="wrap">n/a</td><td class="wrap">Large SVs, scaffolding</td><td class="wrap">No base-level sequence</td></tr>
 <tr><td>SNP arrays</td><td class="wrap">n/a</td><td class="wrap">High for common SNPs</td><td class="wrap">Very cheap; basis of biobank GWAS with imputation</td><td class="wrap">Only known variants; rare variants are poorly imputed</td></tr>
 </table></div>
+
+<h2>How genomic data are generated</h2>
+<ol class="steps" style="--c:var(--dna)">
+<li><b>Sample</b><span>Blood (EDTA), saliva, buccal swab, fresh-frozen or FFPE tissue; tumour plus matched normal for somatic work</span></li>
+<li><b>DNA extraction</b><span>Silica columns or magnetic beads; high-molecular-weight kits (&gt;50 kb) for long reads</span></li>
+<li><b>DNA QC</b><span>Concentration (Qubit), purity (A260/280 ≈ 1.8), integrity (DIN, pulsed-field gel)</span></li>
+<li><b>Library</b><span>PCR-free WGS; exome capture with probes (~35–60 Mb); amplicon panels; size selection for HiFi/ONT</span></li>
+<li><b>Sequencing</b><span>2 × 150 bp to ~30× (germline) or 60–100× tumour; HiFi 15–25 kb; ONT ultra-long</span></li>
+<li><b>Raw output</b><span>FASTQ (short reads), unaligned BAM (PacBio), POD5 signal (ONT)</span></li>
+</ol>
+<p>Arrays follow a different route: DNA is amplified, fragmented, hybridised to probes on a BeadChip and scanned into IDAT intensity files, then genotypes are called from the two allele intensities (GenomeStudio, gtc2vcf) and missing variants are imputed.</p>
+
+<h2>Reading aligned sequences</h2>
+<p>After alignment, every read sits at its position on the reference. A genome browser such as IGV shows this as a <strong>pileup</strong>: bases that match the reference are drawn as plain bars, and only differences are shown. Real variants appear in a consistent fraction of reads from both strands; sequencing errors appear in single reads at low quality.</p>
+<div class="figx" data-fig="pileup" data-cap="Fig. · A read pileup around a heterozygous SNV and a heterozygous 2-bp deletion. Top: coverage, with the alternative-allele fraction coloured. Expect about 50% alternative reads for a germline heterozygous variant and about 100% for homozygous; somatic variants can be far lower. Simulated reads."></div>
+<p>A caller summarises this evidence as one line of a VCF file:</p>
+<div class="anat"><span class="k">#CHROM  POS        ID          REF  ALT  QUAL  FILTER  INFO              FORMAT          SAMPLE</span>
+chr2    21012345   .           C    T    812   PASS    DP=41;AF=0.5      GT:AD:DP:GQ     0/1:21,20:41:99
+<span class="k">│       │          │           │    │    │     │       │                 │               └ genotype 0/1 = heterozygous; 21 ref and 20 alt reads; depth 41; genotype quality 99
+│       │          │           │    │    │     │       └ site-level annotations   └ keys for the sample column
+│       │          │           │    │    │     └ passed all filters
+│       │          │           │    │    └ Phred-scaled confidence that a variant exists
+│       │          │           │    └ alternative allele          └ reference allele
+│       │          │           └ dbSNP identifier (rs…), or "." if none
+└ chromosome and 1-based position (GRCh38)</span></div>
 
 <h2>The germline short-read pipeline</h2>
 <ol>
@@ -123,9 +151,9 @@
 <div class="benchlist" data-omics="genomics"></div>
 <div class="note pit"><span class="lbl">Pitfall</span><p>Benchmarks such as Genome in a Bottle cover "high-confidence" regions, which historically excluded the hardest parts of the genome. A pipeline scoring 99.9% F1 there may do much worse in segmental duplications, the MHC or medically relevant genes with paralogs (e.g. <i>SMN1/2</i>, <i>PMS2</i>, <i>CYP2D6</i>). Check stratified performance (GIAB stratification BEDs with hap.py or vcfdist), not only the headline number.</p></div>
 <div class="note gap"><span class="lbl">Research gap</span><ul><li>Variant calling against pangenome graphs, and benchmarks that represent diverse ancestries.</li><li>Joint calling of SNVs, SVs, repeat expansions and methylation from one long-read run.</li><li>Interpretation of non-coding and structural variants in rare disease, where most unsolved cases may sit.</li><li>Polygenic score portability, calibration and clinical utility across ancestries.</li><li>Somatic mosaicism and clonal haematopoiesis detection in normal tissues.</li></ul></div>
-<div class="pager"><a href="../types-of-omics/"><span>← Previous</span><b>Map of the -omes</b></a><a class="nx" href="../epigenomics/"><span>Next →</span><b>Epigenomics</b></a></div>
+<div class="pager"><a href="../how-omics-data-are-generated/"><span>← Previous</span><b>How omics data are generated</b></a><a class="nx" href="../epigenomics/"><span>Next →</span><b>Epigenomics</b></a></div>
 </section>
 </main>
 <script>window.ROOT="../";</script>
-<script src="../assets/data.js"></script><script src="../assets/site.js"></script><script src="../assets/app.js"></script>
+<script src="../assets/data.js"></script><script src="../assets/site.js"></script><script src="../assets/app.js"></script><script src="../assets/figs.js"></script>
 </body></html>

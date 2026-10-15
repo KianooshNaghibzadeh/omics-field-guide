@@ -11,7 +11,7 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "The central dogma | The Omics Field Guide", "url": "https://kianooshnaghibzadeh.github.io/omics-field-guide/central-dogma/", "description": "Francis Crick's 1958 statement is about the direction of sequence information: it can pass from nucleic acid to nucleic acid and from nucleic acid to\u2026", "inLanguage": "en", "author": {"@type": "Person", "name": "Kianoosh Naghibzadeh"}, "isPartOf": {"@type": "WebSite", "name": "The Omics Field Guide", "url": "https://kianooshnaghibzadeh.github.io/omics-field-guide/"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap">
 <link rel="stylesheet" href="../assets/style.css">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)} body{margin:0} img{max-width:100%} [hidden]{display:none!important}</style>
 </head><body>
@@ -38,6 +38,7 @@
 <a href="../mutations-genetic-variation/" data-id="mutations"><span class="sw" style="--c:var(--met)"></span><span>Mutations &amp; variation</span></a>
 <div class="toc-part">II · The omics layers</div>
 <a href="../types-of-omics/" data-id="omes"><span class="sw" style="--c:var(--int)"></span><span>Map of the -omes</span></a>
+<a href="../how-omics-data-are-generated/" data-id="generation"><span class="sw" style="--c:var(--int)"></span><span>How omics data are generated</span></a>
 <a href="../genomics/" data-id="genomics"><span class="sw" style="--c:var(--dna)"></span><span>Genomics</span></a>
 <a href="../epigenomics/" data-id="epigenomics"><span class="sw" style="--c:var(--epi)"></span><span>Epigenomics</span></a>
 <a href="../transcriptomics/" data-id="transcriptomics"><span class="sw" style="--c:var(--rna)"></span><span>Transcriptomics (bulk)</span></a>
@@ -54,12 +55,14 @@
 <a href="../bioinformatics-tool-atlas/" data-id="atlas"><span class="sw" style="--c:var(--prot)"></span><span>Tool atlas</span></a>
 <a href="../benchmarks/" data-id="benchmarks"><span class="sw" style="--c:var(--prot)"></span><span>Benchmark hub</span></a>
 <a href="../research-gaps/" data-id="gaps"><span class="sw" style="--c:var(--mic)"></span><span>Research questions &amp; gaps</span></a>
-<a href="../learning-path-glossary/" data-id="learn"><span class="sw" style="--c:var(--int)"></span><span>Learning path &amp; glossary</span></a></nav>
+<a href="../learning-path-glossary/" data-id="learn"><span class="sw" style="--c:var(--int)"></span><span>Learning path &amp; glossary</span></a>
+<div class="toc-part">About</div>
+<a href="../contact/" data-id="contact"><span class="sw" style="--c:var(--int)"></span><span>Contact</span></a></nav>
   <div class="rail-foot"><span id="ver">Edition 2026.10</span><button class="theme-btn" id="themeBtn" type="button">Theme: light</button></div>
 </aside>
 <main id="main">
 <section class="chapter on" id="dogma" data-part="I · Foundations" data-title="The central dogma" data-c="--rna">
-<header class="chap-head"><div class="track"><span class="chip" style="--c:var(--rna);--cb:var(--rna-bg)">Foundations</span><span>Chapter 2</span></div>
+<header class="chap-head"><div class="track"><span class="chip" style="--c:var(--rna);--cb:var(--rna-bg)">Foundations</span><span class="chnum"></span></div>
 <h1>The central dogma, step by step</h1>
 <p class="dek">Francis Crick's 1958 statement is about the direction of sequence information: it can pass from nucleic acid to nucleic acid and from nucleic acid to protein, but never from protein back to nucleic acid. Each transfer step is a control point, an assay, and a place where mutations act.</p></header>
 
@@ -99,6 +102,8 @@
 </ol>
 <p>Three other polymerases have dedicated jobs: Pol I makes ribosomal RNA, Pol III makes tRNAs, 5S rRNA and some small RNAs, and mitochondrial RNA polymerase transcribes the mitochondrial genome. Ribosomal RNA is 80% or more of total RNA, which is why RNA-seq libraries either select poly(A)+ RNA or deplete rRNA. The choice changes what you can see: poly(A) selection loses histone mRNAs, many lncRNAs and most intronic reads, while rRNA depletion keeps them.</p>
 
+<div class="figx" data-fig="transcribe" data-cap="Fig. · One short gene read through the dogma. The mRNA has the same sequence as the coding strand (U instead of T) because it is copied from the template strand. Ribosomes read it in non-overlapping triplets from the start codon until the first stop codon (UGA)."></div>
+
 <h2>RNA processing</h2>
 <div class="cols">
 <div class="card"><h4>5′ capping</h4><p>A 7-methylguanosine cap is added co-transcriptionally. It protects the RNA and recruits eIF4E for translation. Cap-based protocols (CAGE) map transcription start sites precisely.</p></div>
@@ -134,5 +139,5 @@
 </section>
 </main>
 <script>window.ROOT="../";</script>
-<script src="../assets/data.js"></script><script src="../assets/site.js"></script><script src="../assets/app.js"></script>
+<script src="../assets/data.js"></script><script src="../assets/site.js"></script><script src="../assets/app.js"></script><script src="../assets/figs.js"></script>
 </body></html>

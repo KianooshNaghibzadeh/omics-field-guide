@@ -11,7 +11,7 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Mutations & variation | The Omics Field Guide", "url": "https://kianooshnaghibzadeh.github.io/omics-field-guide/mutations-genetic-variation/", "description": "A mutation matters because of where in the information flow it acts. The same single-base change can do nothing, break a protein, shift a splice site,\u2026", "inLanguage": "en", "author": {"@type": "Person", "name": "Kianoosh Naghibzadeh"}, "isPartOf": {"@type": "WebSite", "name": "The Omics Field Guide", "url": "https://kianooshnaghibzadeh.github.io/omics-field-guide/"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap">
 <link rel="stylesheet" href="../assets/style.css">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)} body{margin:0} img{max-width:100%} [hidden]{display:none!important}</style>
 </head><body>
@@ -38,6 +38,7 @@
 <a href="../mutations-genetic-variation/" data-id="mutations" aria-current="page"><span class="sw" style="--c:var(--met)"></span><span>Mutations &amp; variation</span></a>
 <div class="toc-part">II · The omics layers</div>
 <a href="../types-of-omics/" data-id="omes"><span class="sw" style="--c:var(--int)"></span><span>Map of the -omes</span></a>
+<a href="../how-omics-data-are-generated/" data-id="generation"><span class="sw" style="--c:var(--int)"></span><span>How omics data are generated</span></a>
 <a href="../genomics/" data-id="genomics"><span class="sw" style="--c:var(--dna)"></span><span>Genomics</span></a>
 <a href="../epigenomics/" data-id="epigenomics"><span class="sw" style="--c:var(--epi)"></span><span>Epigenomics</span></a>
 <a href="../transcriptomics/" data-id="transcriptomics"><span class="sw" style="--c:var(--rna)"></span><span>Transcriptomics (bulk)</span></a>
@@ -54,12 +55,14 @@
 <a href="../bioinformatics-tool-atlas/" data-id="atlas"><span class="sw" style="--c:var(--prot)"></span><span>Tool atlas</span></a>
 <a href="../benchmarks/" data-id="benchmarks"><span class="sw" style="--c:var(--prot)"></span><span>Benchmark hub</span></a>
 <a href="../research-gaps/" data-id="gaps"><span class="sw" style="--c:var(--mic)"></span><span>Research questions &amp; gaps</span></a>
-<a href="../learning-path-glossary/" data-id="learn"><span class="sw" style="--c:var(--int)"></span><span>Learning path &amp; glossary</span></a></nav>
+<a href="../learning-path-glossary/" data-id="learn"><span class="sw" style="--c:var(--int)"></span><span>Learning path &amp; glossary</span></a>
+<div class="toc-part">About</div>
+<a href="../contact/" data-id="contact"><span class="sw" style="--c:var(--int)"></span><span>Contact</span></a></nav>
   <div class="rail-foot"><span id="ver">Edition 2026.10</span><button class="theme-btn" id="themeBtn" type="button">Theme: light</button></div>
 </aside>
 <main id="main">
 <section class="chapter on" id="mutations" data-part="I · Foundations" data-title="Mutations &amp; variation" data-c="--met">
-<header class="chap-head"><div class="track"><span class="chip" style="--c:var(--met);--cb:var(--met-bg)">Foundations</span><span>Chapter 4</span></div>
+<header class="chap-head"><div class="track"><span class="chip" style="--c:var(--met);--cb:var(--met-bg)">Foundations</span><span class="chnum"></span></div>
 <h1>Mutations and genetic variation</h1>
 <p class="dek">A mutation matters because of where in the information flow it acts. The same single-base change can do nothing, break a protein, shift a splice site, disable an enhancer or change a drug's metabolism. This chapter classifies variants and traces their consequences through every layer.</p></header>
 
@@ -100,6 +103,8 @@
 <tr><td>Splice region</td><td class="mono">GT→GC at +2</td><td class="wrap">See <a href="../splicing/">splicing</a></td><td class="wrap">Exon skipping, intron retention, cryptic sites.</td></tr>
 </table></div>
 <p>Variants are written in <strong>HGVS nomenclature</strong>: <code>NM_000546.6:c.743G&gt;A</code> (cDNA position on a specific transcript) and <code>p.(Arg248Gln)</code> (protein). Always specify the transcript. MANE Select transcripts (agreed by NCBI and EBI) are now the default for clinical reporting.</p>
+
+<div class="figx" data-fig="mutfx" data-cap="Fig. · The same short coding sequence with four kinds of single-nucleotide change. Highlighted: the changed base; red amino acids: changes in the protein. A one-base deletion shifts every downstream codon, which is why frameshifts are usually as damaging as stop-gains."></div>
 
 <h2>Non-coding consequences</h2>
 <ul>
@@ -156,5 +161,5 @@
 </section>
 </main>
 <script>window.ROOT="../";</script>
-<script src="../assets/data.js"></script><script src="../assets/site.js"></script><script src="../assets/app.js"></script>
+<script src="../assets/data.js"></script><script src="../assets/site.js"></script><script src="../assets/app.js"></script><script src="../assets/figs.js"></script>
 </body></html>

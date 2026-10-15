@@ -11,7 +11,7 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Transcriptomics (bulk) | The Omics Field Guide", "url": "https://kianooshnaghibzadeh.github.io/omics-field-guide/transcriptomics/", "description": "Measuring which genes are expressed, how much, and in which isoform. Bulk RNA-seq is the most widely used omics assay in biology, and its statistical\u2026", "inLanguage": "en", "author": {"@type": "Person", "name": "Kianoosh Naghibzadeh"}, "isPartOf": {"@type": "WebSite", "name": "The Omics Field Guide", "url": "https://kianooshnaghibzadeh.github.io/omics-field-guide/"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap">
 <link rel="stylesheet" href="../assets/style.css">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)} body{margin:0} img{max-width:100%} [hidden]{display:none!important}</style>
 </head><body>
@@ -38,6 +38,7 @@
 <a href="../mutations-genetic-variation/" data-id="mutations"><span class="sw" style="--c:var(--met)"></span><span>Mutations &amp; variation</span></a>
 <div class="toc-part">II · The omics layers</div>
 <a href="../types-of-omics/" data-id="omes"><span class="sw" style="--c:var(--int)"></span><span>Map of the -omes</span></a>
+<a href="../how-omics-data-are-generated/" data-id="generation"><span class="sw" style="--c:var(--int)"></span><span>How omics data are generated</span></a>
 <a href="../genomics/" data-id="genomics"><span class="sw" style="--c:var(--dna)"></span><span>Genomics</span></a>
 <a href="../epigenomics/" data-id="epigenomics"><span class="sw" style="--c:var(--epi)"></span><span>Epigenomics</span></a>
 <a href="../transcriptomics/" data-id="transcriptomics" aria-current="page"><span class="sw" style="--c:var(--rna)"></span><span>Transcriptomics (bulk)</span></a>
@@ -54,12 +55,14 @@
 <a href="../bioinformatics-tool-atlas/" data-id="atlas"><span class="sw" style="--c:var(--prot)"></span><span>Tool atlas</span></a>
 <a href="../benchmarks/" data-id="benchmarks"><span class="sw" style="--c:var(--prot)"></span><span>Benchmark hub</span></a>
 <a href="../research-gaps/" data-id="gaps"><span class="sw" style="--c:var(--mic)"></span><span>Research questions &amp; gaps</span></a>
-<a href="../learning-path-glossary/" data-id="learn"><span class="sw" style="--c:var(--int)"></span><span>Learning path &amp; glossary</span></a></nav>
+<a href="../learning-path-glossary/" data-id="learn"><span class="sw" style="--c:var(--int)"></span><span>Learning path &amp; glossary</span></a>
+<div class="toc-part">About</div>
+<a href="../contact/" data-id="contact"><span class="sw" style="--c:var(--int)"></span><span>Contact</span></a></nav>
   <div class="rail-foot"><span id="ver">Edition 2026.10</span><button class="theme-btn" id="themeBtn" type="button">Theme: light</button></div>
 </aside>
 <main id="main">
 <section class="chapter on" id="transcriptomics" data-part="II · The omics layers" data-title="Transcriptomics (bulk)" data-c="--rna">
-<header class="chap-head"><div class="track"><span class="chip" style="--c:var(--rna);--cb:var(--rna-bg)">RNA layer</span><span>Chapter 8</span></div>
+<header class="chap-head"><div class="track"><span class="chip" style="--c:var(--rna);--cb:var(--rna-bg)">RNA layer</span><span class="chnum"></span></div>
 <h1>Transcriptomics</h1>
 <p class="dek">Measuring which genes are expressed, how much, and in which isoform. Bulk RNA-seq is the most widely used omics assay in biology, and its statistical tooling is the most mature, so it is the best place to learn the logic that every other layer reuses.</p></header>
 
@@ -79,6 +82,18 @@
 <div class="card"><h4>Depth and replicates</h4><p>~20–30M reads per sample is typical for gene-level DE; isoform work needs more. Biological replicates matter more than depth: aim for six or more per group when you can.</p></div>
 </div>
 
+<h2>How transcriptomic data are generated</h2>
+<ol class="steps" style="--c:var(--rna)">
+<li><b>Sample &amp; stabilise</b><span>Snap-freeze, RNAlater or PAXgene (blood) within minutes; RNA degrades fast</span></li>
+<li><b>RNA extraction</b><span>TRIzol or column kits; DNase treatment removes genomic DNA</span></li>
+<li><b>RNA QC</b><span>RIN (1–10) or DV200 for FFPE; quantity by Qubit</span></li>
+<li><b>Select RNA</b><span>Poly(A) capture with oligo-dT beads, or rRNA depletion (keeps non-polyadenylated RNA)</span></li>
+<li><b>Make cDNA</b><span>Fragment RNA → reverse transcription → second strand with dUTP (marks strand) → adapters → PCR</span></li>
+<li><b>Sequence</b><span>~20–40 M read pairs, 2 × 100–150 bp; long-read cDNA or direct RNA for full isoforms</span></li>
+</ol>
+<p>The end product of quantification is a <strong>count matrix</strong>: genes in rows, samples in columns, each entry the number of reads (or estimated fragments) assigned to that gene. Everything downstream works on this table.</p>
+<div class="figx" data-fig="counts" data-cap="Fig. · A small piece of a count matrix. Raw counts depend on gene length and sequencing depth, so they are compared between samples only after normalisation. Illustrative values."></div>
+
 <h2>The standard pipeline</h2>
 <ol>
 <li><strong>QC</strong>: FastQC/MultiQC, rRNA content, strand check (RSeQC infer_experiment, salmon's automatic library type), gene body coverage (3′ bias indicates degradation), RIN or DV200 from the lab.</li>
@@ -92,6 +107,9 @@
 <li><strong>Interpretation</strong>: over-representation (clusterProfiler, g:Profiler, Enrichr), rank-based GSEA (fgsea, GSEA), sample-level scores (GSVA, ssGSEA, singscore), TF and pathway activity from footprints (DoRothEA/CollecTRI with decoupleR, PROGENy), co-expression modules (WGCNA, hdWGCNA for single-cell).</li>
 </ol>
 <div class="note key"><span class="lbl">Why the negative binomial</span><p>Counts from technical replicates are roughly Poisson (variance = mean). Biological replicates vary more, so variance = μ + αμ², where α is the dispersion. With three replicates you cannot estimate α per gene reliably, so DESeq2 and edgeR borrow information across genes: they shrink each gene's dispersion toward a trend fitted against mean expression. That shrinkage is the main reason these tools work with small sample sizes.</p></div>
+
+<div class="figx" data-fig="volcano" data-cap="Fig. · A volcano plot, the standard summary of a differential expression test. Simulated results for 900 genes."></div>
+<div class="figx" data-fig="sashimi" data-cap="Fig. · Seeing splicing in RNA-seq. Reads that span exon–exon junctions are counted per junction; inclusion and skipping junctions give the percent spliced in (Ψ) of the middle exon. Simulated coverage."></div>
 
 <h2>Beyond gene counts</h2>
 <ul>
@@ -115,5 +133,5 @@
 </section>
 </main>
 <script>window.ROOT="../";</script>
-<script src="../assets/data.js"></script><script src="../assets/site.js"></script><script src="../assets/app.js"></script>
+<script src="../assets/data.js"></script><script src="../assets/site.js"></script><script src="../assets/app.js"></script><script src="../assets/figs.js"></script>
 </body></html>
