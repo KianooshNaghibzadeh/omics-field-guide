@@ -1,0 +1,398 @@
+
+<!-- ===================================================== SINGLE CELL & SPATIAL -->
+<section class="chapter" id="singlecell" data-part="II · The omics layers" data-title="Single-cell &amp; spatial" data-c="--rna">
+<header class="chap-head"><div class="track"><span class="chip" style="--c:var(--rna);--cb:var(--rna-bg)">RNA layer · resolution</span><span class="chnum"></span></div>
+<h1>Single-cell and spatial omics</h1>
+<p class="dek">Bulk profiles average thousands of cells. Single-cell methods measure each cell separately, revealing cell types, rare populations, continuous trajectories and cell-to-cell communication. Spatial methods add where each cell sits in the tissue.</p></header>
+
+<h2>Research questions</h2>
+<ul>
+<li>What cell types and states exist in a tissue, and which are new?</li>
+<li>How do cell composition and cell-type-specific expression change in disease?</li>
+<li>What are the developmental or differentiation trajectories, and what drives fate decisions?</li>
+<li>Which cells communicate, through which ligand–receptor pairs, and in which tissue niches?</li>
+<li>Which regulatory programmes (TFs, enhancers) define each state?</li>
+<li>How does a genetic variant or perturbation act in specific cell types (single-cell eQTLs, Perturb-seq)?</li>
+</ul>
+
+<h2>Technologies</h2>
+<div class="tbl"><table>
+<tr><th>Approach</th><th>Examples</th><th>Throughput</th><th>Trade-off</th></tr>
+<tr><td>Droplet, 3′ or 5′ tag</td><td class="wrap">10x Chromium (Flex, 3′, 5′), Drop-seq, inDrops</td><td class="wrap">10<sup>3</sup>–10<sup>5</sup> cells per run</td><td class="wrap">Cheap per cell; sparse (~1–5k genes detected); no full-length isoforms</td></tr>
+<tr><td>Combinatorial indexing</td><td class="wrap">Parse Evercode, Scale Bio, sci-RNA-seq3</td><td class="wrap">10<sup>5</sup>–10<sup>6</sup>+ cells</td><td class="wrap">Fixed cells, many samples multiplexed; lower per-cell sensitivity</td></tr>
+<tr><td>Plate-based full-length</td><td class="wrap">Smart-seq2, Smart-seq3, FLASH-seq</td><td class="wrap">10<sup>2</sup>–10<sup>3</sup> cells</td><td class="wrap">High sensitivity and isoform information; expensive per cell</td></tr>
+<tr><td>Single-nucleus</td><td class="wrap">snRNA-seq on frozen tissue</td><td class="wrap">as droplet</td><td class="wrap">Works on archived and hard-to-dissociate tissue (brain, muscle); more intronic reads, fewer transcripts</td></tr>
+<tr><td>Multi-modal</td><td class="wrap">CITE-seq (RNA + surface proteins), 10x Multiome (RNA + ATAC), TEA-seq, scNMT-seq, Perturb-seq, VDJ</td><td class="wrap">varies</td><td class="wrap">Two or more layers from the same cell: the strongest data for integration</td></tr>
+<tr><td>Sequencing-based spatial</td><td class="wrap">Visium (55 µm spots), Visium HD (2 µm bins), Slide-seqV2, Stereo-seq</td><td class="wrap">whole transcriptome</td><td class="wrap">Unbiased gene coverage; spots may mix several cells; need deconvolution or segmentation</td></tr>
+<tr><td>Imaging-based spatial</td><td class="wrap">Xenium, MERFISH/MERSCOPE, CosMx, seqFISH+, CODEX/PhenoCycler (protein), IMC</td><td class="wrap">10<sup>2</sup>–10<sup>3</sup>+ genes, subcellular</td><td class="wrap">Single-cell or subcellular resolution; targeted gene panels; segmentation errors matter</td></tr>
+</table></div>
+
+<h2>How single-cell and spatial data are generated</h2>
+<ol class="steps" style="--c:var(--rna)">
+<li><b>Tissue to cells</b><span>Enzymatic + mechanical dissociation, or nuclei isolation from frozen tissue; keep cold and fast to limit stress genes</span></li>
+<li><b>Cell QC</b><span>Count and viability (&gt;80–90%); remove debris and dead cells; optional sorting or hashtag multiplexing</span></li>
+<li><b>Partition</b><span>Microfluidics pairs each cell with one barcoded gel bead in an oil droplet (or barcodes are added in rounds of split-pool)</span></li>
+<li><b>Barcode in droplet</b><span>Cell lyses; mRNA poly(A) tails bind bead oligos; reverse transcription writes cell barcode + UMI into each cDNA</span></li>
+<li><b>Pool &amp; amplify</b><span>Break the emulsion, amplify cDNA, build gene-expression (and VDJ, protein, ATAC) libraries</span></li>
+<li><b>Sequence</b><span>~20,000–50,000 reads per cell; Read 1 = barcode + UMI, Read 2 = transcript</span></li>
+</ol>
+<div class="figx" data-fig="scread" data-cap="Fig. · What one droplet-based single-cell read encodes (10x Genomics 3′ chemistry). The barcode and UMI are the reason single-cell data can be counted molecule by molecule."></div>
+<p>Spatial methods skip dissociation. In <strong>spot-based</strong> methods (Visium, Stereo-seq), a tissue section is placed on a slide printed with barcoded capture probes whose positions are known; RNA diffuses onto the probes, so each barcode doubles as a coordinate. In <strong>imaging-based</strong> methods (Xenium, MERFISH, CosMx), gene-specific probes are hybridised in the intact section and decoded by repeated rounds of fluorescence imaging, giving the position of each transcript.</p>
+
+<h2>The scRNA-seq workflow</h2>
+<ol>
+<li><strong>Pre-processing</strong>: demultiplex cell barcodes and UMIs, align and count (Cell Ranger, STARsolo, alevin-fry, kallisto|bustools). Output: a sparse cells × genes count matrix (h5ad, h5, mtx).</li>
+<li><strong>Cell QC</strong>: total UMIs, genes detected, mitochondrial fraction (dying cells), ribosomal fraction. Prefer data-driven thresholds (median absolute deviations) per sample over fixed cut-offs. Remove <strong>ambient RNA</strong> (SoupX, CellBender, DecontX) and <strong>doublets</strong> (scDblFinder, DoubletFinder, scrublet). Sample multiplexing by genotype (demuxlet, souporcell, vireo) or hashtags (HTO) also identifies doublets.</li>
+<li><strong>Normalisation</strong>: size-factor scaling with log1p (shifted logarithm), scran pooling, sctransform or analytic Pearson residuals.</li>
+<li><strong>Feature selection</strong>: 2,000–5,000 highly variable genes; deviance-based selection is an alternative.</li>
+<li><strong>Dimensionality reduction</strong>: PCA (or a VAE latent space such as scVI), then a k-nearest-neighbour graph. UMAP and t-SNE are for visualisation only; distances and cluster sizes in them are not meaningful.</li>
+<li><strong>Integration / batch correction</strong> across samples: Harmony, scVI/scANVI, Seurat CCA/RPCA, Scanorama, BBKNN, fastMNN, LIGER. Over-correction can erase real biology (e.g. disease-specific states).</li>
+<li><strong>Clustering</strong>: Leiden or Louvain community detection on the kNN graph; check robustness across resolutions.</li>
+<li><strong>Annotation</strong>: marker genes plus automated label transfer (CellTypist, SingleR, Azimuth, scANVI, scArches) to reference atlases (Human Cell Atlas, Tabula Sapiens, CELLxGENE Census).</li>
+<li><strong>Downstream</strong>: compositional analysis (scCODA, propeller, milo for neighbourhoods), differential expression <em>by pseudobulk</em> per sample and cell type, trajectories, velocity, communication, gene-regulatory networks.</li>
+</ol>
+<div class="note key"><span class="lbl">The unit of replication is the donor, not the cell</span><p>Ten thousand cells from two patients are two biological replicates. Single-cell DE tests that treat cells as independent produce floods of false positives. Aggregate counts per sample and cell type (pseudobulk) and use DESeq2, edgeR or limma, or use mixed models with a donor random effect. This is the most important statistical lesson of the field.</p></div>
+
+<div class="figx" data-fig="umap" data-cap="Fig. · A UMAP of blood immune cells (PBMCs), the most common single-cell figure. Simulated data shaped like a typical PBMC dataset."></div>
+
+<h2>Trajectories, velocity and fate</h2>
+<p><strong>Pseudotime</strong> orders cells along a continuous process (Monocle 3, Slingshot, PAGA, Palantir, diffusion pseudotime). <strong>RNA velocity</strong> uses the ratio of unspliced to spliced reads to estimate the direction of change (velocyto, scVelo, with newer models such as veloVI, UniTVelo and dynamo); its assumptions (constant rates, steady-state kinetics) often fail, so treat velocity arrows as hypotheses. <strong>CellRank</strong> combines velocity, pseudotime or real time points into fate probabilities. <strong>Lineage tracing</strong> with heritable barcodes (CRISPR scars, LARRY, mitochondrial variants) provides ground truth that computational trajectories cannot.</p>
+
+<h2>Communication and regulation</h2>
+<p>Ligand–receptor inference (CellPhoneDB, CellChat, NicheNet, LIANA+) scores co-expression of ligand in sender cells and receptor in receiver cells using curated databases. These are hypotheses: mRNA co-expression does not prove protein signalling, and results depend heavily on the resource used. Gene-regulatory network inference (SCENIC/pySCENIC: GRNBoost2 co-expression + cis-regulatory motif pruning; CellOracle; SCENIC+ with multiome data) identifies regulons and TF activity.</p>
+
+<div class="figx" data-fig="spatial" data-cap="Fig. · Spot-level spatial transcriptomics coloured by spatial domain. Simulated tissue section."></div>
+
+<h2>Spatial analysis</h2>
+<ul>
+<li><strong>Segmentation</strong> of imaging data into cells: Cellpose, Baysor, proseg, StarDist; errors here propagate into every downstream result.</li>
+<li><strong>Deconvolution</strong> of multi-cell spots using single-cell references: cell2location, RCTD (spacexr), CARD, Tangram, DestVI, SPOTlight.</li>
+<li><strong>Spatially variable genes</strong>: SpatialDE, SPARK-X, nnSVG, Moran's I in Squidpy.</li>
+<li><strong>Spatial domains / niches</strong>: BayesSpace, SpaGCN, GraphST, STAGATE, BANKSY, CellCharter.</li>
+<li><strong>Neighbourhood and interaction</strong>: co-occurrence and neighbourhood enrichment (Squidpy), spatially constrained ligand–receptor scoring (COMMOT, LIANA+), niche-aware DE.</li>
+<li><strong>Frameworks</strong>: Squidpy and SpatialData (Python, scverse), Giotto Suite, Seurat v5, Voyager, SpatialExperiment (Bioconductor).</li>
+</ul>
+
+<h2>Foundation models</h2>
+<p>Transformer models pre-trained on tens of millions of cells (Geneformer, scGPT, scFoundation, UCE, Nicheformer, and others) promise general-purpose embeddings for annotation, batch integration and perturbation prediction. Independent evaluations have been sobering: in zero-shot settings their embeddings often do not beat highly variable genes with PCA, scVI or Harmony, and for predicting perturbation effects deep models have not clearly outperformed simple linear or mean baselines. Fine-tuning helps for some tasks. Evaluate any claim against simple baselines on held-out data that the model did not see during pre-training.</p>
+
+<h2>Tools</h2>
+<div class="tooltable" data-omics="singlecell"></div>
+<h2>Benchmarks</h2>
+<div class="benchlist" data-omics="singlecell"></div>
+<div class="note gap"><span class="lbl">Research gap</span><ul><li>Benchmarks and ground truth for spatial domain detection, cell segmentation and spatial communication.</li><li>Statistical frameworks for comparing conditions across many donors in spatial data (multi-sample spatial DE).</li><li>Honest evaluation and useful applications of single-cell foundation models; perturbation response prediction for unseen perturbations and cell types.</li><li>Integrating many modalities measured on different cells (mosaic integration) without erasing biology.</li><li>Defining "cell state" versus "cell type" in a reproducible, ontology-backed way.</li></ul></div>
+<div class="pager"></div>
+</section>
+
+<!-- ===================================================== PROTEOMICS -->
+<section class="chapter" id="proteomics" data-part="II · The omics layers" data-title="Proteomics" data-c="--prot">
+<header class="chap-head"><div class="track"><span class="chip" style="--c:var(--prot);--cb:var(--prot-bg)">Protein layer</span><span class="chnum"></span></div>
+<h1>Proteomics</h1>
+<p class="dek">Proteins do most of the work in a cell and are the targets of most drugs. Proteomics identifies and quantifies them, their modifications and their interactions. There is no protein equivalent of PCR, so the field relies on mass spectrometry and affinity reagents, each with its own statistics.</p></header>
+
+<h2>Research questions</h2>
+<ul>
+<li>Which proteins and proteoforms differ between conditions, and do they follow mRNA changes?</li>
+<li>Which signalling pathways are active (phosphoproteomics) and which kinases drive them?</li>
+<li>Which plasma proteins are biomarkers or drug targets, and which are causal (pQTL + Mendelian randomisation)?</li>
+<li>Which proteins form complexes, where are they located, and how do structures explain variant effects?</li>
+<li>Which drug binds which protein (chemoproteomics, thermal proteome profiling)?</li>
+</ul>
+
+<h2>How proteomic data are generated</h2>
+<ol class="steps" style="--c:var(--prot)">
+<li><b>Sample</b><span>Cells, tissue, plasma or serum (EDTA plasma preferred); avoid haemolysis and keratin contamination</span></li>
+<li><b>Lysis &amp; quantify</b><span>Detergent or urea buffers; protein amount by BCA assay</span></li>
+<li><b>Reduce &amp; alkylate</b><span>Break disulfide bonds (DTT/TCEP) and cap cysteines (iodoacetamide)</span></li>
+<li><b>Digest</b><span>Trypsin overnight (or S-Trap/SP3 workflows); optional TMT labelling or PTM enrichment</span></li>
+<li><b>Clean up</b><span>Desalt peptides (C18); measure peptide amount</span></li>
+<li><b>LC-MS/MS</b><span>Nano- or micro-flow LC into an Orbitrap or timsTOF; DDA or DIA acquisition, 30–120 min per sample</span></li>
+</ol>
+<p>Affinity platforms differ: Olink incubates plasma with pairs of DNA-tagged antibodies (a signal only forms when both bind the same protein), and SomaScan uses modified aptamers. Both convert protein amounts into nucleic-acid or fluorescence readouts and need only microlitres of plasma.</p>
+
+<h2>How bottom-up mass spectrometry works</h2>
+<ol>
+<li><strong>Sample preparation</strong>: lyse, reduce and alkylate cysteines, digest with trypsin (cuts after K/R) into peptides of ~7–30 residues. Optional enrichment for PTMs (phospho: TiO<sub>2</sub>, Fe-IMAC; ubiquitin: K-ε-GG antibody) or depletion of abundant plasma proteins.</li>
+<li><strong>Liquid chromatography</strong> separates peptides by hydrophobicity over 10–120 minutes; they are ionised by electrospray.</li>
+<li><strong>MS1</strong> measures mass-to-charge (m/z) of intact peptide ions; <strong>MS2</strong> fragments selected ions (CID/HCD, ETD) and measures fragment masses (b- and y-ions), which encode the sequence.</li>
+<li><strong>Acquisition</strong>: <em>DDA</em> (data-dependent; picks the top-N most intense ions, giving stochastic missing values), <em>DIA</em> (data-independent; fragments all ions in m/z windows, more complete and reproducible, more complex spectra), <em>targeted</em> (SRM/PRM; predefined peptides, best for validation).</li>
+<li><strong>Identification</strong>: match spectra against theoretical spectra from a protein database (MSFragger, Comet, Andromeda, Sage, Mascot) or spectral libraries (often predicted by deep learning: Prosit, AlphaPeptDeep, MS²PIP). Control FDR with target–decoy competition at peptide-spectrum match, peptide and protein levels (typically 1%); rescoring with Percolator or MS²Rescore.</li>
+<li><strong>Protein inference</strong>: peptides shared between proteins create ambiguity, resolved into protein groups by parsimony.</li>
+<li><strong>Quantification</strong>: label-free (MS1 intensity, MaxLFQ), isobaric tags (TMT/TMTpro: up to 18 samples multiplexed, measured at reporter ions; ratio compression from co-isolation), SILAC (metabolic labelling), or DIA fragment intensities.</li>
+</ol>
+<div class="cols">
+<div class="card"><h4>Top-down proteomics</h4><p>Measures intact proteins, so proteoforms with combinations of PTMs are preserved. Harder and lower throughput (ProSight, TopPIC).</p></div>
+<div class="card"><h4>Affinity proteomics</h4><p>Olink (proximity extension assay; DNA-barcoded antibody pairs read by sequencing; ~5,400 proteins in Explore HT) and SomaScan (modified aptamers; ~11,000 assays). Scalable to biobanks (UK Biobank Pharma Proteomics Project). Platforms agree only moderately for many proteins, and epitope effects can create artefactual pQTLs.</p></div>
+<div class="card"><h4>Single-cell and spatial</h4><p>SCoPE2, plexDIA and Astral-based single-cell proteomics quantify ~1,000–5,000 proteins per cell. Deep Visual Proteomics combines imaging, laser microdissection and MS. CODEX/PhenoCycler and IMC image ~40–100 proteins in tissue.</p></div>
+</div>
+
+<div class="figx" data-fig="msms" data-cap="Fig. · From protein to peptide identification. Fragment masses are computed from real monoisotopic residue masses for LVNEVTEFAK; peak heights and background peaks are simulated. A search engine scores how well the observed fragments match each candidate peptide."></div>
+
+<h2>Statistical analysis</h2>
+<p>MS proteomics data have features that RNA-seq tools do not handle:</p>
+<ul>
+<li><strong>Missing values</strong> that are not random: low-abundance peptides are missing because they fell below detection (MNAR), while others are missing by chance (MCAR). Imputation choice changes results (minimum-value, left-censored QRILC or MinProb for MNAR; kNN or random forest for MCAR). Models that handle missingness directly (MSstats, proDA, limpa) are preferable to blind imputation.</li>
+<li><strong>Log-normal intensities</strong>: analyse log<sub>2</sub> intensities with linear models (limma, MSstats, MSstatsTMT, DEqMS which accounts for the number of peptides per protein).</li>
+<li><strong>Normalisation</strong>: median centring, variance-stabilising normalisation (vsn), TMT reference channels (IRS) for multi-batch designs.</li>
+<li><strong>PTM site localisation</strong> probabilities (ptmRS, PTMProphet), and normalising PTM changes to protein abundance.</li>
+<li><strong>Kinase activity inference</strong> from phosphosites: KSEA, PTM-SEA, the Kinase Library (Johnson et al. 2023).</li>
+</ul>
+
+<h2>Structure and interactions</h2>
+<p><strong>AlphaFold2</strong> (2021) predicts single-chain structures with near-experimental accuracy for many proteins; the AlphaFold Protein Structure Database holds over 200 million predictions. <strong>AlphaFold3</strong> (2024) and open alternatives (Boltz-1/2, Chai-1, RoseTTAFold All-Atom) predict complexes with nucleic acids, ligands and modifications. <strong>ESMFold</strong> predicts structure from a protein language model without multiple-sequence alignments. pLDDT and PAE confidence scores must be read before trusting a model: low pLDDT often marks intrinsically disordered regions. Interaction resources include STRING (integrated scores), BioGRID and IntAct (curated), BioPlex and HuRI (systematic AP-MS and Y2H maps), and CORUM (complexes).</p>
+
+<h2>Tools</h2>
+<div class="tooltable" data-omics="proteomics"></div>
+<h2>Benchmarks</h2>
+<div class="benchlist" data-omics="proteomics"></div>
+<div class="note pit"><span class="lbl">Pitfall</span><p>Protein FDR is not peptide FDR. With large datasets, a 1% peptide-level FDR can produce a much higher protein-level FDR if not controlled separately. Report which levels were controlled. Also beware of "match between runs", which improves completeness in DDA but can transfer wrong identifications if not FDR-controlled.</p></div>
+<div class="note gap"><span class="lbl">Research gap</span><ul><li>Proteoform-resolved quantification: linking specific splice isoforms and PTM combinations to function.</li><li>Principled missing-value modelling and uncertainty propagation from spectra to proteins.</li><li>Single-cell proteomics statistics and integration with scRNA-seq.</li><li>Cross-platform harmonisation of Olink, SomaScan and MS, and resolving epitope-driven artefacts in pQTLs.</li><li>Predicting dynamics and conformational ensembles, not single static structures; variant effects on complexes.</li></ul></div>
+<div class="pager"></div>
+</section>
+
+<!-- ===================================================== METABOLOMICS -->
+<section class="chapter" id="metabolomics" data-part="II · The omics layers" data-title="Metabolomics" data-c="--met">
+<header class="chap-head"><div class="track"><span class="chip" style="--c:var(--met);--cb:var(--met-bg)">Small-molecule layer</span><span class="chnum"></span></div>
+<h1>Metabolomics</h1>
+<p class="dek">Metabolites are the substrates, products and signals of biochemistry: sugars, amino acids, nucleotides, lipids, cofactors, drugs and microbial products. They change within seconds and integrate genes, environment, diet and microbiome, which makes them the omics layer closest to phenotype.</p></header>
+
+<h2>Research questions</h2>
+<ul>
+<li>Which metabolites or pathways distinguish disease, and can they be biomarkers?</li>
+<li>How do genes (mQTLs), diet, drugs and gut microbes shape circulating metabolites?</li>
+<li>Where does carbon flow through central metabolism in a tumour or immune cell (isotope tracing)?</li>
+<li>What is this unknown feature? (structure elucidation is the bottleneck of the field)</li>
+<li>What has a person been exposed to (exposome)?</li>
+</ul>
+
+<h2>Technologies</h2>
+<div class="tbl"><table>
+<tr><th>Platform</th><th>Strengths</th><th>Weaknesses</th><th>Typical use</th></tr>
+<tr><td>LC-MS (reversed phase, HILIC)</td><td class="wrap">Broad coverage, sensitive, MS/MS for identification</td><td class="wrap">Ion suppression, batch drift, many features per metabolite (adducts, isotopes, in-source fragments)</td><td class="wrap">Untargeted discovery, lipidomics</td></tr>
+<tr><td>GC-MS</td><td class="wrap">Reproducible retention, large EI spectral libraries (NIST)</td><td class="wrap">Needs derivatisation and volatility</td><td class="wrap">Central carbon metabolism, organic acids</td></tr>
+<tr><td>NMR</td><td class="wrap">Quantitative, non-destructive, highly reproducible, structural information</td><td class="wrap">~100× less sensitive than MS</td><td class="wrap">Large cohorts (e.g. Nightingale lipoprotein panels), flux</td></tr>
+<tr><td>Targeted triple-quad MRM</td><td class="wrap">Absolute quantification with standards</td><td class="wrap">Only predefined metabolites</td><td class="wrap">Validation, clinical assays (Biocrates kits)</td></tr>
+<tr><td>MS imaging (MALDI, DESI)</td><td class="wrap">Spatial distribution in tissue</td><td class="wrap">Identification and quantification hard</td><td class="wrap">Spatial metabolomics</td></tr>
+</table></div>
+
+<h2>How metabolomic data are generated</h2>
+<ol class="steps" style="--c:var(--met)">
+<li><b>Collect &amp; quench</b><span>Stop metabolism instantly: cold methanol, liquid nitrogen; process plasma within ~30 min on ice</span></li>
+<li><b>Extract</b><span>Methanol/acetonitrile for polar metabolites; MTBE or Folch/Bligh–Dyer for lipids; add internal standards</span></li>
+<li><b>Prepare</b><span>Dry and reconstitute; derivatise for GC-MS; make a pooled QC from all samples</span></li>
+<li><b>Run order</b><span>Randomise samples; inject blanks and pooled QCs every 5–10 samples; MS/MS on pooled QCs for identification</span></li>
+<li><b>LC-MS / GC-MS / NMR</b><span>Reversed phase (lipids, non-polar) and HILIC (polar), positive and negative ionisation</span></li>
+<li><b>Raw output</b><span>Vendor files → mzML; NMR free-induction decays → spectra</span></li>
+</ol>
+<div class="figx" data-fig="mzrt" data-cap="Fig. · All features detected in one untargeted LC-MS run of plasma. Simulated data."></div>
+<div class="figx" data-fig="lcms" data-cap="Fig. · Zooming in on one feature: its chromatographic peak and the mass spectrum at the apex, showing how one compound produces several ions. Simulated data for glucose (monoisotopic mass 180.063 Da)."></div>
+
+<h2>Untargeted LC-MS workflow</h2>
+<ol>
+<li><strong>Design</strong>: randomised injection order, pooled QC samples every 5–10 injections, blanks, internal standards, and long-term reference material (NIST SRM 1950 plasma).</li>
+<li><strong>Conversion</strong>: vendor files to open formats (mzML) with ProteoWizard msconvert.</li>
+<li><strong>Feature detection</strong>: find chromatographic peaks in m/z–retention-time space (XCMS centWave, MZmine 3 ADAP, MS-DIAL, OpenMS FeatureFinderMetabo).</li>
+<li><strong>Alignment and grouping</strong> across samples (retention-time correction), gap filling.</li>
+<li><strong>Annotation of feature redundancy</strong>: group adducts ([M+H]<sup>+</sup>, [M+Na]<sup>+</sup>), isotopes and fragments of the same compound (CAMERA, MS-FLO, IPA).</li>
+<li><strong>Drift and batch correction</strong>: QC-based LOESS or random forest (QC-RLSC, SERRF), and filter features with high CV in QCs (&gt;20–30%).</li>
+<li><strong>Identification</strong>: match accurate mass, retention time and MS/MS spectra to libraries (MoNA, MassBank, GNPS, NIST, mzCloud) or predict structures (SIRIUS with CSI:FingerID, CANOPUS compound classes, MS-FINDER, MetFrag). Molecular networking (GNPS/FBMN) clusters related spectra so annotations propagate.</li>
+<li><strong>Statistics</strong>: log or generalised-log transform, scaling (Pareto, auto), univariate tests with FDR, multivariate PCA, PLS-DA and OPLS-DA (with permutation testing and cross-validation; PLS-DA overfits easily).</li>
+<li><strong>Pathway analysis</strong>: over-representation on KEGG, SMPDB or Reactome (MetaboAnalyst), or annotation-free mummichog / PIUMet that work directly from m/z values.</li>
+</ol>
+<div class="note key"><span class="lbl">Identification confidence (Metabolomics Standards Initiative)</span><p><strong>Level 1</strong>: confirmed with an authentic standard (same RT and MS/MS on the same system). <strong>Level 2</strong>: probable structure from library spectrum match. <strong>Level 3</strong>: tentative compound class. <strong>Level 4</strong>: unknown. Schymanski et al. (2014) added finer levels for high-resolution MS. Always report the level. Most untargeted features remain at level 3–4.</p></div>
+
+<h2>Flux and metabolic models</h2>
+<p>Lipids are measured with the same instruments but have their own extraction, standards, nomenclature and quantification rules; they are covered in the <a href="#lipidomics">Lipidomics chapter</a>, with a focus on targeted methods. <strong>Stable-isotope tracing</strong> follows <sup>13</sup>C-glucose or <sup>13</sup>C-glutamine into downstream metabolites; isotopologue distributions are corrected for natural abundance (IsoCor, AccuCor) and fluxes estimated with INCA or 13CFLUX2. <strong>Genome-scale metabolic models</strong> (Recon3D, Human1/Human-GEM, AGORA2 for gut microbes) predict fluxes by flux balance analysis under constraints (COBRApy, COBRA Toolbox, RAVEN); omics data constrain them to tissue or patient-specific models (GIMME, iMAT, tINIT).</p>
+
+<h2>Tools</h2>
+<div class="tooltable" data-omics="metabolomics"></div>
+<h2>Benchmarks</h2>
+<div class="benchlist" data-omics="metabolomics"></div>
+<div class="note gap"><span class="lbl">Research gap</span><ul><li>The "dark metabolome": most MS/MS spectra in untargeted studies are unannotated. Structure prediction, in silico libraries and ML-based class annotation are active areas.</li><li>Cross-lab reproducibility and harmonisation of feature tables.</li><li>Absolute quantification at scale and combining metabolomics with fluxes.</li><li>Distinguishing host-, microbe- and diet-derived metabolites in integrated host–microbiome models.</li><li>Spatial metabolomics at single-cell resolution.</li></ul></div>
+<div class="pager"></div>
+</section>
+
+<!-- ===================================================== LIPIDOMICS -->
+<section class="chapter" id="lipidomics" data-part="II · The omics layers" data-title="Lipidomics (targeted)" data-c="--met">
+<header class="chap-head"><div class="track"><span class="chip" style="--c:var(--met);--cb:var(--met-bg)">Small-molecule layer · lipids</span><span class="chnum"></span></div>
+<h1>Lipidomics, with a focus on targeted methods</h1>
+<p class="dek">Lipids build membranes, store energy and carry signals. Human plasma contains thousands of lipid species from a few dozen classes. Targeted lipidomics measures a predefined panel of these species with internal standards, giving reproducible concentrations that can be compared across cohorts and laboratories.</p></header>
+
+<h2>Research questions</h2>
+<ul>
+<li>Which lipid species change in disease, and can a small panel predict risk (e.g. ceramides for cardiovascular events)?</li>
+<li>How do genes (lipid QTLs), diet, drugs such as statins, and the microbiome shape the plasma lipidome?</li>
+<li>Which enzymes and pathways (sphingolipid synthesis, fatty-acid elongation and desaturation, phospholipid remodelling) are altered in a tissue or cell?</li>
+<li>How do signalling lipids (oxylipins, lysophospholipids, sphingosine-1-phosphate, endocannabinoids) relate to inflammation?</li>
+<li>Where are lipids located in a tissue (MALDI imaging), and how does membrane composition change with cell state?</li>
+</ul>
+
+<h2>The lipid classes you will meet</h2>
+<div class="tbl"><table>
+<tr><th>Category (LIPID MAPS)</th><th>Main classes</th><th>Roles</th><th>Typical ion and fragment</th></tr>
+<tr><td>Glycerophospholipids</td><td class="wrap">PC, PE, PS, PI, PG, PA, and lyso forms (LPC, LPE)</td><td class="wrap">Membrane bilayer; PI phosphates in signalling; LPC as a signal and damage marker</td><td class="wrap">PC/LPC: [M+H]⁺ → m/z 184.07 (phosphocholine); PE: neutral loss of 141; PS: neutral loss of 185</td></tr>
+<tr><td>Sphingolipids</td><td class="wrap">Ceramides (Cer), sphingomyelin (SM), hexosylceramides, gangliosides, S1P</td><td class="wrap">Membrane rafts, apoptosis, insulin resistance, cardiovascular risk</td><td class="wrap">Cer: [M+H]⁺ → m/z 264.27 (d18:1 sphingoid base); SM: m/z 184.07</td></tr>
+<tr><td>Glycerolipids</td><td class="wrap">Triacylglycerols (TG), diacylglycerols (DG)</td><td class="wrap">Energy storage, lipotoxicity, DG as a signal</td><td class="wrap">[M+NH₄]⁺ → neutral loss of one fatty acid (+NH₃)</td></tr>
+<tr><td>Sterol lipids</td><td class="wrap">Cholesterol, cholesteryl esters (CE), bile acids, steroid hormones</td><td class="wrap">Membrane rigidity, lipoprotein transport, hormones</td><td class="wrap">CE: [M+NH₄]⁺ → m/z 369.35 (cholestadiene)</td></tr>
+<tr><td>Fatty acyls</td><td class="wrap">Free fatty acids, acylcarnitines, oxylipins (prostaglandins, leukotrienes, HETEs), endocannabinoids</td><td class="wrap">Fuel, inflammation and resolution signals</td><td class="wrap">Negative mode [M−H]⁻; oxylipins need dedicated targeted panels</td></tr>
+</table></div>
+<p>Names follow the LIPID MAPS shorthand, and the name should only claim what the data show (<cite data-q="Update on LIPID MAPS classification, nomenclature, and shorthand notation for MS-derived lipid structures">Liebisch et al. 2020, Journal of Lipid Research</cite>):</p>
+<div class="anat">PC 34:1             <span class="k">species level: class + total carbons:double bonds (from MS1 or a class fragment)</span>
+PC 16:0_18:1        <span class="k">molecular species level: the two fatty acyls are known, their positions are not (needs acyl fragments)</span>
+PC 16:0/18:1        <span class="k">sn-position level: palmitate at sn-1, oleate at sn-2</span>
+PC 16:0/18:1(9Z)    <span class="k">full structure: double-bond position and geometry (needs OzID, EAD/UVPD or chemical derivatisation)</span></div>
+<p>A standard MRM transition to m/z 184 tells you the lipid is a phosphocholine-containing species of a given mass, so most targeted panels report PC and SM at the species level unless acyl-specific transitions are added.</p>
+
+<h2>Three strategies</h2>
+<div class="tbl"><table>
+<tr><th></th><th>Untargeted LC-HRMS</th><th>Shotgun (direct infusion)</th><th>Targeted LC-MRM</th></tr>
+<tr><td>Instrument</td><td class="wrap">Orbitrap or Q-TOF with data-dependent MS/MS</td><td class="wrap">High-resolution MS or triple quad, no chromatography</td><td class="wrap">Triple quadrupole (QqQ), sometimes QTRAP</td></tr>
+<tr><td>Coverage</td><td class="wrap">Broad, including unexpected lipids</td><td class="wrap">Hundreds to ~1,000+ species, fast</td><td class="wrap">Predefined panel, typically 100–1,000+ transitions</td></tr>
+<tr><td>Quantification</td><td class="wrap">Relative (fold change), semi-quantitative with standards</td><td class="wrap">Quantitative with class standards</td><td class="wrap">Most accurate and reproducible; absolute with calibration</td></tr>
+<tr><td>Isomers</td><td class="wrap">Partly separated by RT</td><td class="wrap">Not separated; ion suppression in the mixture</td><td class="wrap">Separated if chromatography and transitions are designed for it</td></tr>
+<tr><td>Best for</td><td class="wrap">Discovery</td><td class="wrap">High-throughput profiling</td><td class="wrap">Validation, large cohorts, clinical assays</td></tr>
+</table></div>
+<p>A common design is to discover candidates with untargeted lipidomics in a small cohort, then build a targeted MRM assay for those lipids (plus their class standards) and measure it in a large, independent cohort.</p>
+
+<h2>How targeted lipidomics data are generated</h2>
+<ol class="steps" style="--c:var(--met)">
+<li><b>Collect</b><span>EDTA plasma or serum on ice, separated within ~1 h; lysophospholipids and oxylipins keep forming ex vivo at room temperature</span></li>
+<li><b>Spike standards</b><span>Add class-specific internal standards (deuterated or odd-chain, e.g. SPLASH LIPIDOMIX) before extraction, so losses are corrected</span></li>
+<li><b>Extract</b><span>MTBE (Matyash), chloroform/methanol (Folch, Bligh–Dyer) or butanol/methanol (BUME); add antioxidant (BHT) for oxidisable lipids; SPE for oxylipins</span></li>
+<li><b>Separate</b><span>HILIC groups each class with its standard; reversed phase separates species by chain length and unsaturation</span></li>
+<li><b>Scheduled MRM</b><span>QqQ monitors each precursor → product transition only in its retention-time window, allowing hundreds of lipids per run</span></li>
+<li><b>QC design</b><span>Pooled QC every 5–10 samples, blanks, calibration standards, and a reference plasma (NIST SRM 1950) in every batch</span></li>
+</ol>
+<div class="figx" data-fig="mrm" data-cap="Fig. · How a triple quadrupole measures one lipid by multiple reaction monitoring (MRM). Q1 lets through only the precursor mass, the collision cell fragments it, and Q3 lets through only the class-specific fragment. Two mass filters in a row give high selectivity and sensitivity. Bottom: in scheduled MRM, each transition is monitored only around its expected retention time, so many transitions fit into one run."></div>
+<div class="figx" data-fig="hilic" data-cap="Fig. · In HILIC, lipids elute by class (head group) rather than by chain. Each class co-elutes with its internal standard (dashed), so standard and analytes experience the same ionisation conditions. Simulated chromatogram."></div>
+
+<h2>From peak areas to concentrations</h2>
+<ol>
+<li><strong>Integrate peaks</strong> for each transition (Skyline, MultiQuant/SCIEX OS, TargetLynx, TraceFinder, MRMkit). Check peak boundaries and retention times; automated integration errors are the most common silent problem.</li>
+<li><strong>Normalise to the internal standard</strong>: response ratio = analyte area / internal-standard area.</li>
+<li><strong>Isotope correction</strong>: <em>type I</em> corrects a species' own signal for its natural ¹³C distribution; <em>type II</em> removes overlap from the M+2 isotope of the species with one more double bond, which falls on the same nominal mass.</li>
+<li><strong>Quantify</strong>, at one of three levels of rigour:
+<ul>
+<li><em>Single-point, class-based</em>: concentration = response ratio × known IS concentration. Assumes every species in a class responds like the standard, which is approximately true in HILIC and shotgun but not for very different chain lengths.</li>
+<li><em>Response-factor corrected</em>: apply measured correction factors for chain length and unsaturation.</li>
+<li><em>Calibration curve</em>: authentic standards at several concentrations, ideally with a stable-isotope-labelled version of each analyte. This is the only route to absolute concentrations that hold across laboratories and is required for clinical assays.</li>
+</ul></li>
+<li><strong>Assay performance</strong>: linearity and range, limit of detection (LOD, often signal-to-noise ≥ 3) and limit of quantification (LOQ, S/N ≥ 10 or CV ≤ 20%), precision (intra- and inter-batch CV), accuracy (recovery of spiked standards), carry-over, and matrix effects.</li>
+<li><strong>Batch and drift correction</strong> with pooled QCs (LOESS, SERRF, QC-RLSC); remove species with QC CV above ~20–30% or below LOQ in most samples.</li>
+<li><strong>Report</strong> in absolute units (nmol/mL plasma, pmol/µg protein, pmol/10⁶ cells), with the annotation level and the standards used.</li>
+</ol>
+<div class="figx" data-fig="calib" data-cap="Fig. · A calibration curve for one lipid. The response ratio (analyte / internal standard) is plotted against known concentrations of an authentic standard; an unknown sample's ratio is read off the fitted line. Points below the LOQ are not reported as numbers. Simulated data for Cer(d18:1/16:0)."></div>
+<div class="note pit"><span class="lbl">Pitfalls</span><ul>
+<li>Isobaric overlap: different lipids with the same nominal mass and fragment (e.g. PC and some PE species, or ether vs ester lipids) are counted together unless separated by retention time or resolved by specific fragments.</li>
+<li>In-source fragmentation can create false signals for lyso lipids and ceramides.</li>
+<li>Using one internal standard for many classes, or adding it after extraction, cannot correct class-specific recovery.</li>
+<li>"Absolute" concentrations from single-point class quantification are approximations; say so in the methods.</li>
+<li>Relative units (percentage of total lipid) are compositional and behave like microbiome data.</li>
+</ul></div>
+
+<h2>Statistics and interpretation</h2>
+<ul>
+<li><strong>Transform and test</strong>: log-transform concentrations; linear models with covariates (age, sex, BMI, fasting, statin use) and FDR control. Lipids are highly correlated, so also consider class-level sums, ratios (e.g. Cer/SM) and regularised models.</li>
+<li><strong>Enrichment</strong>: lipid ontology enrichment with LION/web, or class- and chain-property enrichment (Lipid Mini-On, lipidr). Plot effects by class against chain length and number of double bonds to reveal patterns such as "saturated TGs up, polyunsaturated down".</li>
+<li><strong>Pathways</strong>: map species to reactions (LIPID MAPS, Reactome, BioPAN for pathway activity from lipid ratios) and connect them to enzyme genes in transcriptomic or genetic data.</li>
+<li><strong>Genetics</strong>: lipid QTL studies link variants in genes such as <i>FADS1/2</i> (fatty-acid desaturation) and <i>SPTLC</i> (ceramide synthesis) to specific species, and support Mendelian randomisation of lipids on disease.</li>
+</ul>
+<div class="note eg"><span class="lbl">Example: ceramides as a clinical test</span><p>Plasma ratios of specific ceramides, such as Cer(d18:1/16:0), Cer(d18:1/18:0) and Cer(d18:1/24:1) relative to Cer(d18:1/24:0), predicted cardiovascular death in patients with coronary artery disease beyond LDL cholesterol (<cite data-q="Plasma ceramides predict cardiovascular death in patients with stable coronary artery disease and acute coronary syndromes beyond LDL-cholesterol">Laaksonen et al. 2016, European Heart Journal</cite>). These measurements are now offered as clinical risk scores. They work clinically because they use targeted LC-MRM with authentic, stable-isotope-labelled standards and calibration curves, which make concentrations comparable across laboratories.</p></div>
+
+<h2>Tools</h2>
+<div class="tooltable" data-omics="lipidomics"></div>
+<h2>Benchmarks and standardisation</h2>
+<div class="benchlist" data-omics="lipidomics"></div>
+<div class="note gap"><span class="lbl">Research gap</span><ul>
+<li>Isomer-resolved quantification (sn-position, double-bond position and geometry) at cohort scale.</li>
+<li>Absolute quantification without an authentic standard for every species: better response-factor models and predicted ionisation efficiencies.</li>
+<li>Harmonising values across labs and platforms, including untargeted, shotgun and targeted data.</li>
+<li>Linking lipid species to enzymes and genes for causal inference (lipid QTLs, Mendelian randomisation, isotope tracing of lipid synthesis).</li>
+<li>Spatial and single-cell lipidomics (MALDI-2 imaging, mass cytometry of lipids) and their quantification.</li>
+<li>Machine-learning annotation of lipid MS/MS spectra and automated QC of MRM peak integration.</li>
+</ul></div>
+<div class="pager"></div>
+</section>
+
+<!-- ===================================================== MICROBIOME -->
+<section class="chapter" id="microbiome" data-part="II · The omics layers" data-title="Metagenomics &amp; microbiome" data-c="--mic">
+<header class="chap-head"><div class="track"><span class="chip" style="--c:var(--mic);--cb:var(--mic-bg)">Community layer</span><span class="chnum"></span></div>
+<h1>Metagenomics and the microbiome</h1>
+<p class="dek">Humans carry roughly as many bacterial cells as human cells, and the gut microbiome encodes far more genes than our own genome. Metagenomics sequences the whole community to ask who is there, what they can do, and how they interact with the host.</p></header>
+
+<h2>Research questions</h2>
+<ul>
+<li>How does community composition differ in disease, and is it cause or consequence?</li>
+<li>Which functions (pathways, antibiotic resistance genes, virulence factors) are present and expressed?</li>
+<li>Which strains are shared between mother and infant, or transmitted between people?</li>
+<li>Which microbial metabolites (short-chain fatty acids, bile acids, TMAO) mediate effects on the host?</li>
+<li>Which genomes have never been cultured (metagenome-assembled genomes)?</li>
+</ul>
+
+<h2>How microbiome data are generated</h2>
+<ol class="steps" style="--c:var(--mic)">
+<li><b>Collect</b><span>Stool, swab, saliva, soil, water; stabilising buffer or immediate freezing; record diet, drugs, antibiotics</span></li>
+<li><b>Extract DNA</b><span>Bead-beating to break tough Gram-positive walls; include extraction blanks and a mock community</span></li>
+<li><b>Amplicon or shotgun</b><span>16S/ITS PCR with barcoded primers, or fragment all DNA for shotgun libraries</span></li>
+<li><b>Sequence</b><span>Amplicons: 2 × 250–300 bp, ~20–50k reads/sample; shotgun: 5–20 M reads/sample, long reads for genomes</span></li>
+<li><b>Controls</b><span>Negative controls to detect contamination; positive mock communities to measure bias</span></li>
+</ol>
+
+<h2>Approaches</h2>
+<div class="cols">
+<div class="card"><h4>Amplicon (16S rRNA, ITS, 18S)</h4><p>PCR of a marker gene's variable regions (e.g. V4). Cheap and sensitive; genus-level (sometimes species) taxonomy; no direct function. Denoise into exact amplicon sequence variants (ASVs) with DADA2, Deblur or UNOISE rather than 97% OTUs. Classify with SILVA, GTDB or Greengenes2. Infer function with PICRUSt2 (predicted, so interpret with care).</p></div>
+<div class="card"><h4>Shotgun metagenomics</h4><p>Sequences all DNA. Taxonomic profiling by marker genes (MetaPhlAn 4) or k-mers (Kraken 2 + Bracken, sylph); functional profiling (HUMAnN 3); assembly (MEGAHIT, metaSPAdes, metaFlye), binning into MAGs (MetaBAT 2, SemiBin2, VAMB, DAS Tool), quality with CheckM2 (MIMAG completeness and contamination standards), taxonomy with GTDB-Tk; strain tracking (StrainPhlAn, inStrain).</p></div>
+<div class="card"><h4>Meta-transcriptomics, -proteomics, -metabolomics</h4><p>Which genes are expressed (HUMAnN on RNA), which proteins are made, and which metabolites are present. Integrating these with the metagenome separates potential function from realised activity.</p></div>
+</div>
+
+<div class="figx" data-fig="s16" data-cap="Fig. · The 16S rRNA gene, the marker used for bacterial amplicon sequencing."></div>
+<div class="figx" data-fig="stackbar" data-cap="Fig. · Genus-level composition of eight stool samples, the standard microbiome bar chart. Simulated data."></div>
+
+<h2>The statistics of compositions</h2>
+<p>Microbiome counts are <strong>compositional</strong> (only relative abundances are observed), <strong>sparse</strong> (many zeros), and <strong>overdispersed</strong>. Rarefying throws away data; total-sum scaling ignores compositionality. Use compositionally aware methods: centred or additive log-ratio transforms (CLR, ALR), ANCOM-BC2, ALDEx2, LinDA, or regression frameworks such as MaAsLin 2/3 with careful normalisation. Diversity: alpha (richness, Shannon, Faith's PD) and beta (Bray–Curtis, UniFrac, Aitchison distance) tested with PERMANOVA (vegan adonis2), checking dispersion first (betadisper).</p>
+<div class="note pit"><span class="lbl">Pitfalls</span><ul><li>Contamination dominates low-biomass samples (tissue, blood, placenta). Include extraction and PCR blanks and use decontam.</li><li>Host DNA can be over 90% of reads in tissue; deplete or sequence deeper.</li><li>Medication (metformin, proton-pump inhibitors, antibiotics), diet and transit time confound case–control differences.</li><li>Different differential-abundance methods give different answers on the same data; report results from several methods or a consensus.</li></ul></div>
+
+<h2>Tools</h2>
+<div class="tooltable" data-omics="microbiome"></div>
+<h2>Benchmarks</h2>
+<div class="benchlist" data-omics="microbiome"></div>
+<div class="note gap"><span class="lbl">Research gap</span><ul><li>Moving from association to mechanism: causal inference, gnotobiotic validation, metabolite mediation.</li><li>Strain-level functional differences and horizontal gene transfer tracking.</li><li>Viromes and phages, the least annotated part of the microbiome.</li><li>Absolute abundance (flow cytometry, spike-ins, qPCR) instead of relative abundance.</li><li>Integrating microbial genomes, host genotype and metabolome in one causal model.</li></ul></div>
+<div class="pager"></div>
+</section>
+
+<!-- ===================================================== MORE OMICS -->
+<section class="chapter" id="more" data-part="II · The omics layers" data-title="More omics" data-c="--int">
+<header class="chap-head"><div class="track"><span class="chip" style="--c:var(--int);--cb:var(--int-bg)">Specialised layers</span><span class="chnum"></span></div>
+<h1>More omics worth knowing</h1>
+<p class="dek">Specialised layers that sit between the main ones. Each answers a question the big four cannot, and several are fertile ground for methods development because their tooling is younger.</p></header>
+
+<h2>Epitranscriptomics</h2>
+<p>More than 170 RNA modifications are known. <strong>m6A</strong> (N6-methyladenosine), written by METTL3/METTL14, read by YTHDF/YTHDC proteins and erased by FTO/ALKBH5, affects mRNA stability, splicing and translation. Mapping: antibody-based MeRIP-seq/m6A-seq (peaks, ~100–200 nt resolution) and miCLIP (single-nucleotide), antibody-free GLORI and eTAM-seq (quantitative stoichiometry), and <strong>direct RNA nanopore sequencing</strong>, where modifications alter the current signal (m6Anet, CHEUI, xPore, Dorado modification models). Pseudouridine (BID-seq), m5C (bisulfite on RNA) and A-to-I editing are the other common targets. Gap: quantitative, isoform-resolved maps and validation of nanopore-based calls.</p>
+
+<h2>Translatomics</h2>
+<p><strong>Ribo-seq</strong> sequences ribosome-protected fragments (~28–30 nt) and shows where ribosomes are, with 3-nt periodicity revealing the reading frame. Uses: translation efficiency (Ribo-seq / RNA-seq; anota2seq, Xtail, riborex, deltaTE), discovery of upstream and small ORFs and micropeptides (RiboCode, ORFquant, PRICE, RiboTISH, Ribo-TISH), and ribosome stalling. QC with RiboseQC and riboWaltz. GENCODE now catalogues Ribo-seq ORFs (Mudge et al. 2022).</p>
+
+<h2>Immunomics and immune repertoires</h2>
+<p>T- and B-cell receptors are generated by V(D)J recombination, producing ~10<sup>15</sup> possible receptors. <strong>AIRR-seq</strong> sequences these from bulk or single cells (10x VDJ). Tools: MiXCR, IgBLAST, TRUST4 (from RNA-seq), Immcantation (change-O, SHazaM for somatic hypermutation, clonal lineages), scirpy (single-cell, scverse). Questions: clonal expansion, convergent responses to vaccines and infection, antigen specificity prediction (TCRdist, GLIPH2, and deep models with modest generalisation to unseen epitopes). <strong>Immunopeptidomics</strong> measures HLA-presented peptides by MS to train neoantigen predictors (NetMHCpan, MHCflurry).</p>
+
+<h2>Glycomics and glycoproteomics</h2>
+<p>Glycans are branched, non-templated structures attached to proteins and lipids. They control protein folding, cell recognition, immune function (IgG Fc glycosylation tunes antibody effector activity) and are altered in cancer. Analysis: released-glycan MS or HPLC, intact glycopeptide MS (pGlyco, MSFragger-Glyco, Byonic), databases GlyTouCan and GlyGen. Gap: structural isomers are hard to distinguish, and glycan biosynthesis is only indirectly coded in the genome.</p>
+
+<h2>Cell-free DNA, liquid biopsy and fragmentomics</h2>
+<p>Dying cells release DNA fragments into blood, with a ~167 bp peak reflecting nucleosome protection. Tumour-derived cfDNA (ctDNA) can be detected through mutations (deep targeted sequencing with UMIs), copy number (low-pass WGS; ichorCNA estimates tumour fraction), methylation patterns that also reveal tissue of origin (multi-cancer early detection tests), and fragment size, end motifs and coverage at TSSs (DELFI and related fragmentomics methods). Non-invasive prenatal testing uses the same principles. Gap: sensitivity for early-stage cancers, where ctDNA fractions can be below 0.1%.</p>
+
+<h2>Interactomics and functional genomics screens</h2>
+<p>Pooled <strong>CRISPR screens</strong> (knockout, CRISPRi, CRISPRa, base and prime editing) measure fitness or reporter effects for every gene or variant; analyse with MAGeCK, BAGEL2, CRISPResso2 (editing outcomes) and the DepMap resources (Chronos-corrected gene effects across ~1,000 cancer cell lines). <strong>Perturb-seq</strong> combines CRISPR perturbations with single-cell RNA readouts; genome-scale Perturb-seq (Replogle et al. 2022) maps transcriptional consequences of nearly every expressed gene. <strong>MPRAs</strong> (massively parallel reporter assays) test thousands of regulatory variants for activity at once.</p>
+
+<h2>Phenomics, imaging and clinical omics</h2>
+<ul>
+<li><strong>Cell Painting</strong>: multiplexed fluorescent stains and CellProfiler or deep features produce morphological profiles for drug and gene perturbations (JUMP-Cell Painting consortium).</li>
+<li><strong>Pathomics</strong>: deep learning on whole-slide H&amp;E images predicts mutations, expression and survival; foundation models (UNI, CONCH, Virchow, Prov-GigaPath) provide general-purpose embeddings.</li>
+<li><strong>Radiogenomics</strong>: linking imaging features to molecular subtypes.</li>
+<li><strong>EHR phenomics</strong>: phenotype definitions (phecodes, HPO, OMOP common data model) enable PheWAS and biobank-scale genetics.</li>
+</ul>
+
+<h2>Exposomics</h2>
+<p>The exposome is the totality of environmental exposures over a lifetime: chemicals, diet, pollutants, infections, social factors. High-resolution MS of blood and urine detects thousands of exogenous chemicals; ExWAS (exposome-wide association studies) parallel GWAS. Gaps: chemical identification (even darker than the endogenous metabolome), time-varying exposure, and correlated exposures that confound each other.</p>
+<div class="pager"></div>
+</section>
