@@ -1,0 +1,415 @@
+[
+  {
+    "layer": "genomics",
+    "title": "An open resource for accurately benchmarking small variant and reference calls",
+    "citation": "Zook et al. 2019, Nature Biotechnology",
+    "finding": "Genome in a Bottle released high-confidence small-variant truth sets for reference samples (HG001–HG007), later extended to harder regions with long and linked reads (Wagner et al. 2022, Cell Genomics).",
+    "takeaway": "Use GIAB samples and stratifications to validate any pipeline; check difficult regions separately."
+  },
+  {
+    "layer": "genomics",
+    "title": "PrecisionFDA Truth Challenge V2 Calling variants from short and long reads in difficult-to-map regions",
+    "citation": "Olson et al. 2022, Cell Genomics",
+    "finding": "Community challenge across Illumina, PacBio HiFi and ONT data. Deep-learning callers and multi-technology submissions performed best; the MHC and segmental duplications remained the hardest regions.",
+    "takeaway": "Long reads and DeepVariant-style callers reduce errors in difficult regions; short-read-only pipelines miss them."
+  },
+  {
+    "layer": "genomics",
+    "title": "Systematic benchmark of state-of-the-art variant calling pipelines identifies major factors affecting accuracy of coding sequence variant discovery",
+    "citation": "Barbitoff et al. 2022, BMC Genomics",
+    "finding": "Compared aligner and caller combinations on GIAB exomes and genomes. DeepVariant was consistently among the most accurate; the choice of caller mattered more than the choice of aligner.",
+    "takeaway": "Invest effort in the caller and filtering; most mainstream aligners perform similarly."
+  },
+  {
+    "layer": "genomics",
+    "title": "Toward best practice in cancer mutation detection with whole-genome and whole-exome sequencing",
+    "citation": "Xiao et al. 2021, Nature Biotechnology (SEQC2)",
+    "finding": "Reference tumour–normal pair sequenced across centres. Accuracy depended on read depth, tumour purity, library preparation (FFPE), and caller; no single caller was best everywhere and combining callers improved robustness.",
+    "takeaway": "Report sample purity and depth; consider consensus somatic calling."
+  },
+  {
+    "layer": "genomics",
+    "title": "Comprehensive evaluation of structural variation detection algorithms for whole genome sequencing",
+    "citation": "Kosugi et al. 2019, Genome Biology",
+    "finding": "Evaluated 69 SV callers on simulated and real data. Performance varied greatly by SV type and size; Manta, LUMPY, DELLY, GRIDSS and a few others were consistently good; combining callers increased accuracy.",
+    "takeaway": "Choose SV callers per SV type and merge; validate with long reads where possible."
+  },
+  {
+    "layer": "genomics",
+    "title": "Comprehensive evaluation and characterisation of short read general-purpose structural variant calling software",
+    "citation": "Cameron et al. 2019, Nature Communications",
+    "finding": "Short-read SV callers recalled far fewer SVs than long-read truth sets, especially insertions and repeats; assembly-based GRIDSS performed strongly.",
+    "takeaway": "Short reads systematically under-call insertions; long reads are the reference for SVs."
+  },
+  {
+    "layer": "genomics",
+    "title": "Advancing variant effect prediction using protein language models",
+    "citation": "Livesey & Marsh 2023, Molecular Systems Biology (and 2020 MSB)",
+    "finding": "Benchmarked variant effect predictors against deep mutational scanning data, avoiding clinical-label circularity. Unsupervised models (EVE, ESM-1v and successors) ranked among the best.",
+    "takeaway": "Prefer DMS-based evaluations when choosing a missense predictor."
+  },
+  {
+    "layer": "genomics",
+    "title": "Calibration of computational tools for missense variant pathogenicity classification and ClinGen recommendations for PP3/BP4 criteria",
+    "citation": "Pejaver et al. 2022, American Journal of Human Genetics",
+    "finding": "Calibrated score thresholds for REVEL, BayesDel, CADD, MutPred2 and others to evidence strengths in the ACMG framework; some tools can reach strong evidence at extreme scores.",
+    "takeaway": "Use calibrated thresholds, not arbitrary cut-offs, in clinical classification."
+  },
+  {
+    "layer": "epigenomics",
+    "title": "Comprehensive benchmarking of software for mapping whole genome bisulfite data from read alignment to DNA methylation analysis",
+    "citation": "Nunn et al. 2021, Briefings in Bioinformatics",
+    "finding": "Compared bisulfite aligners end to end. Aligner choice affected mapping efficiency and downstream methylation calls; bwa-meth and a few others gave good accuracy with reasonable speed, Bismark remained reliable but slower.",
+    "takeaway": "Aligner choice changes methylation estimates; keep it consistent within a study."
+  },
+  {
+    "layer": "epigenomics",
+    "title": "Systematic benchmarking of tools for CpG methylation detection from nanopore sequencing",
+    "citation": "Yuen et al. 2021, Nature Communications",
+    "finding": "Compared nanopore methylation callers against bisulfite data; neural-network callers (e.g. Megalodon, DeepSignal) were most accurate; consensus improved results. Newer basecaller-integrated models have since replaced many of these tools.",
+    "takeaway": "Nanopore methylation is accurate at CpG level with modern models; validate on your chemistry version."
+  },
+  {
+    "layer": "epigenomics",
+    "title": "Assessment of computational methods for the analysis of single-cell ATAC-seq data",
+    "citation": "Chen et al. 2019, Genome Biology",
+    "finding": "Compared 10 scATAC feature engineering methods. SnapATAC, cisTopic and Cusanovich2018 (LSI) best separated cell types; motif-only features (chromVAR alone) were weaker for clustering.",
+    "takeaway": "Use peak or bin-level LSI/topic-style features for clustering scATAC."
+  },
+  {
+    "layer": "epigenomics",
+    "title": "Comparison of computational methods for Hi-C data analysis",
+    "citation": "Forcato et al. 2017, Nature Methods",
+    "finding": "Compared Hi-C normalisation, TAD and loop calling tools; results varied substantially, especially for loops; reproducibility between replicates was modest for fine features.",
+    "takeaway": "Interpret loop calls cautiously and with replicates."
+  },
+  {
+    "layer": "epigenomics",
+    "title": "Comparison of computational methods for the identification of topologically associating domains",
+    "citation": "Zufferey et al. 2018, Genome Biology",
+    "finding": "22 TAD callers produced different numbers and sizes of TADs; agreement improved for boundaries enriched in CTCF; no single best caller.",
+    "takeaway": "Report the caller and resolution; treat TADs as a hierarchy, not fixed units."
+  },
+  {
+    "layer": "epigenomics",
+    "title": "From reads to insight a hitchhiker's guide to ATAC-seq data analysis",
+    "citation": "Yan et al. 2020, Genome Biology",
+    "finding": "Reviewed and compared ATAC-seq tools for each step; MACS2 most widely used for peaks; differential accessibility tools vary in sensitivity; footprinting is sensitive to Tn5 bias correction.",
+    "takeaway": "Follow standard QC (TSS enrichment, fragment sizes) and correct Tn5 bias for footprints."
+  },
+  {
+    "layer": "transcriptomics",
+    "title": "How many biological replicates are needed in an RNA-seq experiment and which differential expression tool should you use",
+    "citation": "Schurch et al. 2016, RNA",
+    "finding": "With 48 replicates per condition in yeast: at least 6 replicates recommended, 12 to detect most DE genes regardless of fold change; edgeR and DESeq2 performed well with few replicates.",
+    "takeaway": "Replicates matter more than depth; plan ≥6 biological replicates where possible."
+  },
+  {
+    "layer": "transcriptomics",
+    "title": "A benchmark for RNA-seq quantification pipelines",
+    "citation": "Teng et al. 2016, Genome Biology",
+    "finding": "Compared quantification pipelines with orthogonal data; alignment-free (kallisto, salmon) and RSEM gave similar, accurate gene-level estimates; transcript-level estimates were less accurate.",
+    "takeaway": "Gene-level quantification is robust across modern tools; isoform estimates carry more uncertainty."
+  },
+  {
+    "layer": "transcriptomics",
+    "title": "Alignment and mapping methodology influence transcript abundance estimation",
+    "citation": "Srivastava et al. 2020, Genome Biology",
+    "finding": "Showed that pure pseudoalignment can create spurious mappings; selective alignment with decoy sequences improved accuracy toward that of full alignment.",
+    "takeaway": "Use salmon with a decoy-aware index or full alignment."
+  },
+  {
+    "layer": "transcriptomics",
+    "title": "Exaggerated false positives by popular differential expression methods when analyzing human population samples",
+    "citation": "Li et al. 2022, Genome Biology",
+    "finding": "In large population datasets with dozens to hundreds of samples, DESeq2 and edgeR produced inflated FDR under permutation; the Wilcoxon rank-sum test controlled FDR when samples were large.",
+    "takeaway": "For large heterogeneous cohorts, check calibration with permutations and consider non-parametric tests."
+  },
+  {
+    "layer": "transcriptomics",
+    "title": "Systematic assessment of long-read RNA-seq methods for transcript identification and quantification",
+    "citation": "Pardo-Palacios et al. 2024, Nature Methods (LRGASP)",
+    "finding": "Community challenge: longer and more accurate reads gave better transcript models; more reads improved quantification; reference-guided tools did best in well-annotated genomes; de novo discovery and quantification remained difficult.",
+    "takeaway": "Use reference-guided long-read tools and adequate depth; validate novel isoforms."
+  },
+  {
+    "layer": "transcriptomics",
+    "title": "Accuracy assessment of fusion transcript detection via read-mapping and de novo fusion transcript assembly-based methods",
+    "citation": "Haas et al. 2019, Genome Biology",
+    "finding": "Compared 23 fusion detectors on simulated and cancer cell-line data; STAR-Fusion, Arriba and STAR-SEQR were most accurate and fast.",
+    "takeaway": "STAR-Fusion or Arriba are sensible defaults."
+  },
+  {
+    "layer": "transcriptomics",
+    "title": "Toward a gold standard for benchmarking gene set enrichment analysis",
+    "citation": "Geistlinger et al. 2021, Briefings in Bioinformatics",
+    "finding": "Benchmarked enrichment methods on many datasets using disease-relevance rankings; methods differed in the number of significant sets and relevance; simple ORA and competitive tests behaved differently from self-contained tests.",
+    "takeaway": "Choose the null hypothesis (competitive vs self-contained) deliberately; report the background."
+  },
+  {
+    "layer": "transcriptomics",
+    "title": "Systematic evaluation of differential splicing tools for RNA-seq studies",
+    "citation": "Mehmood et al. 2020, Briefings in Bioinformatics",
+    "finding": "Compared ten differential splicing tools; agreement was low, with performance depending on replicates, depth and event type.",
+    "takeaway": "Use more than one splicing tool and validate key events (RT-PCR)."
+  },
+  {
+    "layer": "singlecell",
+    "title": "Benchmarking atlas-level data integration in single-cell genomics",
+    "citation": "Luecken et al. 2022, Nature Methods",
+    "finding": "Evaluated 16 integration methods on 13 tasks with 14 metrics balancing batch removal and biological conservation. scANVI, Scanorama, scVI and scGen performed well on complex tasks; Harmony was strong for simpler batch structures.",
+    "takeaway": "Match the method to task complexity and check bio-conservation, not only batch mixing."
+  },
+  {
+    "layer": "singlecell",
+    "title": "A benchmark of batch-effect correction methods for single-cell RNA sequencing data",
+    "citation": "Tran et al. 2020, Genome Biology",
+    "finding": "Compared 14 methods; Harmony, LIGER and Seurat 3 were recommended, with Harmony first because of speed.",
+    "takeaway": "Harmony is a good fast default for straightforward batch correction."
+  },
+  {
+    "layer": "singlecell",
+    "title": "A comparison of single-cell trajectory inference methods",
+    "citation": "Saelens et al. 2019, Nature Biotechnology",
+    "finding": "Evaluated 45 trajectory methods on 110 real and 229 synthetic datasets. Performance depended strongly on trajectory topology; Slingshot, TSCAN, Monocle DDRTree and PAGA were among the best overall.",
+    "takeaway": "Choose a method suited to the expected topology; dynguidelines helps choose."
+  },
+  {
+    "layer": "singlecell",
+    "title": "Confronting false discoveries in single-cell differential expression",
+    "citation": "Squair et al. 2021, Nature Communications",
+    "finding": "Using matched bulk and single-cell data, pseudobulk methods agreed best with ground truth; single-cell-level methods were biased toward highly expressed genes and produced false discoveries.",
+    "takeaway": "Use pseudobulk (sample as replicate) for DE between conditions."
+  },
+  {
+    "layer": "singlecell",
+    "title": "A comparison of automatic cell identification methods for single-cell RNA sequencing data",
+    "citation": "Abdelaal et al. 2019, Genome Biology",
+    "finding": "Benchmarked 22 classifiers on 27 datasets; a general-purpose linear support vector machine performed best overall; prior-knowledge marker methods did worse.",
+    "takeaway": "Simple supervised classifiers with a good reference are hard to beat."
+  },
+  {
+    "layer": "singlecell",
+    "title": "Benchmarking computational doublet-detection methods for single-cell RNA sequencing data",
+    "citation": "Xi & Li 2021, Cell Systems",
+    "finding": "Compared nine doublet detectors on 16 real and 112 synthetic datasets; DoubletFinder had the best detection accuracy, cxds the best speed; scDblFinder later performed strongly in follow-up evaluations.",
+    "takeaway": "Always run a doublet detector; DoubletFinder or scDblFinder are good choices."
+  },
+  {
+    "layer": "singlecell",
+    "title": "Comparison of transformations for single-cell RNA-seq data",
+    "citation": "Ahlmann-Eltze & Huber 2023, Nature Methods",
+    "finding": "Compared delta-method, residual, latent-expression and factor-analysis transformations; the shifted logarithm with a sensible pseudocount followed by PCA performed as well as or better than more complex alternatives.",
+    "takeaway": "log1p of size-normalised counts remains a strong default."
+  },
+  {
+    "layer": "singlecell",
+    "title": "Comparison of methods and resources for cell-cell communication inference from single-cell RNA-Seq data",
+    "citation": "Dimitrov et al. 2022, Nature Communications",
+    "finding": "Showed that both the method and the ligand–receptor resource strongly change predictions, with limited overlap; introduced LIANA to run methods consistently.",
+    "takeaway": "Report the resource; seek consensus across methods; validate key interactions."
+  },
+  {
+    "layer": "singlecell",
+    "title": "Benchmarking algorithms for gene regulatory network inference from single-cell transcriptomic data",
+    "citation": "Pratapa et al. 2020, Nature Methods (BEELINE)",
+    "finding": "Evaluated 12 GRN methods on synthetic and curated networks; accuracy was generally low, with many methods close to random on experimental data; PIDC, GENIE3 and GRNBoost2 were among the better ones.",
+    "takeaway": "Treat inferred GRNs as hypotheses; add motif or chromatin evidence."
+  },
+  {
+    "layer": "singlecell",
+    "title": "Benchmarking spatial and single-cell transcriptomics integration methods for transcript distribution prediction and cell type deconvolution",
+    "citation": "Li et al. 2022, Nature Methods",
+    "finding": "Compared 16 integration methods on 45 paired datasets. Tangram, gimVI and SpaGE did best for predicting spatial gene distributions; cell2location, SpatialDWLS and RCTD did best for deconvolution.",
+    "takeaway": "cell2location or RCTD for deconvolution; reference quality is critical."
+  },
+  {
+    "layer": "singlecell",
+    "title": "Spotless a reproducible pipeline for benchmarking cell type deconvolution in spatial transcriptomics",
+    "citation": "Sang-aram et al. 2024, eLife",
+    "finding": "Benchmarked 11 deconvolution methods on silver- and gold-standard data; RCTD and cell2location were the top performers; a simple baseline (NNLS) beat several methods.",
+    "takeaway": "Always compare with a simple baseline."
+  },
+  {
+    "layer": "singlecell",
+    "title": "Zero-shot evaluation reveals limitations of single-cell foundation models",
+    "citation": "Kedzierska et al. 2025, Genome Biology",
+    "finding": "In zero-shot settings, Geneformer and scGPT embeddings were often outperformed by highly variable genes, scVI or Harmony for cell-type clustering and batch integration.",
+    "takeaway": "Benchmark foundation models against simple baselines on your task."
+  },
+  {
+    "layer": "singlecell",
+    "title": "Deep-learning-based gene perturbation effect prediction does not yet outperform simple linear baselines",
+    "citation": "Ahlmann-Eltze, Huber & Anders 2025, Nature Methods",
+    "finding": "Deep models (including foundation models) for predicting transcriptional effects of single and double perturbations did not beat deliberately simple linear or additive baselines.",
+    "takeaway": "Perturbation prediction remains an open problem; report baselines."
+  },
+  {
+    "layer": "singlecell",
+    "title": "Bias, robustness and scalability in single-cell differential expression analysis",
+    "citation": "Soneson & Robinson 2018, Nature Methods",
+    "finding": "Compared 36 DE approaches; methods developed for bulk RNA-seq performed as well as or better than single-cell-specific ones once lowly expressed genes were filtered.",
+    "takeaway": "Bulk methods on filtered data or pseudobulk are reliable choices."
+  },
+  {
+    "layer": "proteomics",
+    "title": "A multicenter study benchmarks software tools for label-free proteome quantification",
+    "citation": "Navarro et al. 2016, Nature Biotechnology (LFQbench)",
+    "finding": "Compared DIA software on mixed-proteome samples of known ratios; tools converged in performance after optimisation; established the LFQbench framework.",
+    "takeaway": "Use hybrid-proteome benchmarks to test quantitative accuracy."
+  },
+  {
+    "layer": "proteomics",
+    "title": "Benchmarking of analysis strategies for data-independent acquisition proteomics using a large-scale dataset comprising inter-patient heterogeneity",
+    "citation": "Fröhlich et al. 2022, Nature Communications",
+    "finding": "Compared DIA-NN, Spectronaut and other strategies on clinical-scale data; DIA-NN and Spectronaut performed well; library-free approaches were competitive; downstream normalisation and imputation choices mattered.",
+    "takeaway": "Library-free DIA is viable; benchmark downstream statistics, not only identification."
+  },
+  {
+    "layer": "proteomics",
+    "title": "Accounting for the multiple natures of missing values in label-free quantitative proteomics data sets to compare imputation strategies",
+    "citation": "Lazar et al. 2016, Journal of Proteome Research",
+    "finding": "Showed that the best imputation method depends on whether values are missing at random or below detection; mismatched imputation distorts results.",
+    "takeaway": "Diagnose the missingness mechanism before imputing."
+  },
+  {
+    "layer": "proteomics",
+    "title": "Large-scale plasma proteomics comparisons through genetics and disease associations",
+    "citation": "Eldjarn et al. 2023, Nature",
+    "finding": "Compared SomaScan and Olink on the same individuals; the correlation between platforms varied widely per protein (median modest); cis-pQTL support helped judge assay specificity.",
+    "takeaway": "Treat cross-platform results with caution; use genetic evidence to assess assays."
+  },
+  {
+    "layer": "proteomics",
+    "title": "Highly accurate protein structure prediction with AlphaFold",
+    "citation": "Jumper et al. 2021, Nature (CASP14)",
+    "finding": "AlphaFold2 achieved near-experimental accuracy for many targets in the blind CASP14 assessment.",
+    "takeaway": "CASP-style blind tests are the gold standard for structure prediction; check pLDDT/PAE."
+  },
+  {
+    "layer": "metabolomics",
+    "title": "Detailed investigation and comparison of the XCMS and MZmine 2 chromatogram construction and chromatographic peak detection methods for preprocessing mass spectrometry metabolomics data",
+    "citation": "Myers et al. 2017, Analytical Chemistry",
+    "finding": "XCMS and MZmine 2 detected substantially different peak sets with many false positives and negatives; parameter choice strongly influenced results.",
+    "takeaway": "Optimise and report feature-detection parameters; check peaks visually."
+  },
+  {
+    "layer": "metabolomics",
+    "title": "Comprehensive evaluation of untargeted metabolomics data processing software in feature detection, quantification and discriminating marker selection",
+    "citation": "Li et al. 2018, Analytica Chimica Acta",
+    "finding": "Compared MS-DIAL, MZmine 2, XCMS, MarkerView and Compound Discoverer; overlap between detected features was limited and marker lists differed.",
+    "takeaway": "Software choice changes biomarker lists; confirm key features."
+  },
+  {
+    "layer": "metabolomics",
+    "title": "Critical Assessment of Small Molecule Identification 2016 automated methods",
+    "citation": "Schymanski et al. 2017, Journal of Cheminformatics (CASMI)",
+    "finding": "Blind challenge for structure identification from MS/MS; combining in-silico fragmentation with metadata improved results; CSI:FingerID-based approaches ranked highly.",
+    "takeaway": "Use database plus in-silico methods; identification remains far from solved."
+  },
+  {
+    "layer": "metabolomics",
+    "title": "Illuminating the dark matter in metabolomics",
+    "citation": "da Silva et al. 2015, PNAS",
+    "finding": "Across public datasets only a small fraction (about 2%) of MS/MS spectra could be annotated by library matching; molecular networking increased coverage.",
+    "takeaway": "Most features are unknown; molecular networking extends annotation."
+  },
+  {
+    "layer": "lipidomics",
+    "title": "Harmonizing lipidomics NIST interlaboratory comparison exercise for lipidomics using SRM 1950 Metabolites in Frozen Human Plasma",
+    "citation": "Bowden et al. 2017, Journal of Lipid Research",
+    "finding": "31 laboratories measured the same NIST plasma with their own methods. Consensus values were obtained for many lipids, but reported concentrations varied widely between labs and methods, especially for low-abundance species.",
+    "takeaway": "Run a shared reference plasma (SRM 1950) in every batch and report against it."
+  },
+  {
+    "layer": "lipidomics",
+    "title": "Concordant inter-laboratory derived concentrations of ceramides in human plasma reference materials via authentic standards",
+    "citation": "Torta et al. 2024, Nature Communications",
+    "finding": "A ring trial across many laboratories quantified four clinically used ceramides in reference plasma. When labs used shared authentic and labelled standards with calibration, results were largely concordant across laboratories and platforms.",
+    "takeaway": "Authentic standards and calibration make targeted lipid concentrations transferable between labs."
+  },
+  {
+    "layer": "lipidomics",
+    "title": "Guiding the choice of informatics software and tools for lipidomics research applications",
+    "citation": "Ni et al. 2023, Nature Methods",
+    "finding": "Reviewed lipidomics software for identification, quantification and interpretation and gave guidance on choosing tools; annotation quality and the level of structural detail reported vary between tools.",
+    "takeaway": "Report annotation levels honestly and check key identifications manually."
+  },
+  {
+    "layer": "lipidomics",
+    "title": "Recommendations for good practice in MS-based lipidomics",
+    "citation": "Köfeler et al. 2021, Journal of Lipid Research",
+    "finding": "Community recommendations from the Lipidomics Standards Initiative on pre-analytics, extraction, internal standards, MS analysis, quantification and annotation.",
+    "takeaway": "Use as a checklist when designing a targeted lipidomics study."
+  },
+  {
+    "layer": "lipidomics",
+    "title": "Introducing the Lipidomics Minimal Reporting Checklist",
+    "citation": "McDonald et al. 2022, Nature Metabolism",
+    "finding": "Introduced a minimal reporting checklist so lipidomics methods and results can be judged and reproduced.",
+    "takeaway": "Fill in the checklist for every lipidomics paper."
+  },
+  {
+    "layer": "microbiome",
+    "title": "Critical Assessment of Metagenome Interpretation the second round of challenges",
+    "citation": "Meyer et al. 2022, Nature Methods (CAMI II)",
+    "finding": "Benchmarked assemblers, binners and profilers on complex simulated communities; strain-level resolution and closely related genomes remained hard; tool performance varied with parameters and versions.",
+    "takeaway": "Use CAMI results to choose tools; expect difficulty at strain level."
+  },
+  {
+    "layer": "microbiome",
+    "title": "Microbiome differential abundance methods produce different results across 38 datasets",
+    "citation": "Nearing et al. 2022, Nature Communications",
+    "finding": "14 DA methods identified drastically different numbers and sets of significant taxa on the same data; ALDEx2 and ANCOM-II were most consistent with the consensus.",
+    "takeaway": "Use several methods and report consensus; prefer compositionally aware tools."
+  },
+  {
+    "layer": "microbiome",
+    "title": "Benchmarking metagenomics tools for taxonomic classification",
+    "citation": "Ye et al. 2019, Cell",
+    "finding": "Compared 20 classifiers; database choice and abundance filtering strongly affected precision; some combinations gave high accuracy.",
+    "takeaway": "Database matters as much as the classifier; filter low-abundance calls."
+  },
+  {
+    "layer": "microbiome",
+    "title": "Normalization and microbial differential abundance strategies depend upon data characteristics",
+    "citation": "Weiss et al. 2017, Microbiome",
+    "finding": "Rarefying and normalisation choices change false discovery rates; performance depends on library size differences and effect sizes.",
+    "takeaway": "Choose normalisation according to data properties; avoid naive proportions."
+  },
+  {
+    "layer": "integration",
+    "title": "Benchmarking joint multi-omics dimensionality reduction approaches for the study of cancer",
+    "citation": "Cantini et al. 2021, Nature Communications",
+    "finding": "Compared nine joint dimensionality reduction methods on simulated, TCGA and single-cell data; intNMF was best for clustering, MCIA was consistently good across contexts; created the momix benchmark.",
+    "takeaway": "Use MCIA or intNMF as strong baselines; test several methods."
+  },
+  {
+    "layer": "integration",
+    "title": "Multi-omic and multi-view clustering algorithms review and cancer benchmark",
+    "citation": "Rappoport & Shamir 2018, Nucleic Acids Research",
+    "finding": "Benchmarked multi-omics clustering on 10 TCGA cancer types; no method was best everywhere, and multi-omics clustering did not always beat single-omics clustering.",
+    "takeaway": "Report single-layer baselines; integration is not automatically better."
+  },
+  {
+    "layer": "integration",
+    "title": "Benchmarking algorithms for single-cell multi-omics prediction and integration",
+    "citation": "Hu et al. 2024, Nature Methods",
+    "finding": "Compared methods for paired and unpaired single-cell multi-omics integration and cross-modality prediction; rankings depended strongly on the task, data type and metric.",
+    "takeaway": "Choose single-cell multimodal tools by task; evaluate on your data type."
+  },
+  {
+    "layer": "integration",
+    "title": "A sandbox for prediction and integration of DNA RNA and proteins in single cells",
+    "citation": "Luecken et al. 2021, NeurIPS Datasets and Benchmarks",
+    "finding": "Established multimodal benchmark datasets (CITE-seq, Multiome) and a competition for modality prediction, matching and joint embedding.",
+    "takeaway": "Use public multimodal benchmarks to compare integration methods."
+  },
+  {
+    "layer": "integration",
+    "title": "Opportunities and challenges for transcriptome-wide association studies",
+    "citation": "Wainberg et al. 2019, Nature Genetics",
+    "finding": "Showed that TWAS hits often do not identify causal genes, because of LD and co-regulation among nearby genes' expression predictions.",
+    "takeaway": "Follow TWAS with fine-mapping and colocalisation."
+  }
+]

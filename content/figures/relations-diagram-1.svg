@@ -1,0 +1,17 @@
+<svg aria-label="QTL types linking a variant to each layer" role="img" viewbox="0 0 900 230">
+<defs><marker id="qa" markerheight="7" markerwidth="7" orient="auto" refx="9" refy="5" viewbox="0 0 10 10"><path d="M0 0L10 5L0 10z" fill="var(--ink-2)"></path></marker></defs>
+<circle cx="80" cy="115" fill="var(--dna-bg)" r="42" stroke="var(--dna)" stroke-width="2"></circle><text font-size="13" font-weight="600" text-anchor="middle" x="80" y="111">variant</text><text font-size="10" text-anchor="middle" x="80" y="127">rs…</text>
+<g font-size="12">
+<rect fill="var(--epi-bg)" height="34" stroke="var(--epi)" width="140" x="250" y="12"></rect><text text-anchor="middle" x="320" y="34">accessibility · methylation</text>
+<rect fill="var(--rna-bg)" height="34" stroke="var(--rna)" width="140" x="250" y="62"></rect><text text-anchor="middle" x="320" y="84">expression</text>
+<rect fill="var(--rna-bg)" height="34" stroke="var(--rna)" width="140" x="250" y="112"></rect><text text-anchor="middle" x="320" y="134">splicing</text>
+<rect fill="var(--prot-bg)" height="34" stroke="var(--prot)" width="140" x="250" y="162"></rect><text text-anchor="middle" x="320" y="184">protein level</text>
+<rect fill="var(--met-bg)" height="34" stroke="var(--met)" width="140" x="520" y="87"></rect><text text-anchor="middle" x="590" y="109">metabolite</text>
+<rect fill="var(--int-bg)" height="34" stroke="var(--int)" width="140" x="740" y="87"></rect><text text-anchor="middle" x="810" y="109">disease / trait</text>
+</g>
+<g fill="none" marker-end="url(#qa)" stroke="var(--ink-2)" stroke-width="1.5">
+<path d="M120 100 L248 30"></path><path d="M122 108 L248 79"></path><path d="M122 120 L248 129"></path><path d="M118 132 L248 179"></path>
+<path d="M390 79 L518 100"></path><path d="M390 179 L518 112"></path><path d="M660 104 L738 104"></path><path d="M390 30 C 600 30, 700 60, 790 85"></path>
+</g>
+<g fill="var(--ink-3)" font-size="10"><text x="170" y="52">caQTL / meQTL</text><text x="185" y="88">eQTL</text><text x="185" y="140">sQTL</text><text x="165" y="182">pQTL</text><text x="430" y="78">mediation</text><text x="672" y="96">GWAS</text><text x="530" y="160">metabolite QTL (mQTL)</text></g>
+</svg>

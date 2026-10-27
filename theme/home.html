@@ -1,29 +1,9 @@
-
-<div class="topbar">
-  <a class="brand" href="#home"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="brand-name">Omics Field Guide</span></a>
-  <button class="menu-btn" id="menuBtn" aria-controls="rail" aria-expanded="false">Chapters</button>
-</div>
-<aside class="rail" id="rail" aria-label="Chapters">
-  <div class="rail-head">
-    <a class="brand" href="#home"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="brand-name">The Omics Field Guide<small>genome → phenome</small></span></a>
-    <div class="search">
-      <svg viewBox="0 0 16 16" fill="none" stroke-width="1.6" aria-hidden="true"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4"/></svg>
-      <input id="q" type="search" placeholder="Search topics, tools…" autocomplete="off" aria-label="Search the guide">
-      <div class="results" id="results" role="listbox"></div>
-    </div>
-  </div>
-  <nav class="toc" id="toc"></nav>
-  <div class="rail-foot"><span id="ver">Edition 2026.10</span><button class="theme-btn" id="themeBtn" type="button">Theme: light</button></div>
-</aside>
-<main id="main">
-
-<!-- ===================================================== HOME -->
 <section class="chapter" id="home" data-part="Start" data-title="Start here" data-c="--int">
   <div class="hero">
-    <div class="eyebrow">A field guide for bioinformaticians · from first principles to open problems</div>
-    <h1>Every layer of the cell, <span class="l">read as data.</span></h1>
-    <p class="dek">This guide walks from the chemistry of DNA to the algorithms that turn sequencers, mass spectrometers and microscopes into biological knowledge. For each omics layer it explains what is measured, why it matters, how the data are processed, which tools do each step, what independent benchmarks found, and which questions are still open.</p>
-    <div class="byline"><span class="by-lbl">Written and maintained by</span><a class="by-name" href="#contact">Kianoosh Naghibzadeh</a><span class="by-aff">Toronto Metropolitan University · The Hospital for Sick Children (SickKids) · Toronto, Canada</span></div>
+    <div class="eyebrow">{{home_eyebrow}}</div>
+    <h1>{{home_title}} <span class="l">{{home_title_accent}}</span></h1>
+    <p class="dek">{{home_intro}}</p>
+    <div class="byline"><span class="by-lbl">{{byline_label}}</span><a class="by-name" href="#contact">{{author_name}}</a><span class="by-aff">{{author_line}}</span></div>
     <canvas id="trace" aria-label="Animated four-colour sequencing chromatogram"></canvas>
     <div class="trace-cap"><span>Fig. 0 · A Sanger-style chromatogram of a coding sequence. The four trace colours are reused for the four molecular layers throughout the guide.</span><span class="seq" id="traceSeq"></span></div>
   </div>

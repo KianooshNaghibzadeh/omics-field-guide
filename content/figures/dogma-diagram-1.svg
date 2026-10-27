@@ -1,0 +1,22 @@
+<svg aria-label="Central dogma flow with associated omics" role="img" viewbox="0 0 980 300">
+<defs><marker id="ah" markerheight="7" markerwidth="7" orient="auto" refx="9" refy="5" viewbox="0 0 10 10"><path d="M0 0L10 5L0 10z" fill="var(--ink)"></path></marker>
+<marker id="ah2" markerheight="7" markerwidth="7" orient="auto" refx="9" refy="5" viewbox="0 0 10 10"><path d="M0 0L10 5L0 10z" fill="var(--ink-3)"></path></marker></defs>
+<rect fill="var(--dna-bg)" height="70" stroke="var(--dna)" stroke-width="2" width="150" x="20" y="90"></rect><text font-size="16" font-weight="600" text-anchor="middle" x="95" y="122">DNA</text><text font-size="10" text-anchor="middle" x="95" y="142">genome + epigenome</text>
+<rect fill="var(--rna-bg)" height="70" stroke="var(--rna)" stroke-width="2" width="150" x="250" y="90"></rect><text font-size="16" font-weight="600" text-anchor="middle" x="325" y="122">pre-mRNA</text><text font-size="10" text-anchor="middle" x="325" y="142">exons + introns</text>
+<rect fill="var(--rna-bg)" height="70" stroke="var(--rna)" stroke-width="2" width="150" x="470" y="90"></rect><text font-size="16" font-weight="600" text-anchor="middle" x="545" y="122">mRNA</text><text font-size="10" text-anchor="middle" x="545" y="142">cap · CDS · poly(A)</text>
+<rect fill="var(--prot-bg)" height="70" stroke="var(--prot)" stroke-width="2" width="130" x="690" y="90"></rect><text font-size="16" font-weight="600" text-anchor="middle" x="755" y="122">Protein</text><text font-size="10" text-anchor="middle" x="755" y="142">folding · PTMs</text>
+<rect fill="var(--met-bg)" height="70" stroke="var(--met)" stroke-width="2" width="110" x="860" y="90"></rect><text font-size="15" font-weight="600" text-anchor="middle" x="915" y="122">Metabolite</text><text font-size="10" text-anchor="middle" x="915" y="142">enzyme products</text>
+<line marker-end="url(#ah)" stroke="var(--ink)" stroke-width="2" x1="170" x2="248" y1="125" y2="125"></line><text font-size="10" text-anchor="middle" x="209" y="115">transcription</text>
+<line marker-end="url(#ah)" stroke="var(--ink)" stroke-width="2" x1="400" x2="468" y1="125" y2="125"></line><text font-size="10" text-anchor="middle" x="434" y="115">splicing</text>
+<line marker-end="url(#ah)" stroke="var(--ink)" stroke-width="2" x1="620" x2="688" y1="125" y2="125"></line><text font-size="10" text-anchor="middle" x="654" y="115">translation</text>
+<line marker-end="url(#ah)" stroke="var(--ink)" stroke-width="2" x1="820" x2="858" y1="125" y2="125"></line><text font-size="10" text-anchor="middle" x="839" y="115">catalysis</text>
+<path d="M60 90 C 40 40, 150 40, 130 88" fill="none" marker-end="url(#ah)" stroke="var(--ink)" stroke-width="2"></path><text font-size="10" text-anchor="middle" x="95" y="40">replication</text>
+<path d="M300 160 C 260 215, 140 215, 110 162" fill="none" marker-end="url(#ah2)" stroke="var(--ink-3)" stroke-dasharray="5 4" stroke-width="1.6"></path><text fill="var(--ink-3)" font-size="10" text-anchor="middle" x="205" y="224">reverse transcription (retroviruses, retrotransposons, telomerase)</text>
+<path d="M350 90 C 390 40, 300 40, 330 88" fill="none" marker-end="url(#ah2)" stroke="var(--ink-3)" stroke-dasharray="5 4" stroke-width="1.6"></path><text fill="var(--ink-3)" font-size="10" text-anchor="middle" x="345" y="38">RNA replication (RNA viruses)</text>
+<path d="M755 90 C 700 30, 220 20, 140 88" fill="none" marker-end="url(#ah2)" stroke="var(--prot)" stroke-dasharray="2 4" stroke-width="1.4"></path><text fill="var(--prot)" font-size="10" text-anchor="middle" x="470" y="22">feedback: transcription factors, chromatin modifiers, splicing factors are themselves proteins</text>
+<g fill="var(--ink-2)" font-size="10"><text text-anchor="middle" x="95" y="260">Genomics</text><text text-anchor="middle" x="95" y="274">Epigenomics</text>
+<text text-anchor="middle" x="325" y="260">Nascent RNA-seq</text><text text-anchor="middle" x="325" y="274">(PRO-seq, GRO-seq)</text>
+<text text-anchor="middle" x="545" y="260">Transcriptomics</text><text text-anchor="middle" x="545" y="274">Epitranscriptomics</text>
+<text text-anchor="middle" x="755" y="260">Translatomics (Ribo-seq)</text><text text-anchor="middle" x="755" y="274">Proteomics</text>
+<text text-anchor="middle" x="915" y="260">Metabolomics</text><text text-anchor="middle" x="915" y="274">Lipidomics</text></g>
+</svg>

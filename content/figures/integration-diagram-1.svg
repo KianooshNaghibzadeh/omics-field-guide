@@ -1,0 +1,17 @@
+<svg aria-label="Early, intermediate and late integration strategies" role="img" viewbox="0 0 960 260">
+<defs><marker id="ia" markerheight="6" markerwidth="6" orient="auto" refx="9" refy="5" viewbox="0 0 10 10"><path d="M0 0L10 5L0 10z" fill="var(--ink-2)"></path></marker></defs>
+<g font-size="12" font-weight="600"><text x="20" y="24">Early (concatenation)</text><text x="340" y="24">Intermediate (joint latent space)</text><text x="680" y="24">Late (combine results)</text></g>
+<g><rect fill="var(--rna)" height="80" width="30" x="20" y="44"></rect><rect fill="var(--prot)" height="80" width="22" x="54" y="44"></rect><rect fill="var(--met)" height="80" width="16" x="80" y="44"></rect>
+<line marker-end="url(#ia)" stroke="var(--ink-2)" stroke-width="1.5" x1="100" x2="150" y1="84" y2="84"></line><rect fill="var(--card)" height="60" stroke="var(--ink-3)" width="110" x="154" y="54"></rect><text font-size="11" text-anchor="middle" x="209" y="88">one model</text></g>
+<g><rect fill="var(--rna)" height="40" width="28" x="340" y="44"></rect><rect fill="var(--prot)" height="34" width="28" x="340" y="90"></rect><rect fill="var(--met)" height="26" width="28" x="340" y="130"></rect>
+<path d="M372 64 L450 96 M372 107 L450 100 M372 143 L450 104" fill="none" marker-end="url(#ia)" stroke="var(--ink-2)" stroke-width="1.5"></path>
+<rect fill="var(--int-bg)" height="44" stroke="var(--int)" width="64" x="454" y="78"></rect><text font-size="11" text-anchor="middle" x="486" y="104">Z</text>
+<line marker-end="url(#ia)" stroke="var(--ink-2)" stroke-width="1.5" x1="520" x2="560" y1="100" y2="100"></line><text font-size="10" x="565" y="96">factors,</text><text font-size="10" x="565" y="110">clusters</text></g>
+<g><rect fill="var(--rna)" height="30" width="28" x="680" y="44"></rect><rect fill="var(--prot)" height="30" width="28" x="680" y="84"></rect><rect fill="var(--met)" height="30" width="28" x="680" y="124"></rect>
+<line marker-end="url(#ia)" stroke="var(--ink-2)" x1="712" x2="750" y1="59" y2="59"></line><line marker-end="url(#ia)" stroke="var(--ink-2)" x1="712" x2="750" y1="99" y2="99"></line><line marker-end="url(#ia)" stroke="var(--ink-2)" x1="712" x2="750" y1="139" y2="139"></line>
+<rect fill="var(--card)" height="24" stroke="var(--ink-3)" width="40" x="754" y="47"></rect><rect fill="var(--card)" height="24" stroke="var(--ink-3)" width="40" x="754" y="87"></rect><rect fill="var(--card)" height="24" stroke="var(--ink-3)" width="40" x="754" y="127"></rect>
+<path d="M796 59 L850 96 M796 99 L850 99 M796 139 L850 102" fill="none" marker-end="url(#ia)" stroke="var(--ink-2)"></path><rect fill="var(--int-bg)" height="34" stroke="var(--int)" width="90" x="854" y="82"></rect><text font-size="11" text-anchor="middle" x="899" y="103">vote / stack</text></g>
+<g fill="var(--ink-2)" font-size="10"><text x="20" y="190">+ simple, captures cross-layer interactions</text><text x="20" y="206">− dominated by the largest or noisiest layer</text><text x="20" y="222">− needs aggressive feature selection and scaling</text>
+<text x="340" y="190">+ models shared and specific variation</text><text x="340" y="206">+ handles different noise models per layer</text><text x="340" y="222">− factors need biological interpretation</text>
+<text x="680" y="190">+ robust; each layer modelled natively</text><text x="680" y="206">+ tolerates missing layers per sample</text><text x="680" y="222">− misses interactions between layers</text></g>
+</svg>

@@ -1,0 +1,185 @@
+# Pages CMS configuration: defines the editing portal at https://app.pagescms.org
+# Every save in the portal becomes a commit; GitHub Actions then rebuilds the website (1-2 minutes).
+
+media:
+  input: content/images
+  output: /omics-field-guide/images
+  rename: safe
+  categories: [image]
+
+content:
+  - name: chapters
+    label: Chapters
+    type: collection
+    path: content/chapters
+    format: yaml-frontmatter
+    filename:
+      template: "{order}-{slug}.md"
+      field: create
+    view:
+      fields: [title, part, order, draft]
+      primary: title
+      sort: [order, title]
+      search: [title, description]
+      default:
+        sort: order
+        order: asc
+    fields:
+      - name: title
+        label: Title (shown in the chapter list and browser tab)
+        type: string
+        required: true
+      - name: heading
+        label: Page heading (large title at the top of the page)
+        type: string
+      - name: description
+        label: Introduction (shown under the heading and in Google results)
+        type: text
+      - name: body
+        label: Content
+        description: >
+          Write normally. Special blocks are written as a paragraph on their own:
+          [figure: name | caption], [tools: layer], [benchmarks: layer],
+          [steps] followed by a numbered list, [cards] followed by a bulleted list.
+          A quote that starts with a bold "Pitfall:", "Key idea:", "Research gap:",
+          "Benchmark:" or "Example:" becomes a coloured box.
+        type: rich-text
+        options:
+          format: html
+          switcher: true
+      - name: part
+        label: Section of the guide
+        type: select
+        options:
+          values: ["I · Foundations", "II · The omics layers", "III · Connecting layers", "IV · Research", "About"]
+      - name: order
+        label: Position (chapters are sorted by this number; use gaps of 10)
+        type: number
+        required: true
+      - name: label
+        label: Small coloured tag above the heading
+        type: string
+      - name: color
+        label: Colour
+        type: select
+        options:
+          values:
+            - name: dna
+              label: Green (DNA, genomics)
+            - name: epi
+              label: Olive (epigenomics)
+            - name: rna
+              label: Blue (RNA, transcriptomics)
+            - name: prot
+              label: Amber (proteins)
+            - name: met
+              label: Red (metabolites, lipids)
+            - name: mic
+              label: Purple (microbiome)
+            - name: int
+              label: Teal (integration, general)
+      - name: slug
+        label: Web address (lowercase-with-dashes; changing it breaks existing links)
+        type: string
+        required: true
+      - name: id
+        label: Internal id (used for links like href="#genomics"; do not change)
+        type: string
+      - name: draft
+        label: Hide this chapter (draft)
+        type: boolean
+
+  - name: site
+    label: Home page & site settings
+    type: file
+    path: content/data/site.json
+    format: json
+    fields:
+      - { name: home_eyebrow, label: Small line above the home title, type: string }
+      - { name: home_title, label: Home title (first part), type: string }
+      - { name: home_title_accent, label: Home title (coloured second part), type: string }
+      - { name: home_intro, label: Home introduction, type: text }
+      - { name: byline_label, label: Byline label, type: string }
+      - { name: author_name, label: Author name, type: string }
+      - { name: author_line, label: Author affiliations line, type: string }
+      - { name: edition, label: Edition (shown at the bottom of the menu), type: string }
+      - { name: site_title, label: Site title, type: string }
+      - { name: seo_description, label: Home page description for Google, type: text }
+
+  - name: contact
+    label: Contact details
+    type: file
+    path: content/data/contact.json
+    format: json
+    fields:
+      - { name: name, label: Name, type: string }
+      - { name: email, label: Email, type: string }
+      - { name: linkedin, label: LinkedIn link, type: string }
+      - { name: city, label: City, type: string }
+      - name: affiliations
+        label: Affiliations
+        type: object
+        list: true
+        fields:
+          - { name: name, label: Institution, type: string }
+          - { name: detail, label: Detail, type: string }
+
+  - name: tools
+    label: Tools (tool tables and atlas)
+    type: file
+    path: content/data/tools.json
+    format: json
+    list: true
+    fields:
+      - { name: name, label: Tool name, type: string, required: true }
+      - name: layer
+        label: Omics layer
+        type: select
+        options:
+          values: [genomics, epigenomics, transcriptomics, singlecell, proteomics, metabolomics, lipidomics, microbiome, integration, practice]
+      - { name: task, label: Task (tools with the same task are grouped), type: string }
+      - name: stage
+        label: Analysis stage
+        type: select
+        options:
+          values:
+            - { name: P, label: "Primary (raw signal to reads/spectra)" }
+            - { name: S, label: "Secondary (reads/spectra to features)" }
+            - { name: T, label: "Tertiary (features to biology)" }
+      - name: level
+        label: Skill level
+        type: select
+        options:
+          values:
+            - { name: 1, label: Entry }
+            - { name: 2, label: Intermediate }
+            - { name: 3, label: Advanced }
+      - { name: interface, label: Interface (e.g. CLI, R, Python, GUI, web), type: string }
+      - { name: aim, label: What it does, type: text }
+
+  - name: benchmarks
+    label: Benchmarks
+    type: file
+    path: content/data/benchmarks.json
+    format: json
+    list: true
+    fields:
+      - name: layer
+        label: Omics layer
+        type: select
+        options:
+          values: [genomics, epigenomics, transcriptomics, singlecell, proteomics, metabolomics, lipidomics, microbiome, integration]
+      - { name: title, label: Paper title (used to build the PubMed link), type: string, required: true }
+      - { name: citation, label: "Citation (Author et al. Year, Journal)", type: string }
+      - { name: finding, label: What it found, type: text }
+      - { name: takeaway, label: Practical takeaway, type: text }
+
+  - name: glossary
+    label: Glossary
+    type: file
+    path: content/data/glossary.json
+    format: json
+    list: true
+    fields:
+      - { name: term, label: Term, type: string, required: true }
+      - { name: definition, label: Definition, type: text }

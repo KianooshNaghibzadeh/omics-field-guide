@@ -1,0 +1,44 @@
+---
+title: The central dogma
+heading: The central dogma, step by step
+part: I · Foundations
+order: 20
+color: rna
+label: Foundations
+slug: central-dogma
+id: dogma
+description: 'Francis Crick''s 1958 statement is about the direction of sequence information: it can pass from nucleic acid to nucleic acid and from nucleic acid to protein, but never from protein back to nucleic acid. Each transfer step is a control point, an assay, and a place where mutations act.'
+---
+<p>[figure: dogma-diagram-1 | Fig. 2.1 · Solid arrows: the general transfers. Dashed: special transfers. Dotted amber: the feedback loop that makes the system a network, not a pipeline. Bottom row: the omics that measure each node.]</p>
+<h2>Replication</h2>
+<p>Before a cell divides it copies its genome. DNA polymerases δ and ε synthesise new strands with an intrinsic error rate of roughly 10<sup>−4</sup>–10<sup>−5</sup>, which proofreading (3′→5′ exonuclease) and mismatch repair (MMR) lower to about 10<sup>−9</sup>–10<sup>−10</sup> per base per division. When proofreading (POLE, POLD1 mutations) or MMR (MLH1, MSH2, MSH6, PMS2) fails, tumours become hypermutated or microsatellite-unstable. These tumours carry characteristic mutational signatures and respond well to immune checkpoint inhibitors because their many mutations create neoantigens. That chain from a repair defect to a sequencing signature to a treatment decision is one of the clearest examples of omics in the clinic.</p>
+<h2>Transcription</h2>
+<p>RNA polymerase II reads the template strand and produces RNA that matches the coding strand (with U in place of T). Transcription has distinct, separately regulated phases:</p>
+<ol>
+<li><strong>Initiation</strong>: transcription factors bind enhancers and promoters; the Mediator complex bridges them to the pre-initiation complex (TFIID with TATA-binding protein, TFIIB, TFIIE, TFIIF, TFIIH). TFIIH phosphorylates serine 5 of the Pol II C-terminal domain (CTD).</li>
+<li><strong>Promoter-proximal pausing</strong>: in metazoans Pol II often pauses 20–60 nt downstream of the TSS. Release by P-TEFb (CDK9) is a major regulatory step, which is why nascent-transcription assays (PRO-seq, GRO-seq, TT-seq) can reveal regulation that steady-state RNA-seq misses.</li>
+<li><strong>Elongation</strong>: CTD serine 2 phosphorylation recruits splicing and 3′-end factors. Splicing is largely co-transcriptional, so elongation speed influences which exons are included.</li>
+<li><strong>Termination</strong>: cleavage at the poly(A) site, poly(A) addition, and release of Pol II.</li>
+</ol>
+<p>Three other polymerases have dedicated jobs: Pol I makes ribosomal RNA, Pol III makes tRNAs, 5S rRNA and some small RNAs, and mitochondrial RNA polymerase transcribes the mitochondrial genome. Ribosomal RNA is 80% or more of total RNA, which is why RNA-seq libraries either select poly(A)+ RNA or deplete rRNA. The choice changes what you can see: poly(A) selection loses histone mRNAs, many lncRNAs and most intronic reads, while rRNA depletion keeps them.</p>
+<p>[figure: transcribe | Fig. · One short gene read through the dogma. The mRNA has the same sequence as the coding strand (U instead of T) because it is copied from the template strand. Ribosomes read it in non-overlapping triplets from the start codon until the first stop codon (UGA).]</p>
+<h2>RNA processing</h2>
+<p>[cards]</p><ul><li><p><strong>5′ capping</strong></p><p>A 7-methylguanosine cap is added co-transcriptionally. It protects the RNA and recruits eIF4E for translation. Cap-based protocols (CAGE) map transcription start sites precisely.</p></li><li><p><strong>Splicing</strong></p><p>Introns are removed and exons joined by the spliceosome. More than 90–95% of multi-exon human genes are alternatively spliced. See the <a href="#splicing">splicing chapter</a>.</p></li><li><p><strong>3′ end processing</strong></p><p>Cleavage and polyadenylation. About 70% of human genes have more than one poly(A) site (alternative polyadenylation, APA), changing 3′UTR length and therefore microRNA regulation.</p></li><li><p><strong>Editing and modification</strong></p><p>A-to-I editing by ADAR enzymes (read as A→G mismatches in RNA-seq), C-to-U editing by APOBEC1, and over 170 chemical modifications such as m6A, pseudouridine and m5C. This is the epitranscriptome.</p></li><li><p><strong>Export and decay</strong></p><p>Mature mRNAs are exported through nuclear pores. Decay pathways (deadenylation, decapping, exonucleases, nonsense-mediated decay) set mRNA half-lives from minutes to days.</p></li><li><p><strong>Non-coding RNA biogenesis</strong></p><p>microRNAs are processed by Drosha and Dicer into ~22-nt guides loaded into Argonaute; circular RNAs arise from back-splicing; lncRNAs are capped and often polyadenylated like mRNAs.</p></li></ul>
+<h2>Translation and the genetic code</h2>
+<p>Ribosomes scan from the 5′ cap to the first suitable AUG (in a favourable Kozak context, <code>gccAccAUGG</code>) and read the mRNA three nucleotides at a time. With 4<sup>3</sup> = 64 codons for 20 amino acids plus stop, the code is <strong>degenerate</strong>: most amino acids have several codons that usually differ at the third ("wobble") position. That is why many third-position changes are synonymous, and why the ratio of non-synonymous to synonymous substitutions (dN/dS) is used to detect selection and cancer driver genes.</p>
+<p>[codon-table]</p>
+<p>Translation has three phases: initiation (the most regulated, through eIF2 and eIF4F; the integrated stress response shuts it down by phosphorylating eIF2α), elongation (codon choice and tRNA availability affect speed and co-translational folding), and termination at a stop codon by eRF1/eRF3. Translation efficiency is measured by ribosome profiling (Ribo-seq), which sequences the ~30-nt mRNA fragments protected by ribosomes.</p>
+<h2>After translation: the protein is not finished</h2>
+<p>Polypeptides fold (often with chaperones), may be cleaved (signal peptides, pro-hormones), and receive <strong>post-translational modifications (PTMs)</strong>: phosphorylation (S, T, Y; signalling), acetylation (K; chromatin and metabolism), ubiquitination (K; degradation and signalling), glycosylation (N, S, T; secreted and membrane proteins), methylation, SUMOylation, lipidation and hundreds more. One gene can therefore give rise to many <strong>proteoforms</strong>, through alternative splicing, coding variants and PTM combinations. Protein half-lives range from minutes to months. Proteomics measures a cell state that is related to, but not determined by, the transcriptome.</p>
+<h2>Why the dogma is a network</h2>
+<p>The arrows look linear, but every step is controlled by products of later steps: transcription factors, splicing factors, RNA-binding proteins and chromatin modifiers are all proteins, and metabolites feed back too. Acetyl-CoA supplies histone acetylation, S-adenosylmethionine (SAM) supplies DNA and histone methylation, and α-ketoglutarate is a co-factor for TET demethylases. Mutations in the metabolic enzymes IDH1/IDH2 produce the oncometabolite 2-hydroxyglutarate, which inhibits TET and histone demethylases and causes a hypermethylation phenotype in glioma and leukaemia. In one example, a genomic variant changes a metabolite, the metabolite rewires the epigenome, and the epigenome alters the transcriptome. Multi-omics integration exists to trace chains like this.</p>
+<blockquote><p><strong>Key idea:</strong> The correlation between mRNA and protein levels across genes in a steady-state cell is moderate (often around 0.4–0.6 in mammalian datasets), and across samples for the same gene it is often weaker. Translation rates, protein degradation and time delays explain much of the gap. Do not use a transcriptome as a stand-in for the proteome without checking. See <a href="#relations">How the layers talk</a>.</p></blockquote>
+<h2>Exceptions and extensions worth knowing</h2>
+<ul>
+<li><strong>Reverse transcription</strong>: retroviruses (HIV), LINE-1 retrotransposons and telomerase write RNA back into DNA. Processed pseudogenes in the genome are fossils of this.</li>
+<li><strong>RNA-dependent RNA synthesis</strong>: RNA viruses (SARS-CoV-2, influenza) replicate RNA directly.</li>
+<li><strong>Prions</strong>: misfolded proteins template the misfolding of others. This passes conformation, not sequence, so it does not violate the dogma.</li>
+<li><strong>Non-coding RNAs as end products</strong>: rRNA, tRNA, snRNA, miRNA and lncRNA function without being translated.</li>
+<li><strong>Small ORFs and micropeptides</strong>: some "non-coding" RNAs encode short functional peptides that Ribo-seq and proteomics are still uncovering.</li>
+<li><strong>Epigenetic inheritance</strong>: methylation and chromatin states can be transmitted through cell divisions without changes in DNA sequence.</li>
+</ul>
