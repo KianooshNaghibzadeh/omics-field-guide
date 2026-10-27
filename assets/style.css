@@ -1,9 +1,4 @@
-<title>The Omics Field Guide</title>
-<meta name="description" content="A field guide to omics: molecular biology foundations, every omics layer, algorithms, tools, benchmarks, multi-omics integration and open research questions.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap">
-<style>
+
 /* Layout: genome-browser metaphor. A fixed "track rail" on the left lists chapters like browser tracks;
    the reading column sits beside it. Each omics layer owns one nucleotide-trace colour, used everywhere that layer appears. */
 :root{
@@ -209,4 +204,3 @@ figure{margin:26px 0} figcaption{font-family:var(--f-mono); font-size:.74rem; co
   .chapter{padding-block:28px 60px}
   .paths > div{border-right:none; border-bottom:1px solid var(--rule)}
 }
-</style>

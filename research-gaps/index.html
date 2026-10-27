@@ -1,47 +1,68 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Research questions &amp; gaps | The Omics Field Guide</title>
+<meta name="description" content="A map of what is unsolved, organised so you can find a thesis-sized problem. Each gap names why it is hard and what a contribution could look like. Strong…">
+<link rel="canonical" href="https://kianooshnaghibzadeh.github.io/omics-field-guide/research-gaps/">
+<meta name="robots" content="index,follow"><meta name="author" content="Kianoosh Naghibzadeh">
+<meta name="google-site-verification" content="odxt1RiJvQTCxN38_i_kjB3W6ATVOd_dK6NalYqU6RY">
+<meta property="og:type" content="website"><meta property="og:site_name" content="The Omics Field Guide">
+<meta property="og:title" content="Research questions &amp; gaps | The Omics Field Guide"><meta property="og:description" content="A map of what is unsolved, organised so you can find a thesis-sized problem. Each gap names why it is hard and what a contribution could look like. Strong…"><meta property="og:url" content="https://kianooshnaghibzadeh.github.io/omics-field-guide/research-gaps/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Research questions & gaps | The Omics Field Guide", "url": "https://kianooshnaghibzadeh.github.io/omics-field-guide/research-gaps/", "description": "A map of what is unsolved, organised so you can find a thesis-sized problem. Each gap names why it is hard and what a contribution could look like. Strong\u2026", "inLanguage": "en", "author": {"@type": "Person", "name": "Kianoosh Naghibzadeh"}, "isPartOf": {"@type": "WebSite", "name": "The Omics Field Guide", "url": "https://kianooshnaghibzadeh.github.io/omics-field-guide/"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap">
+<link rel="stylesheet" href="../assets/style.css">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)} body{margin:0} img{max-width:100%} [hidden]{display:none!important}</style>
+</head><body>
 
-<!-- ===================================================== TOOL ATLAS -->
-<section class="chapter" id="atlas" data-part="IV · Research" data-title="Tool atlas" data-c="--prot">
-<header class="chap-head"><div class="track"><span class="chip" style="--c:var(--prot);--cb:var(--prot-bg)">Reference</span><span class="chnum"></span></div>
-<h1>Tool atlas</h1>
-<p class="dek">Every tool mentioned in the guide in one searchable table, with its aim, analysis stage and skill level. Filter by layer, stage or level, or type a task such as "doublet", "peak" or "integration".</p></header>
-<div class="wide">
-<div class="filters">
-<input id="atlasQ" type="search" placeholder="Search tool, task or aim…" aria-label="Search tools">
-<select id="atlasOmics" aria-label="Filter by layer"><option value="">All layers</option></select>
-<select id="atlasStage" aria-label="Filter by stage"><option value="">All stages</option><option value="P">Primary</option><option value="S">Secondary</option><option value="T">Tertiary</option></select>
-<select id="atlasLvl" aria-label="Filter by skill level"><option value="">All levels</option><option value="1">Entry</option><option value="2">Intermediate</option><option value="3">Advanced</option></select>
-<span class="count" id="atlasCount"></span>
+<div class="topbar">
+  <a class="brand" href="../"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="brand-name">Omics Field Guide</span></a>
+  <button class="menu-btn" id="menuBtn" aria-controls="rail" aria-expanded="false">Chapters</button>
 </div>
-<div class="tbl" id="atlasTable"></div>
-</div>
-<div class="pager"></div>
-</section>
-
-<!-- ===================================================== BENCHMARK HUB -->
-<section class="chapter" id="benchmarks" data-part="IV · Research" data-title="Benchmark hub" data-c="--prot">
-<header class="chap-head"><div class="track"><span class="chip" style="--c:var(--prot);--cb:var(--prot-bg)">Reference</span><span class="chnum"></span></div>
-<h1>Benchmark hub</h1>
-<p class="dek">What independent, neutral comparisons of tools have found. Benchmarks age quickly and can be biased by their choice of data and metrics, so read them for patterns and for what they measured, not only for the winner.</p></header>
-
-<h2>How to read a benchmark</h2>
-<div class="cols">
-<div class="card"><h4>Who ran it?</h4><p>Neutral benchmarks (by groups that did not develop any of the tools) are more trustworthy than the comparison table in a new tool's own paper, where the new tool almost always wins (the "self-assessment trap").</p></div>
-<div class="card"><h4>What is the ground truth?</h4><p>Simulations (controllable, but may not match reality), spike-ins and mixtures (realistic, limited), reference materials (GIAB, Quartet), orthogonal validation, or consistency only (weakest).</p></div>
-<div class="card"><h4>Which metric?</h4><p>Precision, recall, F1, AUROC, AUPRC, FDR calibration, runtime, memory. A tool can win on one and lose on another. Check whether the metric matches your use.</p></div>
-<div class="card"><h4>Does it match your data?</h4><p>Species, platform, depth, sample size and tissue all change rankings. A method that wins on cell lines may not win on tumour biopsies.</p></div>
-</div>
-<p>Guidelines for running a good benchmark: <cite data-q="Essential guidelines for computational method benchmarking">Weber et al. 2019, Genome Biology</cite>. Continuous, community-maintained benchmarks (Open Problems in Single-Cell Analysis, OpenEBench, precisionFDA challenges, CAMI, CASP) are replacing one-off papers.</p>
-
-<h2>All benchmarks</h2>
-<div class="wide">
-<div class="filters"><input id="benchQ" type="search" placeholder="Filter benchmarks…" aria-label="Filter benchmarks"><select id="benchOmics" aria-label="Filter benchmarks by layer"><option value="">All layers</option></select><span class="count" id="benchCount"></span></div>
-<div class="benchlist" data-omics="*"></div>
-</div>
-<div class="pager"></div>
-</section>
-
-<!-- ===================================================== RESEARCH GAPS -->
-<section class="chapter" id="gaps" data-part="IV · Research" data-title="Research questions &amp; gaps" data-c="--mic">
+<aside class="rail" id="rail" aria-label="Chapters">
+  <div class="rail-head">
+    <a class="brand" href="../"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="brand-name">The Omics Field Guide<small>genome → phenome</small></span></a>
+    <div class="search">
+      <svg viewBox="0 0 16 16" fill="none" stroke-width="1.6" aria-hidden="true"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4"/></svg>
+      <input id="q" type="search" placeholder="Search topics, tools…" autocomplete="off" aria-label="Search the guide">
+      <div class="results" id="results" role="listbox"></div>
+    </div>
+  </div>
+  <nav class="toc" id="toc"><div class="toc-part">Start</div>
+<a href="../" data-id="home"><span class="sw" style="--c:var(--int)"></span><span>Start here</span></a>
+<div class="toc-part">I · Foundations</div>
+<a href="../genome-genes-chromatin/" data-id="cell"><span class="sw" style="--c:var(--dna)"></span><span>Genome, genes &amp; chromatin</span></a>
+<a href="../central-dogma/" data-id="dogma"><span class="sw" style="--c:var(--rna)"></span><span>The central dogma</span></a>
+<a href="../splicing/" data-id="splicing"><span class="sw" style="--c:var(--rna)"></span><span>Splicing &amp; isoforms</span></a>
+<a href="../mutations-genetic-variation/" data-id="mutations"><span class="sw" style="--c:var(--met)"></span><span>Mutations &amp; variation</span></a>
+<div class="toc-part">II · The omics layers</div>
+<a href="../types-of-omics/" data-id="omes"><span class="sw" style="--c:var(--int)"></span><span>Map of the -omes</span></a>
+<a href="../how-omics-data-are-generated/" data-id="generation"><span class="sw" style="--c:var(--int)"></span><span>How omics data are generated</span></a>
+<a href="../genomics/" data-id="genomics"><span class="sw" style="--c:var(--dna)"></span><span>Genomics</span></a>
+<a href="../epigenomics/" data-id="epigenomics"><span class="sw" style="--c:var(--epi)"></span><span>Epigenomics</span></a>
+<a href="../transcriptomics/" data-id="transcriptomics"><span class="sw" style="--c:var(--rna)"></span><span>Transcriptomics (bulk)</span></a>
+<a href="../single-cell-spatial-omics/" data-id="singlecell"><span class="sw" style="--c:var(--rna)"></span><span>Single-cell &amp; spatial</span></a>
+<a href="../proteomics/" data-id="proteomics"><span class="sw" style="--c:var(--prot)"></span><span>Proteomics</span></a>
+<a href="../metabolomics-lipidomics/" data-id="metabolomics"><span class="sw" style="--c:var(--met)"></span><span>Metabolomics</span></a>
+<a href="../lipidomics-targeted/" data-id="lipidomics"><span class="sw" style="--c:var(--met)"></span><span>Lipidomics (targeted)</span></a>
+<a href="../metagenomics-microbiome/" data-id="microbiome"><span class="sw" style="--c:var(--mic)"></span><span>Metagenomics &amp; microbiome</span></a>
+<a href="../other-omics/" data-id="more"><span class="sw" style="--c:var(--int)"></span><span>More omics</span></a>
+<div class="toc-part">III · Connecting layers</div>
+<a href="../multi-omics-biology/" data-id="relations"><span class="sw" style="--c:var(--int)"></span><span>How the layers talk</span></a>
+<a href="../multi-omics-integration/" data-id="integration"><span class="sw" style="--c:var(--int)"></span><span>Integrating multi-omics data</span></a>
+<a href="../workflow-reproducibility/" data-id="practice"><span class="sw" style="--c:var(--int)"></span><span>Workflow &amp; reproducibility</span></a>
+<div class="toc-part">IV · Research</div>
+<a href="../bioinformatics-tool-atlas/" data-id="atlas"><span class="sw" style="--c:var(--prot)"></span><span>Tool atlas</span></a>
+<a href="../benchmarks/" data-id="benchmarks"><span class="sw" style="--c:var(--prot)"></span><span>Benchmark hub</span></a>
+<a href="../research-gaps/" data-id="gaps" aria-current="page"><span class="sw" style="--c:var(--mic)"></span><span>Research questions &amp; gaps</span></a>
+<a href="../learning-path-glossary/" data-id="learn"><span class="sw" style="--c:var(--int)"></span><span>Learning path &amp; glossary</span></a>
+<div class="toc-part">About</div>
+<a href="../contact/" data-id="contact"><span class="sw" style="--c:var(--int)"></span><span>Contact</span></a></nav>
+  <div class="rail-foot"><span id="ver">Edition 2026.10</span><button class="theme-btn" id="themeBtn" type="button">Theme: light</button></div>
+</aside>
+<main id="main">
+<section class="chapter on" id="gaps" data-part="IV · Research" data-title="Research questions &amp; gaps" data-c="--mic">
 <header class="chap-head"><div class="track"><span class="chip" style="--c:var(--mic);--cb:var(--mic-bg)">Research</span><span class="chnum"></span></div>
 <h1>Research questions and open gaps</h1>
 <p class="dek">A map of what is unsolved, organised so you can find a thesis-sized problem. Each gap names why it is hard and what a contribution could look like. Strong PhD projects usually sit where a biological question, a data resource and a methodological weakness meet.</p></header>
@@ -98,58 +119,9 @@
 <li>Can calibrated variant effect predictors from protein language models reduce VUS rates in under-represented ancestries?</li>
 <li>How should a multi-omics study allocate a fixed budget between more samples and more layers?</li>
 </ol></div>
-<div class="pager"></div>
+<div class="pager"><a href="../benchmarks/"><span>← Previous</span><b>Benchmark hub</b></a><a class="nx" href="../learning-path-glossary/"><span>Next →</span><b>Learning path &amp; glossary</b></a></div>
 </section>
-
-<!-- ===================================================== LEARN -->
-<section class="chapter" id="learn" data-part="IV · Research" data-title="Learning path &amp; glossary" data-c="--int">
-<header class="chap-head"><div class="track"><span class="chip" style="--c:var(--int);--cb:var(--int-bg)">Reference</span><span class="chnum"></span></div>
-<h1>Learning path and glossary</h1>
-<p class="dek">A staged plan for becoming fluent in omics analysis, followed by the vocabulary you will meet in papers and pipeline documentation.</p></header>
-
-<h2>Stages</h2>
-<div class="tbl wide"><table>
-<tr><th>Stage</th><th>Biology</th><th>Computation</th><th>Statistics</th><th>Practice project</th></tr>
-<tr><td>1 · Foundations</td><td class="wrap">Chapters 1–4 of this guide; a molecular biology textbook (Alberts, <i>Molecular Biology of the Cell</i>)</td><td class="wrap">Linux shell, file formats, git; R basics (tidyverse) or Python (pandas)</td><td class="wrap">Distributions, hypothesis tests, regression, p-values vs effect sizes</td><td class="wrap">Download a GEO count matrix, make PCA and a volcano plot</td></tr>
-<tr><td>2 · One layer well</td><td class="wrap">Gene regulation; the biology of your system</td><td class="wrap">Run nf-core/rnaseq; Bioconductor (SummarizedExperiment) or scverse (AnnData)</td><td class="wrap">GLMs, negative binomial, multiple testing, empirical Bayes</td><td class="wrap">Reanalyse a published RNA-seq study end to end and compare with the paper</td></tr>
-<tr><td>3 · Single-cell and a second layer</td><td class="wrap">Cell types, development, chromatin</td><td class="wrap">Scanpy or Seurat; ATAC or proteomics pipelines; HPC job schedulers</td><td class="wrap">Dimensionality reduction, clustering, mixed models, compositional data</td><td class="wrap">Integrate two scRNA-seq datasets and test pseudobulk DE</td></tr>
-<tr><td>4 · Integration and genetics</td><td class="wrap">Population genetics, QTLs</td><td class="wrap">PLINK, tensorQTL, MOFA+, mixOmics</td><td class="wrap">Latent factor models, Bayesian inference, causal inference (MR, colocalisation)</td><td class="wrap">Colocalise a GWAS with GTEx eQTLs; run MOFA+ on TCGA multi-omics</td></tr>
-<tr><td>5 · Methods development</td><td class="wrap">Deep knowledge of one system</td><td class="wrap">PyTorch/JAX, package development, testing, benchmarking frameworks</td><td class="wrap">Probabilistic modelling, variational inference, ML evaluation</td><td class="wrap">Build and benchmark a method against neutral baselines</td></tr>
-</table></div>
-
-<h2>Recommended resources</h2>
-<div class="cols">
-<div class="card"><h4>Books</h4><ul><li>Alberts et al., <i>Molecular Biology of the Cell</i></li><li>Strachan &amp; Read, <i>Human Molecular Genetics</i></li><li>Holmes &amp; Huber, <i>Modern Statistics for Modern Biology</i> (free online)</li><li>James et al., <i>An Introduction to Statistical Learning</i> (free online)</li><li>Durbin et al., <i>Biological Sequence Analysis</i></li></ul></div>
-<div class="card"><h4>Online and free</h4><ul><li>Single-cell Best Practices (sc-best-practices.org)</li><li>Orchestrating Single-Cell Analysis with Bioconductor (OSCA)</li><li>Bioconductor workflows and vignettes</li><li>Galaxy Training Network</li><li>nf-core documentation</li><li>GATK Best Practices documentation</li></ul></div>
-<div class="card"><h4>Habits</h4><ul><li>Reanalyse published data before generating your own</li><li>Read the methods section of every tool you use</li><li>Keep a lab notebook for analyses (date, versions, decisions)</li><li>Follow benchmarks and preprints in your area (bioRxiv)</li><li>Join communities: Biostars, Bioconductor support, scverse forum</li></ul></div>
-</div>
-
-<h2>Glossary</h2>
-<dl class="gloss" id="glossary"></dl>
-<div class="pager"></div>
-</section>
-
-<!-- ===================================================== CONTACT -->
-<section class="chapter" id="contact" data-part="About" data-title="Contact" data-c="--int">
-<header class="chap-head"><div class="track"><span class="chip" style="--c:var(--int);--cb:var(--int-bg)">About</span><span>Contact</span></div>
-<h1>Contact</h1>
-<p class="dek">Questions, corrections, suggestions for tools or benchmarks to add, or ideas for collaboration are welcome.</p></header>
-<div class="wide">
-<dl class="contact">
-<div><dt>Name</dt><dd>Kianoosh Naghibzadeh</dd></div>
-<div><dt>Email</dt><dd><span id="mail">kianoosh.naghibzadeh@torontomu.ca</span><button class="copy" type="button" data-copy="kianoosh.naghibzadeh@torontomu.ca">Copy</button></dd></div>
-<div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/kianooshnaghibzadeh/" target="_blank" rel="noopener">linkedin.com/in/kianooshnaghibzadeh</a></dd></div>
-<div><dt>City</dt><dd>Toronto, Ontario, Canada</dd></div>
-</dl>
-<h2>Affiliations</h2>
-<div class="cols">
-<div class="card"><h4>Toronto Metropolitan University</h4><p>TMU, Toronto</p></div>
-<div class="card"><h4>The Hospital for Sick Children</h4><p>SickKids, Toronto</p></div></div>
-<h2>About this guide</h2>
-<p style="max-width:44rem">The Omics Field Guide is a free, independent resource for students and researchers starting out in omics and bioinformatics. If you find an error or an outdated benchmark, please send an email with the chapter name and a reference, and it will be corrected in the next edition.</p>
-<p style="max-width:44rem">If you use this guide in teaching or a publication, please cite it as: <em>Naghibzadeh K. The Omics Field Guide. 2026. https://kianooshnaghibzadeh.github.io/omics-field-guide/</em></p>
-</div>
-<div class="pager"></div>
-</section>
-
 </main>
+<script>window.ROOT="../";</script>
+<script src="../assets/data.js"></script><script src="../assets/site.js"></script><script src="../assets/app.js"></script><script src="../assets/figs.js"></script>
+</body></html>
