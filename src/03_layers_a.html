@@ -1,0 +1,384 @@
+
+<!-- ===================================================== MAP OF OMES -->
+<section class="chapter" id="omes" data-part="II · The omics layers" data-title="Map of the -omes" data-c="--int">
+<header class="chap-head"><div class="track"><span class="chip" style="--c:var(--int);--cb:var(--int-bg)">The layers</span><span class="chnum"></span></div>
+<h1>A map of the -omes</h1>
+<p class="dek">"-omics" means measuring all, or nearly all, members of a class of molecules at once, without choosing them in advance. That shift from hypothesis-first to measure-everything changes the statistics: you test thousands of features with few samples, so multiple testing, normalisation and study design dominate.</p></header>
+
+<h2>The full list</h2>
+<div class="tbl wide"><table>
+<tr><th>Omics</th><th>What is measured</th><th>Main technologies</th><th>Typical features per sample</th><th>Core question</th></tr>
+<tr class="grp"><td colspan="5">DNA level</td></tr>
+<tr><td style="color:var(--dna)">Genomics</td><td class="wrap">DNA sequence and variation</td><td class="wrap">Short-read WGS/WES (Illumina, Element, Ultima, MGI), long reads (PacBio HiFi, Oxford Nanopore), SNP arrays</td><td class="wrap">~5M SNVs/indels, ~25k SVs</td><td class="wrap">Which variants does this genome carry, and which matter?</td></tr>
+<tr><td style="color:var(--dna)">Metagenomics</td><td class="wrap">All DNA in an environmental or host sample</td><td class="wrap">16S/ITS amplicons, shotgun sequencing, long reads</td><td class="wrap">10<sup>2</sup>–10<sup>4</sup> taxa</td><td class="wrap">Who is there and what can they do?</td></tr>
+<tr><td style="color:var(--dna)">Pan-genomics</td><td class="wrap">Sequence diversity across many genomes of a species</td><td class="wrap">Many de novo assemblies, graph genomes</td><td class="wrap">graph nodes/edges</td><td class="wrap">What does one reference miss?</td></tr>
+<tr><td style="color:var(--epi)">Epigenomics</td><td class="wrap">DNA methylation, histone marks, accessibility, TF binding, 3D structure</td><td class="wrap">WGBS, EM-seq, arrays, nanopore 5mC; ChIP-seq, CUT&amp;Tag, ATAC-seq, DNase-seq; Hi-C, Micro-C</td><td class="wrap">~28M CpGs; 10<sup>4</sup>–10<sup>5</sup> peaks</td><td class="wrap">Which parts of the genome are readable here, and why?</td></tr>
+<tr class="grp"><td colspan="5">RNA level</td></tr>
+<tr><td style="color:var(--rna)">Transcriptomics</td><td class="wrap">RNA abundance and structure (isoforms)</td><td class="wrap">Bulk RNA-seq, long-read RNA-seq, microarrays (legacy), qPCR panels</td><td class="wrap">~20k genes, ~100k+ transcripts</td><td class="wrap">Which genes are used, how much, in which isoform?</td></tr>
+<tr><td style="color:var(--rna)">Single-cell transcriptomics</td><td class="wrap">RNA per individual cell or nucleus</td><td class="wrap">10x Chromium, combinatorial indexing (Parse, Scale), Smart-seq3, BD Rhapsody</td><td class="wrap">10<sup>3</sup>–10<sup>6</sup> cells × 20k genes</td><td class="wrap">Which cell types and states exist, and how do they change?</td></tr>
+<tr><td style="color:var(--rna)">Spatial transcriptomics</td><td class="wrap">RNA with tissue coordinates</td><td class="wrap">Visium/Visium HD, Stereo-seq, Slide-seq; imaging: Xenium, MERFISH/MERSCOPE, CosMx, seqFISH</td><td class="wrap">10<sup>4</sup>–10<sup>7</sup> spots or cells</td><td class="wrap">Where are cell states, and who are their neighbours?</td></tr>
+<tr><td style="color:var(--rna)">Epitranscriptomics</td><td class="wrap">RNA modifications (m6A, Ψ, m5C, A-to-I)</td><td class="wrap">MeRIP-seq, miCLIP, GLORI, direct RNA nanopore</td><td class="wrap">10<sup>4</sup> sites</td><td class="wrap">How are RNA fate and translation tuned chemically?</td></tr>
+<tr><td style="color:var(--rna)">Translatomics</td><td class="wrap">Ribosome-bound mRNA</td><td class="wrap">Ribo-seq, polysome profiling, TRAP</td><td class="wrap">~10k translated ORFs</td><td class="wrap">What is actually being translated, and where do ribosomes start?</td></tr>
+<tr><td style="color:var(--rna)">Interactomics (RNA)</td><td class="wrap">RNA–protein and RNA–RNA contacts</td><td class="wrap">CLIP-seq (eCLIP, iCLIP), PARIS, RIC</td><td class="wrap">binding sites</td><td class="wrap">Which proteins regulate which RNAs?</td></tr>
+<tr class="grp"><td colspan="5">Protein level</td></tr>
+<tr><td style="color:var(--prot)">Proteomics</td><td class="wrap">Protein identity and abundance</td><td class="wrap">LC-MS/MS (DDA, DIA, TMT), affinity (Olink, SomaScan), antibody arrays; emerging single-molecule sequencing</td><td class="wrap">3k–12k proteins (cells); 1k–11k (plasma, affinity)</td><td class="wrap">Which proteins are present, how much, in what form?</td></tr>
+<tr><td style="color:var(--prot)">PTM-omics</td><td class="wrap">Phosphorylation, ubiquitination, acetylation, glycosylation</td><td class="wrap">Enrichment + MS (TiO<sub>2</sub>, IMAC, antibody pulldown)</td><td class="wrap">10<sup>4</sup>–10<sup>5</sup> sites</td><td class="wrap">Which pathways are switched on?</td></tr>
+<tr><td style="color:var(--prot)">Structural proteomics</td><td class="wrap">3D structure and conformations</td><td class="wrap">Cryo-EM, X-ray, XL-MS, HDX-MS, limited proteolysis; AlphaFold predictions</td><td class="wrap">structures</td><td class="wrap">How does shape explain function and variant effects?</td></tr>
+<tr><td style="color:var(--prot)">Interactomics (protein)</td><td class="wrap">Protein–protein interactions and complexes</td><td class="wrap">AP-MS, BioID/TurboID proximity labelling, Y2H, co-fractionation</td><td class="wrap">10<sup>4</sup>–10<sup>5</sup> interactions</td><td class="wrap">Which machines do proteins form?</td></tr>
+<tr><td style="color:var(--prot)">Immunomics / immunopeptidomics</td><td class="wrap">TCR/BCR repertoires; HLA-presented peptides</td><td class="wrap">AIRR-seq, single-cell VDJ, HLA peptide MS</td><td class="wrap">10<sup>5</sup>–10<sup>7</sup> clonotypes</td><td class="wrap">What does the immune system see and remember?</td></tr>
+<tr><td style="color:var(--prot)">Glycomics</td><td class="wrap">Glycans and glycoproteins</td><td class="wrap">MS, HPLC, lectin arrays</td><td class="wrap">10<sup>2</sup>–10<sup>3</sup> glycans</td><td class="wrap">How do sugar chains modulate function and recognition?</td></tr>
+<tr class="grp"><td colspan="5">Small-molecule level</td></tr>
+<tr><td style="color:var(--met)">Metabolomics</td><td class="wrap">Small molecules</td><td class="wrap">LC-MS, GC-MS, NMR, CE-MS, MS imaging</td><td class="wrap">10<sup>2</sup> (targeted) to 10<sup>4</sup> features (untargeted)</td><td class="wrap">What is the biochemical state right now?</td></tr>
+<tr><td style="color:var(--met)">Lipidomics</td><td class="wrap">Lipid species</td><td class="wrap">Shotgun or LC-MS lipidomics</td><td class="wrap">10<sup>2</sup>–10<sup>3</sup> lipids</td><td class="wrap">How are membranes, signalling and energy storage changing?</td></tr>
+<tr><td style="color:var(--met)">Fluxomics</td><td class="wrap">Reaction rates</td><td class="wrap">Stable-isotope tracing (<sup>13</sup>C, <sup>15</sup>N) + MS/NMR, flux balance models</td><td class="wrap">10<sup>1</sup>–10<sup>3</sup> fluxes</td><td class="wrap">How fast is material moving through pathways?</td></tr>
+<tr><td style="color:var(--met)">Exposomics</td><td class="wrap">Environmental exposures over life</td><td class="wrap">High-resolution MS of blood/urine, sensors, questionnaires</td><td class="wrap">10<sup>3</sup>–10<sup>5</sup> features</td><td class="wrap">What has this person been exposed to?</td></tr>
+<tr class="grp"><td colspan="5">Organism and clinic</td></tr>
+<tr><td style="color:var(--int)">Phenomics</td><td class="wrap">Systematic phenotypes</td><td class="wrap">EHRs, HPO terms, wearables, high-content imaging, Cell Painting</td><td class="wrap">10<sup>2</sup>–10<sup>3</sup> traits</td><td class="wrap">How do we describe outcomes rigorously?</td></tr>
+<tr><td style="color:var(--int)">Radiomics / pathomics</td><td class="wrap">Quantitative image features</td><td class="wrap">CT, MRI, PET; whole-slide histology + deep learning</td><td class="wrap">10<sup>2</sup>–10<sup>3</sup> features</td><td class="wrap">Can images stand in for, or add to, molecular profiles?</td></tr>
+<tr><td style="color:var(--int)">Pharmacogenomics</td><td class="wrap">Genetic determinants of drug response</td><td class="wrap">Genotyping panels, WGS, star-allele calling</td><td class="wrap">dozens of genes</td><td class="wrap">Which drug and dose for this genotype?</td></tr>
+<tr><td style="color:var(--int)">Liquid biopsy / fragmentomics</td><td class="wrap">Cell-free DNA/RNA in blood</td><td class="wrap">Deep targeted sequencing, low-pass WGS, cfDNA methylation</td><td class="wrap">fragments, VAFs, methylation</td><td class="wrap">Can we detect and track disease from blood?</td></tr>
+</table></div>
+
+<h2>Three properties that shape every analysis</h2>
+<div class="cols">
+<div class="card"><h4>p ≫ n</h4><p>Far more features (p) than samples (n). Classical regression breaks down; you need regularisation, dimensionality reduction, empirical Bayes shrinkage and false discovery rate (FDR) control (Benjamini–Hochberg, Storey's q-value).</p></div>
+<div class="card"><h4>Measurements are relative</h4><p>Sequencing returns a fixed number of reads per library, so counts are compositional: one feature rising forces others down. Normalisation (size factors, TMM, CLR) tries to recover comparable scales. Spike-ins can restore absolute scale.</p></div>
+<div class="card"><h4>Technical variation is large</h4><p>Batch, operator, reagent lot, run date and sample handling can explain more variance than biology. Randomise, block and record; correct afterwards only when the design allows it.</p></div>
+</div>
+
+<h2>The generic analysis arc</h2>
+<p>Every layer follows a similar arc, even though the tools differ:</p>
+<ol>
+<li><strong>Design</strong>: question, replicates, power, randomisation, controls, metadata standards.</li>
+<li><strong>Primary processing</strong>: instrument signal to reads or spectra; QC (FastQC, MultiQC; PTXQC for proteomics).</li>
+<li><strong>Secondary processing</strong>: reads to features (alignment, quantification, variant/peak calling, identification).</li>
+<li><strong>Feature-level QC and normalisation</strong>: filter low-quality samples and features, correct library size or loading, examine batch with PCA.</li>
+<li><strong>Statistical modelling</strong>: differential abundance, association, clustering, prediction.</li>
+<li><strong>Interpretation</strong>: annotation, enrichment, networks, integration with other layers and with prior knowledge.</li>
+<li><strong>Validation and sharing</strong>: independent cohort, orthogonal assay, data deposition (GEO, PRIDE, MetaboLights, EGA).</li>
+</ol>
+<div class="pager"></div>
+</section>
+
+<!-- ===================================================== DATA GENERATION -->
+<section class="chapter" id="generation" data-part="II · The omics layers" data-title="How omics data are generated" data-c="--int">
+<header class="chap-head"><div class="track"><span class="chip" style="--c:var(--int);--cb:var(--int-bg)">From sample to file</span><span class="chnum"></span></div>
+<h1>How omics data are generated</h1>
+<p class="dek">Every file you analyse is the end of a physical process: a sample was collected, molecules were extracted, converted into something an instrument can read, and measured. Knowing that process tells you where the artefacts in your data come from and which parameters in your pipeline exist to correct them.</p></header>
+
+<h2>The common path</h2>
+<ol class="steps">
+<li><b>Study design</b><span>Question, groups, replicates, randomisation, metadata sheet</span></li>
+<li><b>Sample collection</b><span>Blood, tissue, cells, stool, swab; time to freezing; preservative (EDTA, PAXgene, RNAlater, FFPE)</span></li>
+<li><b>Extraction</b><span>Isolate DNA, RNA, protein or metabolites; measure quantity and integrity (Qubit, RIN/DV200, BCA)</span></li>
+<li><b>Conversion</b><span>Library preparation for sequencing, digestion for proteomics, derivatisation for GC-MS</span></li>
+<li><b>Measurement</b><span>Sequencer, mass spectrometer, array scanner, NMR, microscope</span></li>
+<li><b>Raw data</b><span>FASTQ / POD5 / BAM, RAW / mzML, IDAT, FID, images</span></li>
+<li><b>QC &amp; deposit</b><span>Run metrics, sample QC, upload to GEO/SRA/PRIDE/MetaboLights</span></li>
+</ol>
+<div class="note pit"><span class="lbl">Pre-analytical variation</span><p>Many apparent biological signals come from handling. RNA degrades within minutes at room temperature; hypoxia during surgery changes gene expression; metabolites keep changing in unfrozen blood; formalin fixation damages DNA (C&gt;T artefacts) and fragments RNA. Record collection time, processing delay, freeze–thaw cycles and storage duration for every sample, and keep them balanced across groups.</p></div>
+
+<h2>Sequencing libraries</h2>
+<p>A sequencing <strong>library</strong> is a collection of DNA fragments, each flanked by known adapter sequences that let the sequencer capture, amplify and read them. Whatever the starting molecule (genomic DNA, cDNA from RNA, bisulfite-converted DNA, immunoprecipitated chromatin, Tn5-tagged fragments), the result has the same structure:</p>
+<div class="figx" data-fig="library" data-cap="Fig. · Structure of an Illumina library fragment. Index (barcode) sequences identify the sample, so dozens to thousands of samples can be pooled on one run and separated afterwards (demultiplexing)."></div>
+<ul>
+<li><strong>Fragmentation</strong>: sonication, enzymatic shearing or transposase (tagmentation) produces fragments of ~200–600 bp for short reads. Long-read libraries keep fragments of 10–100 kb or longer.</li>
+<li><strong>End repair, A-tailing and adapter ligation</strong> attach adapters; tagmentation (Nextera) fragments and adds adapters in one step.</li>
+<li><strong>PCR amplification</strong> adds index sequences and enriches adapter-ligated fragments. PCR creates duplicates and GC bias; PCR-free WGS avoids this when input DNA allows.</li>
+<li><strong>Unique molecular identifiers (UMIs)</strong>: random barcodes attached before amplification, so reads from the same original molecule can be collapsed. Essential for single-cell counting and ultra-low-frequency variant detection.</li>
+<li><strong>Target enrichment</strong> (exomes, panels): hybridisation capture with biotinylated probes or amplicon PCR. Coverage then depends on probe efficiency, which is why exome depth is uneven.</li>
+<li><strong>Library QC</strong>: fragment size (Bioanalyzer/TapeStation), concentration (qPCR) and adapter-dimer contamination.</li>
+</ul>
+
+<h2>Short-read sequencing by synthesis (Illumina)</h2>
+<p>Library fragments bind to a flow cell and are copied in place into clusters of ~1,000 identical molecules (bridge amplification or exclusion amplification on patterned flow cells). Then sequencing proceeds in cycles. In each cycle a polymerase adds one fluorescently labelled, reversibly terminated nucleotide to every cluster; a camera images the flow cell; the dye and terminator are cleaved; the next cycle begins. The colour of each cluster in each cycle is the base.</p>
+<div class="figx" data-fig="sbs" data-cap="Fig. · Sequencing by synthesis, simplified. Each column is one cycle; each row is one cluster. Reading a row left to right gives that cluster's sequence. Newer two-colour chemistries (NextSeq, NovaSeq) encode four bases with two dyes: G is 'dark', which is why poly-G tails appear when signal is lost."></div>
+<p>Errors grow along the read because clusters lose synchrony (phasing): some molecules fall a base behind or jump ahead, blurring the signal. That is why base quality drops toward the 3′ end of reads. The instrument converts intensities into base calls and Phred quality scores, stored in <strong>FASTQ</strong> files:</p>
+<div class="figx" data-fig="fastq" data-cap="Fig. · Anatomy of one FASTQ record. Each quality character encodes a Phred score as ASCII code minus 33. Q30 means a 1-in-1,000 chance that the base call is wrong; Q20 means 1 in 100."></div>
+
+<h2>Long-read sequencing</h2>
+<div class="cols">
+<div class="card"><h4>PacBio HiFi (SMRT)</h4><p>A single polymerase copies a circularised DNA molecule (SMRTbell) inside a tiny well (zero-mode waveguide) while fluorescent nucleotides are detected in real time. Because the molecule is circular, the polymerase reads it many times; a consensus of these passes gives 15–25 kb reads at ~99.9% accuracy. Polymerase kinetics (pauses) reveal methylation.</p></div>
+<div class="card"><h4>Oxford Nanopore</h4><p>A motor protein ratchets a single DNA or RNA strand through a protein pore in a membrane. Ionic current through the pore depends on the ~5–9 bases inside it at each moment. A neural-network basecaller translates the current trace (the "squiggle") into bases, and modified bases (5mC, 6mA, m6A) change the current, so they are detected directly. Read length is limited only by the molecule.</p></div>
+</div>
+<div class="figx" data-fig="nanopore" data-cap="Fig. · Nanopore signal, simplified. Each plateau corresponds to a k-mer occupying the pore; the basecaller decodes the sequence of plateaus. A methylated cytosine shifts the current level slightly (dashed), which is how modification calling works. Simulated signal."></div>
+
+<h2>Arrays</h2>
+<p>Microarrays measure many known targets at once by hybridising labelled sample to millions of immobilised probes. <strong>SNP genotyping arrays</strong> (e.g. Illumina Global Screening Array, UK Biobank Axiom) read the two alleles of ~0.6–2 million variants from two colour channels; the ratio gives the genotype (plotted as genotype clusters) and the B-allele frequency also reveals copy number. <strong>Methylation arrays</strong> (EPIC) read bisulfite-converted DNA at ~935k CpGs. Expression arrays are now largely replaced by RNA-seq, but decades of array data remain in GEO.</p>
+
+<h2>Mass spectrometry</h2>
+<p>Proteomics, metabolomics and lipidomics are mostly measured by mass spectrometry (MS). Molecules are separated by liquid or gas chromatography, <strong>ionised</strong> (electrospray for LC, electron ionisation for GC, MALDI for imaging), then the <strong>mass analyser</strong> separates ions by mass-to-charge ratio (m/z):</p>
+<div class="tbl"><table>
+<tr><th>Analyser</th><th>Principle</th><th>Resolution</th><th>Typical use</th></tr>
+<tr><td>Quadrupole (Q, QqQ)</td><td class="wrap">Oscillating electric fields let only one m/z pass at a time</td><td class="wrap">Low</td><td class="wrap">Targeted quantification (MRM), filtering</td></tr>
+<tr><td>Time-of-flight (TOF)</td><td class="wrap">Lighter ions fly faster down a flight tube</td><td class="wrap">High, fast</td><td class="wrap">Untargeted metabolomics, timsTOF proteomics with ion mobility</td></tr>
+<tr><td>Orbitrap</td><td class="wrap">Ions orbit an electrode; frequency of oscillation gives m/z via Fourier transform</td><td class="wrap">Very high</td><td class="wrap">Proteomics (Exploris, Astral), metabolomics</td></tr>
+<tr><td>FT-ICR</td><td class="wrap">Cyclotron frequency in a strong magnet</td><td class="wrap">Highest</td><td class="wrap">Complex mixtures, top-down</td></tr>
+<tr><td>Ion mobility (IMS)</td><td class="wrap">Separates ions by shape and size in a gas</td><td class="wrap">Extra dimension</td><td class="wrap">Isomer separation, collision cross section</td></tr>
+</table></div>
+<p>In tandem MS (MS/MS), a selected ion is fragmented by collision with gas and the fragments are measured. Fragment patterns identify peptide sequences and small-molecule structures. Raw files are vendor-specific (.raw, .d, .wiff) and are converted to open mzML for most open-source tools.</p>
+<div class="figx" data-fig="lcms" data-cap="Fig. · LC-MS data are three-dimensional: retention time × m/z × intensity. A compound appears as a chromatographic peak (left); its spectrum at the apex (right) shows the protonated ion, its ¹³C isotope peaks and a sodium adduct. Simulated data for a molecule of monoisotopic mass 180.063 Da (glucose)."></div>
+
+<h2>NMR, imaging and other readouts</h2>
+<ul>
+<li><strong>NMR spectroscopy</strong> measures how atomic nuclei (¹H, ¹³C) in a magnetic field absorb radio-frequency energy; chemical shifts identify functional groups. Quantitative and reproducible, used in large cohort metabolomics.</li>
+<li><strong>Imaging-based spatial omics</strong> (MERFISH, Xenium, CosMx) hybridise fluorescent probes in repeated rounds; each transcript's colour sequence across rounds forms a barcode decoded to a gene. Protein imaging (CODEX, IMC) uses barcoded or metal-tagged antibodies.</li>
+<li><strong>Flow and mass cytometry</strong> (CyTOF) measure ~20–50 proteins per cell in millions of cells.</li>
+<li><strong>Affinity proteomics</strong> (Olink, SomaScan) converts protein binding into DNA barcodes or aptamer signals read by sequencing or arrays.</li>
+</ul>
+
+<h2>Quality metrics at the source</h2>
+<div class="tbl"><table>
+<tr><th>Data type</th><th>Metric</th><th>What good looks like</th></tr>
+<tr><td>Any sequencing</td><td class="wrap">% bases ≥ Q30; adapter content; duplication</td><td class="wrap">&gt;80–90% Q30 on modern Illumina; low adapter dimers</td></tr>
+<tr><td>WGS</td><td class="wrap">Mean depth, % genome ≥ 20×, insert size, contamination (VerifyBamID)</td><td class="wrap">~30× germline; contamination &lt;2%</td></tr>
+<tr><td>RNA-seq</td><td class="wrap">RIN/DV200, % rRNA, % uniquely mapped, 3′ bias</td><td class="wrap">RIN ≥ 7 for poly(A); &gt;70–80% unique mapping</td></tr>
+<tr><td>scRNA-seq</td><td class="wrap">Cells recovered, median genes/cell, % reads in cells, % mitochondrial</td><td class="wrap">Knee plot with clear separation of cells from empty droplets</td></tr>
+<tr><td>ATAC-seq</td><td class="wrap">TSS enrichment, fragment-size periodicity, FRiP</td><td class="wrap">TSS enrichment &gt; ~6–7 (ENCODE); visible nucleosome ladder</td></tr>
+<tr><td>Proteomics</td><td class="wrap">IDs per run, missed cleavages, mass error, RT stability</td><td class="wrap">Stable IDs in QC standard (e.g. HeLa digest) across runs</td></tr>
+<tr><td>Metabolomics</td><td class="wrap">Pooled-QC CV, internal standard RT/intensity drift, blanks</td><td class="wrap">CV &lt; 20–30% in pooled QCs</td></tr>
+</table></div>
+<div class="pager"></div>
+</section>
+
+<!-- ===================================================== GENOMICS -->
+<section class="chapter" id="genomics" data-part="II · The omics layers" data-title="Genomics" data-c="--dna">
+<header class="chap-head"><div class="track"><span class="chip" style="--c:var(--dna);--cb:var(--dna-bg)">DNA layer</span><span class="chnum"></span></div>
+<h1>Genomics</h1>
+<p class="dek">Reading DNA and finding where it differs. Germline genomics asks which inherited variants explain disease or traits; somatic genomics asks which acquired variants drive cancer and clonal expansion; assembly asks what the genome actually looks like when no reference fits.</p></header>
+
+<h2>Research questions</h2>
+<ul>
+<li>Which variant explains this patient's rare disease? (diagnostic yield of WES is ~25–40%, WGS adds several percent more)</li>
+<li>Which loci are associated with a complex trait, and which variant and gene in each locus is causal?</li>
+<li>How much heritability do rare and structural variants explain beyond common SNPs?</li>
+<li>Which somatic mutations drive a tumour, in what order, and which therapies do they predict?</li>
+<li>What is the full structural diversity of human genomes across ancestries (pangenome)?</li>
+<li>Can polygenic scores predict risk equally well across populations?</li>
+</ul>
+
+<h2>Technologies</h2>
+<div class="tbl"><table>
+<tr><th>Platform</th><th>Read length</th><th>Accuracy</th><th>Strengths</th><th>Weaknesses</th></tr>
+<tr><td>Illumina SBS</td><td class="wrap">2×150 bp</td><td class="wrap">&gt;99.9% (Q30+)</td><td class="wrap">Cheapest per base, mature tooling, the reference standard for SNVs</td><td class="wrap">Repeats, SVs, phasing, GC bias</td></tr>
+<tr><td>Element AVITI, MGI/Complete Genomics, Ultima</td><td class="wrap">150–300 bp</td><td class="wrap">Q30–Q40+</td><td class="wrap">Competitive cost and accuracy</td><td class="wrap">Similar short-read limits; Ultima has homopolymer-specific errors</td></tr>
+<tr><td>PacBio HiFi</td><td class="wrap">15–25 kb</td><td class="wrap">~Q30 (99.9%)</td><td class="wrap">Accurate long reads: SVs, phasing, repeats, assembly, native 5mC</td><td class="wrap">Higher cost per sample</td></tr>
+<tr><td>Oxford Nanopore</td><td class="wrap">10 kb to &gt;1 Mb</td><td class="wrap">~Q20+ with recent chemistry and basecallers</td><td class="wrap">Ultra-long reads, real-time, portable, native base modifications, direct RNA</td><td class="wrap">Systematic errors in homopolymers; basecaller version matters</td></tr>
+<tr><td>Linked/optical (Bionano)</td><td class="wrap">&gt;150 kb molecules</td><td class="wrap">n/a</td><td class="wrap">Large SVs, scaffolding</td><td class="wrap">No base-level sequence</td></tr>
+<tr><td>SNP arrays</td><td class="wrap">n/a</td><td class="wrap">High for common SNPs</td><td class="wrap">Very cheap; basis of biobank GWAS with imputation</td><td class="wrap">Only known variants; rare variants are poorly imputed</td></tr>
+</table></div>
+
+<h2>How genomic data are generated</h2>
+<ol class="steps" style="--c:var(--dna)">
+<li><b>Sample</b><span>Blood (EDTA), saliva, buccal swab, fresh-frozen or FFPE tissue; tumour plus matched normal for somatic work</span></li>
+<li><b>DNA extraction</b><span>Silica columns or magnetic beads; high-molecular-weight kits (&gt;50 kb) for long reads</span></li>
+<li><b>DNA QC</b><span>Concentration (Qubit), purity (A260/280 ≈ 1.8), integrity (DIN, pulsed-field gel)</span></li>
+<li><b>Library</b><span>PCR-free WGS; exome capture with probes (~35–60 Mb); amplicon panels; size selection for HiFi/ONT</span></li>
+<li><b>Sequencing</b><span>2 × 150 bp to ~30× (germline) or 60–100× tumour; HiFi 15–25 kb; ONT ultra-long</span></li>
+<li><b>Raw output</b><span>FASTQ (short reads), unaligned BAM (PacBio), POD5 signal (ONT)</span></li>
+</ol>
+<p>Arrays follow a different route: DNA is amplified, fragmented, hybridised to probes on a BeadChip and scanned into IDAT intensity files, then genotypes are called from the two allele intensities (GenomeStudio, gtc2vcf) and missing variants are imputed.</p>
+
+<h2>Reading aligned sequences</h2>
+<p>After alignment, every read sits at its position on the reference. A genome browser such as IGV shows this as a <strong>pileup</strong>: bases that match the reference are drawn as plain bars, and only differences are shown. Real variants appear in a consistent fraction of reads from both strands; sequencing errors appear in single reads at low quality.</p>
+<div class="figx" data-fig="pileup" data-cap="Fig. · A read pileup around a heterozygous SNV and a heterozygous 2-bp deletion. Top: coverage, with the alternative-allele fraction coloured. Expect about 50% alternative reads for a germline heterozygous variant and about 100% for homozygous; somatic variants can be far lower. Simulated reads."></div>
+<p>A caller summarises this evidence as one line of a VCF file:</p>
+<div class="anat"><span class="k">#CHROM  POS        ID          REF  ALT  QUAL  FILTER  INFO              FORMAT          SAMPLE</span>
+chr2    21012345   .           C    T    812   PASS    DP=41;AF=0.5      GT:AD:DP:GQ     0/1:21,20:41:99
+<span class="k">│       │          │           │    │    │     │       │                 │               └ genotype 0/1 = heterozygous; 21 ref and 20 alt reads; depth 41; genotype quality 99
+│       │          │           │    │    │     │       └ site-level annotations   └ keys for the sample column
+│       │          │           │    │    │     └ passed all filters
+│       │          │           │    │    └ Phred-scaled confidence that a variant exists
+│       │          │           │    └ alternative allele          └ reference allele
+│       │          │           └ dbSNP identifier (rs…), or "." if none
+└ chromosome and 1-based position (GRCh38)</span></div>
+
+<h2>The germline short-read pipeline</h2>
+<ol>
+<li><strong>QC and trimming</strong> (FastQC, fastp): adapters, quality, duplication.</li>
+<li><strong>Alignment</strong> to GRCh38 (BWA-MEM2; minimap2 for long reads). Uses the Burrows–Wheeler transform/FM-index to find exact seed matches quickly, then Smith–Waterman local alignment. Output: SAM/BAM/CRAM with mapping quality (MAPQ = −10 log<sub>10</sub> P(mapped position wrong)).</li>
+<li><strong>Duplicate marking</strong> (Picard, samblaster, GATK MarkDuplicatesSpark): PCR and optical duplicates inflate confidence.</li>
+<li><strong>Base quality score recalibration</strong> (BQSR): models systematic quality errors by machine cycle and context. Less important with modern instruments and with DeepVariant.</li>
+<li><strong>Variant calling</strong>: GATK HaplotypeCaller re-assembles local haplotypes with a de Bruijn graph and computes genotype likelihoods with a pair-HMM; DeepVariant encodes read pileups as images and classifies genotypes with a CNN; Strelka2, FreeBayes, Octopus and DRAGEN are alternatives. Cohort calling uses gVCFs and joint genotyping (GATK GenotypeGVCFs, GLnexus).</li>
+<li><strong>Filtering</strong>: VQSR (Gaussian mixture on annotations) for large cohorts, hard filters for small ones, or learned filters.</li>
+<li><strong>Annotation</strong>: VEP, ANNOVAR, SnpEff add gene, transcript and consequence, population frequency (gnomAD), predictions (CADD, REVEL, SpliceAI, AlphaMissense) and clinical databases (ClinVar).</li>
+<li><strong>Prioritisation</strong>: Exomiser and LIRICAL combine variant scores with patient phenotypes (HPO terms); inheritance-mode filters for trios.</li>
+</ol>
+<div class="note key"><span class="lbl">Key idea</span><p>Variant calling is a statistical inference, not a lookup. A genotype call is the most likely genotype given read evidence, base and mapping qualities and a prior. Report and filter on genotype quality (GQ), depth (DP) and allele balance, and use benchmark regions to know where calls can be trusted.</p></div>
+
+<h2>Structural variants and copy number</h2>
+<p>Short-read SV callers combine three signals: <strong>discordant read pairs</strong> (unexpected insert size or orientation), <strong>split reads</strong> (one read spanning a breakpoint), and <strong>read depth</strong>. Assembly-based callers reconstruct breakpoint sequence. Manta, DELLY, LUMPY/smoove and GRIDSS2 are widely used, often merged with SURVIVOR or Jasmine. Long-read callers (Sniffles2, cuteSV, pbsv, SVIM) and assembly-based comparison (PAV, SVIM-asm, dipcall) recover far more SVs, especially insertions in repeats. For copy number: CNVkit and GATK gCNV (exomes and panels), CNVnator and Canvas (WGS), ASCAT, FACETS and PURPLE (tumour allele-specific copy number with purity and ploidy), and GISTIC2 (recurrent CNAs across tumours).</p>
+
+<h2>Somatic variant calling</h2>
+<p>Tumour samples are mixtures of tumour and normal cells, often with subclones, so somatic variants may appear at 5% VAF or lower. Use a matched normal, a panel of normals, and germline resource filtering (Mutect2 with FilterMutectCalls, Strelka2, VarDict, LoFreq). FFPE samples cause C&gt;T deamination artefacts, and oxidation causes G&gt;T artefacts; orientation-bias filters address both. Ultra-sensitive applications (minimal residual disease, liquid biopsy) need unique molecular identifiers (UMIs) and duplex sequencing to suppress errors below 10<sup>−6</sup>.</p>
+
+<h2>De novo assembly and pangenomes</h2>
+<p>When the reference is incomplete or absent, reads are assembled. Overlap-layout-consensus and string graphs (hifiasm, HiCanu, Flye, Shasta) handle long reads; de Bruijn graphs (SPAdes, MEGAHIT) handle short reads. Hybrid approaches (Verkko) combine HiFi with ultra-long ONT for telomere-to-telomere assemblies; Hi-C or parental data (trio binning) phase haplotypes. Assess with N50, BUSCO completeness, Merqury k-mer QV and Inspector. The Human Pangenome Reference Consortium builds graph references (minigraph-Cactus, PGGB) that reduce reference bias; vg giraffe aligns reads to graphs.</p>
+
+<h2>Population and statistical genetics</h2>
+<ul>
+<li><strong>GWAS</strong>: test each variant for association with a trait while controlling population structure. PLINK 2 for QC and simple models; mixed models handle relatedness and structure at biobank scale (REGENIE, SAIGE, BOLT-LMM, fastGWA). Genome-wide significance is conventionally p &lt; 5×10<sup>−8</sup>.</li>
+<li><strong>Imputation</strong>: infer untyped variants from haplotype reference panels (TOPMed, 1000 Genomes, HRC) with Beagle 5, Minimac4 or IMPUTE5; pre-phasing with SHAPEIT5 or Eagle2.</li>
+<li><strong>Heritability and genetic correlation</strong>: LD score regression (LDSC), GCTA-GREML, S-LDSC for enrichment in annotations (cell-type-specific enhancers).</li>
+<li><strong>Fine-mapping</strong>: SuSiE, FINEMAP, PolyFun (functional priors) output credible sets of likely causal variants.</li>
+<li><strong>Polygenic scores</strong>: PRS-CS, LDpred2, SBayesRC, PRS-CSx (multi-ancestry). Evaluate with incremental R² or AUC in held-out cohorts of each ancestry.</li>
+<li><strong>Rare-variant burden tests</strong>: SKAT-O, ACAT, gene-based burden in exome biobanks.</li>
+</ul>
+
+<h2>Tools</h2>
+<div class="tooltable" data-omics="genomics"></div>
+
+<h2>Benchmarks</h2>
+<div class="benchlist" data-omics="genomics"></div>
+<div class="note pit"><span class="lbl">Pitfall</span><p>Benchmarks such as Genome in a Bottle cover "high-confidence" regions, which historically excluded the hardest parts of the genome. A pipeline scoring 99.9% F1 there may do much worse in segmental duplications, the MHC or medically relevant genes with paralogs (e.g. <i>SMN1/2</i>, <i>PMS2</i>, <i>CYP2D6</i>). Check stratified performance (GIAB stratification BEDs with hap.py or vcfdist), not only the headline number.</p></div>
+<div class="note gap"><span class="lbl">Research gap</span><ul><li>Variant calling against pangenome graphs, and benchmarks that represent diverse ancestries.</li><li>Joint calling of SNVs, SVs, repeat expansions and methylation from one long-read run.</li><li>Interpretation of non-coding and structural variants in rare disease, where most unsolved cases may sit.</li><li>Polygenic score portability, calibration and clinical utility across ancestries.</li><li>Somatic mosaicism and clonal haematopoiesis detection in normal tissues.</li></ul></div>
+<div class="pager"></div>
+</section>
+
+<!-- ===================================================== EPIGENOMICS -->
+<section class="chapter" id="epigenomics" data-part="II · The omics layers" data-title="Epigenomics" data-c="--epi">
+<header class="chap-head"><div class="track"><span class="chip" style="--c:var(--epi);--cb:var(--epi-bg)">DNA layer · regulation</span><span class="chnum"></span></div>
+<h1>Epigenomics</h1>
+<p class="dek">Heritable or stable changes in gene activity that do not change DNA sequence: methylation of DNA, chemical marks on histones, which DNA is accessible, where transcription factors sit, and how chromosomes fold in 3D. Epigenomics explains how one genome makes hundreds of cell types.</p></header>
+
+<h2>Research questions</h2>
+<ul>
+<li>Which regulatory elements are active in this cell type, and which genes do they control?</li>
+<li>How do disease-associated variants change TF binding, accessibility or methylation?</li>
+<li>Does methylation mark disease state, ageing (epigenetic clocks), exposure (smoking) or cell composition?</li>
+<li>Can methylation patterns in cell-free DNA detect cancer and identify its tissue of origin?</li>
+<li>How does 3D genome folding (loops, TADs) control enhancer–promoter communication?</li>
+</ul>
+
+<h2>How epigenomic data are generated</h2>
+<div class="tbl"><table>
+<tr><th>Assay</th><th>Wet-lab steps</th><th>Input</th><th>Readout</th></tr>
+<tr><td>WGBS / EM-seq</td><td class="wrap">Extract DNA → bisulfite or enzymatic conversion of unmethylated C → library → sequence 2 × 150 bp to ~30×</td><td class="wrap">10 ng–1 µg DNA</td><td class="wrap">C vs T at every CpG</td></tr>
+<tr><td>Methylation array</td><td class="wrap">Bisulfite-convert DNA → amplify → hybridise to EPIC BeadChip → scan</td><td class="wrap">~250–500 ng</td><td class="wrap">Methylated / unmethylated intensities (IDAT)</td></tr>
+<tr><td>ATAC-seq</td><td class="wrap">Isolate nuclei → Tn5 tagmentation (cuts open DNA and inserts adapters) → PCR → sequence paired-end</td><td class="wrap">500–50,000 cells</td><td class="wrap">Fragments from accessible DNA</td></tr>
+<tr><td>ChIP-seq</td><td class="wrap">Crosslink with formaldehyde → shear chromatin → immunoprecipitate with an antibody → reverse crosslinks → library</td><td class="wrap">10<sup>5</sup>–10<sup>7</sup> cells + input control</td><td class="wrap">Fragments bound by the target protein or mark</td></tr>
+<tr><td>CUT&amp;Tag</td><td class="wrap">Permeabilised cells + antibody → protein A–Tn5 binds antibody and tagments in place → PCR</td><td class="wrap">10<sup>3</sup>–10<sup>5</sup> cells</td><td class="wrap">Low-background target fragments</td></tr>
+<tr><td>Hi-C / Micro-C</td><td class="wrap">Crosslink → digest (restriction enzyme or MNase) → fill ends with biotin → proximity ligation → shear → pull down junctions → paired-end sequencing</td><td class="wrap">10<sup>5</sup>–10<sup>6</sup> cells</td><td class="wrap">Read pairs joining DNA that touched in 3D</td></tr>
+</table></div>
+
+<h2>DNA methylation</h2>
+<p>In mammals methylation is mostly 5-methylcytosine (5mC) at CpG dinucleotides. About 70–80% of CpGs are methylated, except in CpG islands at active promoters. DNMT3A/B establish new methylation, DNMT1 maintains it through replication, and TET enzymes oxidise 5mC to 5hmC, 5fC and 5caC on the way to demethylation. Promoter methylation is associated with silencing; gene-body methylation correlates with active transcription.</p>
+<div class="tbl"><table>
+<tr><th>Assay</th><th>Principle</th><th>Coverage</th><th>Notes</th></tr>
+<tr><td>WGBS</td><td class="wrap">Bisulfite converts unmethylated C→U (read as T); methylated C stays C</td><td class="wrap">~28M CpGs, genome-wide</td><td class="wrap">Gold standard; DNA damage; cannot separate 5mC from 5hmC</td></tr>
+<tr><td>EM-seq</td><td class="wrap">Enzymatic conversion (TET2 + APOBEC3A)</td><td class="wrap">Genome-wide</td><td class="wrap">Less DNA damage, more even coverage than bisulfite</td></tr>
+<tr><td>RRBS</td><td class="wrap">MspI digestion enriches CpG-rich regions, then bisulfite</td><td class="wrap">~2–4M CpGs</td><td class="wrap">Cheap; biased to CpG islands</td></tr>
+<tr><td>Illumina EPIC v2 array</td><td class="wrap">Probe hybridisation after bisulfite</td><td class="wrap">~935k CpGs</td><td class="wrap">Dominant in epidemiology (EWAS) and clocks; probe cross-reactivity and SNP-in-probe issues</td></tr>
+<tr><td>Nanopore / PacBio native</td><td class="wrap">Detects modified bases from raw signal or polymerase kinetics</td><td class="wrap">Genome-wide, long-range, phased</td><td class="wrap">Haplotype-resolved methylation; 5hmC on nanopore</td></tr>
+<tr><td>TAPS, 5-letter/6-base sequencing</td><td class="wrap">Chemistries that separate 5mC and 5hmC</td><td class="wrap">Genome-wide</td><td class="wrap">Newer, growing adoption</td></tr>
+</table></div>
+<div class="figx" data-fig="bisulfite" data-cap="Fig. · How bisulfite sequencing reads methylation. Unmethylated cytosines become uracil and are sequenced as T; methylated cytosines stay C. Comparing reads to the reference (highlighted C→T positions) gives, at each CpG, the fraction of molecules that were methylated. Simulated reads."></div>
+<p><strong>Analysis</strong>: bisulfite-aware alignment (Bismark, bwa-meth, BSBolt) uses three-letter alignment (C/T and G/A converted genomes). Methylation is then extracted per CpG (MethylDackel, Bismark extractor). Arrays are processed with minfi, SeSAMe or ChAMP (normalisation: Noob, BMIQ, functional normalisation). Differential methylation is tested per CpG (methylKit, DSS, limma on M-values) or per region (DMRcate, bsseq/BSmooth, dmrseq, metilene). Because blood and tissue methylation is dominated by cell composition, estimate proportions (Houseman method, EpiDISH, MethylCIBERSORT) and adjust.</p>
+<div class="note eg"><span class="lbl">Epigenetic clocks</span><p>Penalised regression on methylation predicts age with striking accuracy: Horvath's multi-tissue clock (353 CpGs, 2013) and Hannum's blood clock. Later clocks predict health outcomes rather than chronological age: PhenoAge, GrimAge and the pace-of-ageing measure DunedinPACE. Their biological meaning, and whether interventions that change them change health, are open questions.</p></div>
+
+<h2>Chromatin accessibility</h2>
+<p><strong>ATAC-seq</strong> uses hyperactive Tn5 transposase to insert sequencing adapters into open chromatin. It needs ~50,000 cells (or single nuclei in scATAC). Fragment lengths show nucleosome-free (&lt;100 bp), mono-nucleosome (~200 bp) and di-nucleosome peaks; the TSS enrichment score and fragment-size periodicity are the main QC metrics. DNase-seq and MNase-seq are older alternatives.</p>
+<p><strong>Pipeline</strong>: trim (Nextera adapters), align (Bowtie2 or BWA), remove mitochondrial reads and duplicates, shift reads +4/−5 bp for Tn5 offset, call peaks (MACS2/3, Genrich, HMMRATAC), build a consensus peak set, count (featureCounts), test differential accessibility (DESeq2/edgeR, DiffBind, csaw). Downstream: motif enrichment (HOMER, MEME-ChIP), TF footprinting (TOBIAS, HINT-ATAC), and per-sample TF activity (chromVAR).</p>
+
+<div class="figx" data-fig="atac" data-cap="Fig. · ATAC-seq. Tn5 inserts mostly into nucleosome-free DNA around bound transcription factors, so reads pile up into a peak there; the dip right at the TF is its footprint. Right: fragment lengths show a nucleosome ladder (nucleosome-free &lt;100 bp, mono- ~200 bp, di- ~400 bp), a key QC signal. Simulated data."></div>
+
+<h2>Histone marks and transcription factor binding</h2>
+<div class="tbl"><table>
+<tr><th>Mark</th><th>Location</th><th>Meaning</th><th>Peak shape</th></tr>
+<tr><td>H3K4me3</td><td class="wrap">Promoters</td><td class="wrap">Active or poised promoter</td><td class="wrap">Sharp</td></tr>
+<tr><td>H3K4me1</td><td class="wrap">Enhancers</td><td class="wrap">Enhancer (primed or active)</td><td class="wrap">Broad-ish</td></tr>
+<tr><td>H3K27ac</td><td class="wrap">Enhancers, promoters</td><td class="wrap">Active element; super-enhancers (ROSE)</td><td class="wrap">Sharp to medium</td></tr>
+<tr><td>H3K36me3</td><td class="wrap">Gene bodies</td><td class="wrap">Transcriptional elongation</td><td class="wrap">Broad</td></tr>
+<tr><td>H3K27me3</td><td class="wrap">Developmental genes</td><td class="wrap">Polycomb repression; bivalent with H3K4me3 in stem cells</td><td class="wrap">Very broad domains</td></tr>
+<tr><td>H3K9me3</td><td class="wrap">Repeats, heterochromatin</td><td class="wrap">Constitutive repression</td><td class="wrap">Very broad</td></tr>
+</table></div>
+<p>Assays: <strong>ChIP-seq</strong> (antibody pulldown of crosslinked chromatin; needs input control), <strong>CUT&amp;RUN</strong> and <strong>CUT&amp;Tag</strong> (antibody-tethered nuclease or Tn5 cutting in situ; low background, low cell input, single-cell versions). Peak calling: MACS2/3 for sharp marks and TFs; broad mode, SICER2 or epic2 for broad marks; SEACR for CUT&amp;RUN. Reproducibility between replicates is assessed with IDR (irreproducible discovery rate), as in ENCODE pipelines. <strong>ChromHMM</strong> and <strong>Segway</strong> combine many marks into chromatin states (active promoter, strong enhancer, Polycomb-repressed, heterochromatin), as in the Roadmap Epigenomics reference maps.</p>
+
+<h2>3D genome</h2>
+<p><strong>Hi-C</strong> crosslinks chromatin, digests it, ligates nearby fragments and sequences the junctions, giving a genome-wide contact matrix. <strong>Micro-C</strong> uses MNase for nucleosome resolution; capture Hi-C, HiChIP and PLAC-seq focus on promoters or protein-anchored contacts. Processing (Juicer, HiC-Pro, distiller, HiCExplorer) produces <code>.hic</code> or <code>.cool/.mcool</code> files, normalised by iterative correction (ICE) or Knight–Ruiz balancing. Features are then called: A/B compartments (eigenvector of the correlation matrix), TADs (insulation score, Arrowhead, TopDom), loops (HiCCUPS, Mustache, chromosight), and differential contacts (diffHic, multiHiCcompare, CHESS). Contact frequency drops with genomic distance, so all comparisons must account for that distance decay.</p>
+
+<div class="figx" data-fig="hic" data-cap="Fig. · A Hi-C contact map of a 1.2 Mb region. Simulated data with four TADs and one loop."></div>
+
+<h2>Linking regulatory elements to genes</h2>
+<p>The nearest-gene assumption is wrong for a large share of enhancers. Better approaches use activity and contact together: the <strong>Activity-by-Contact (ABC) model</strong> (enhancer activity × Hi-C contact), correlations between accessibility and expression across samples or single cells (peak-to-gene links in ArchR, Signac), and CRISPRi screens as ground truth (e.g. ENCODE-rE2G models trained on CRISPR perturbation data).</p>
+
+<h2>Tools</h2>
+<div class="tooltable" data-omics="epigenomics"></div>
+<h2>Benchmarks</h2>
+<div class="benchlist" data-omics="epigenomics"></div>
+<div class="note pit"><span class="lbl">Pitfall</span><p>In EWAS, smoking, age, sex, genotype (meQTLs) and cell composition can all produce differential methylation. A "disease signature" may be a composition signature. Adjust for estimated cell proportions and check whether hits are known meQTLs. Also check causality direction: disease, medication and lifestyle can change methylation rather than the reverse.</p></div>
+<div class="note gap"><span class="lbl">Research gap</span><ul><li>Causal link from a specific mark to a specific expression change (most epigenomic data are correlational; epigenome editing with dCas9 fusions is starting to test this).</li><li>Single-cell multi-modal epigenomics (methylation + accessibility + RNA in the same cell) at scale.</li><li>Haplotype-resolved methylation from long reads and its role in imprinting and allele-specific expression.</li><li>Enhancer–gene linking in rare cell types and disease states without CRISPR ground truth.</li><li>Biological interpretation of epigenetic clocks and their response to interventions.</li></ul></div>
+<div class="pager"></div>
+</section>
+
+<!-- ===================================================== TRANSCRIPTOMICS -->
+<section class="chapter" id="transcriptomics" data-part="II · The omics layers" data-title="Transcriptomics (bulk)" data-c="--rna">
+<header class="chap-head"><div class="track"><span class="chip" style="--c:var(--rna);--cb:var(--rna-bg)">RNA layer</span><span class="chnum"></span></div>
+<h1>Transcriptomics</h1>
+<p class="dek">Measuring which genes are expressed, how much, and in which isoform. Bulk RNA-seq is the most widely used omics assay in biology, and its statistical tooling is the most mature, so it is the best place to learn the logic that every other layer reuses.</p></header>
+
+<h2>Research questions</h2>
+<ul>
+<li>Which genes change between conditions (disease vs control, treated vs untreated, time points)?</li>
+<li>Which pathways and programmes are active, and which upstream regulators explain them?</li>
+<li>Which isoforms, fusions, editing sites or allele-specific expression patterns are present?</li>
+<li>Can expression classify patients (subtypes, prognosis, treatment response)?</li>
+<li>How do genetic variants affect expression (eQTLs) and splicing (sQTLs)?</li>
+</ul>
+
+<h2>Experimental choices that decide what you can analyse</h2>
+<div class="cols">
+<div class="card"><h4>RNA selection</h4><p>Poly(A)+ captures mature mRNA; rRNA depletion keeps non-polyadenylated and pre-mRNA (intronic reads). Small-RNA libraries for miRNA. Degraded samples (FFPE) need depletion or capture.</p></div>
+<div class="card"><h4>Strandedness and length</h4><p>Stranded libraries (dUTP) resolve antisense transcription. Paired-end 2×100–150 bp helps isoforms and fusions. 3′-tag methods (QuantSeq, BRB-seq) are cheap for gene counts but blind to isoforms.</p></div>
+<div class="card"><h4>Depth and replicates</h4><p>~20–30M reads per sample is typical for gene-level DE; isoform work needs more. Biological replicates matter more than depth: aim for six or more per group when you can.</p></div>
+</div>
+
+<h2>How transcriptomic data are generated</h2>
+<ol class="steps" style="--c:var(--rna)">
+<li><b>Sample &amp; stabilise</b><span>Snap-freeze, RNAlater or PAXgene (blood) within minutes; RNA degrades fast</span></li>
+<li><b>RNA extraction</b><span>TRIzol or column kits; DNase treatment removes genomic DNA</span></li>
+<li><b>RNA QC</b><span>RIN (1–10) or DV200 for FFPE; quantity by Qubit</span></li>
+<li><b>Select RNA</b><span>Poly(A) capture with oligo-dT beads, or rRNA depletion (keeps non-polyadenylated RNA)</span></li>
+<li><b>Make cDNA</b><span>Fragment RNA → reverse transcription → second strand with dUTP (marks strand) → adapters → PCR</span></li>
+<li><b>Sequence</b><span>~20–40 M read pairs, 2 × 100–150 bp; long-read cDNA or direct RNA for full isoforms</span></li>
+</ol>
+<p>The end product of quantification is a <strong>count matrix</strong>: genes in rows, samples in columns, each entry the number of reads (or estimated fragments) assigned to that gene. Everything downstream works on this table.</p>
+<div class="figx" data-fig="counts" data-cap="Fig. · A small piece of a count matrix. Raw counts depend on gene length and sequencing depth, so they are compared between samples only after normalisation. Illustrative values."></div>
+
+<h2>The standard pipeline</h2>
+<ol>
+<li><strong>QC</strong>: FastQC/MultiQC, rRNA content, strand check (RSeQC infer_experiment, salmon's automatic library type), gene body coverage (3′ bias indicates degradation), RIN or DV200 from the lab.</li>
+<li><strong>Quantification</strong>, two routes:
+<ul><li><em>Alignment-based</em>: STAR or HISAT2 to the genome, then featureCounts or HTSeq for gene counts; RSEM for isoforms. Gives BAMs for visual inspection, novel junctions and variant calling.</li>
+<li><em>Pseudoalignment / selective alignment</em>: salmon or kallisto match reads to transcript sequences and resolve multi-mapping reads with an EM algorithm. Fast and accurate for annotated transcripts; use salmon with a decoy-aware index. Import with tximport/tximeta to gene level.</li></ul></li>
+<li><strong>Filtering and normalisation</strong>: remove genes with very low counts (edgeR filterByExpr). Between-sample normalisation with DESeq2's median-of-ratios or edgeR's TMM. TPM and FPKM are within-sample units for display; do not feed them into count-based DE models.</li>
+<li><strong>Exploration</strong>: variance-stabilising transform (vst/rlog), PCA, sample-distance heatmaps. Look for outliers, batch effects, sex mismatches (<i>XIST</i>, chrY genes) and sample swaps.</li>
+<li><strong>Differential expression</strong>: negative binomial GLMs (DESeq2, edgeR) or linear models on log-CPM with precision weights (limma-voom). Include batch and covariates in the design matrix. Use empirical Bayes shrinkage of dispersions and of fold changes (apeglm, ashr) for ranking.</li>
+<li><strong>Multiple testing</strong>: Benjamini–Hochberg FDR. IHW (independent hypothesis weighting) can increase power.</li>
+<li><strong>Interpretation</strong>: over-representation (clusterProfiler, g:Profiler, Enrichr), rank-based GSEA (fgsea, GSEA), sample-level scores (GSVA, ssGSEA, singscore), TF and pathway activity from footprints (DoRothEA/CollecTRI with decoupleR, PROGENy), co-expression modules (WGCNA, hdWGCNA for single-cell).</li>
+</ol>
+<div class="note key"><span class="lbl">Why the negative binomial</span><p>Counts from technical replicates are roughly Poisson (variance = mean). Biological replicates vary more, so variance = μ + αμ², where α is the dispersion. With three replicates you cannot estimate α per gene reliably, so DESeq2 and edgeR borrow information across genes: they shrink each gene's dispersion toward a trend fitted against mean expression. That shrinkage is the main reason these tools work with small sample sizes.</p></div>
+
+<div class="figx" data-fig="volcano" data-cap="Fig. · A volcano plot, the standard summary of a differential expression test. Simulated results for 900 genes."></div>
+<div class="figx" data-fig="sashimi" data-cap="Fig. · Seeing splicing in RNA-seq. Reads that span exon–exon junctions are counted per junction; inclusion and skipping junctions give the percent spliced in (Ψ) of the middle exon. Simulated coverage."></div>
+
+<h2>Beyond gene counts</h2>
+<ul>
+<li><strong>Isoforms</strong>: short-read isoform quantification is uncertain when isoforms share most exons. Long-read RNA-seq (PacBio Kinnex/Iso-Seq, ONT cDNA or direct RNA) sequences full transcripts. Tools: IsoQuant, Bambu, FLAIR, StringTie2, TALON, ESPRESSO; SQANTI3 classifies and filters isoforms against the annotation.</li>
+<li><strong>Splicing</strong>: see the <a href="#splicing">splicing chapter</a> (rMATS, LeafCutter, MAJIQ, SUPPA2).</li>
+<li><strong>Fusion genes</strong>: STAR-Fusion, Arriba, FusionCatcher; important in leukaemia (BCR::ABL1), sarcomas and prostate cancer (TMPRSS2::ERG).</li>
+<li><strong>Allele-specific expression</strong>: phASER, GATK ASEReadCounter; WASP-style filtering corrects reference mapping bias.</li>
+<li><strong>RNA editing</strong>: REDItools, SPRINT, JACUSA2.</li>
+<li><strong>Small RNA</strong>: miRDeep2, sRNAbench, nf-core/smrnaseq; miRNA target prediction with TargetScan and miRDB.</li>
+<li><strong>Deconvolution</strong>: estimate cell-type proportions from bulk with CIBERSORTx, MuSiC, BayesPrism, EPIC, quanTIseq, using single-cell references.</li>
+<li><strong>Nascent and decay</strong>: PRO-seq, TT-seq and metabolic labelling (SLAM-seq) separate transcription from degradation.</li>
+</ul>
+
+<h2>Tools</h2>
+<div class="tooltable" data-omics="transcriptomics"></div>
+<h2>Benchmarks</h2>
+<div class="benchlist" data-omics="transcriptomics"></div>
+<div class="note pit"><span class="lbl">Pitfalls</span><ul><li>Confounded design: if all cases were sequenced in batch 1 and all controls in batch 2, no software can separate batch from biology.</li><li>Pseudoreplication: multiple wells from one donor are not independent biological replicates.</li><li>Calling a pathway "activated" from an over-representation test that ignores direction and gene–gene correlation.</li><li>Using a genome-wide background for enrichment when only expressed genes could have been detected.</li><li>Treating "not significant" as "not changed"; with low power, absence of evidence is not evidence of absence.</li></ul></div>
+<div class="note gap"><span class="lbl">Research gap</span><ul><li>Accurate isoform-level quantification and differential testing, especially from long reads at modest depth.</li><li>Calibrated DE in large heterogeneous cohorts, where standard parametric tools can inflate false positives.</li><li>Separating transcriptional from post-transcriptional regulation in standard steady-state data.</li><li>Robust deconvolution when reference single-cell data come from a different platform or disease state.</li></ul></div>
+<div class="pager"></div>
+</section>
