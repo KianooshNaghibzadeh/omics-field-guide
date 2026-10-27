@@ -4,7 +4,6 @@ const LAYER = {
   singlecell:["Single-cell & spatial","--rna"], proteomics:["Proteomics","--prot"], metabolomics:["Metabolomics","--met"], lipidomics:["Lipidomics","--met"],
   microbiome:["Microbiome","--mic"], integration:["Multi-omics integration","--int"], practice:["Workflow & practice","--int"]
 };
-const L = k => LAYER[k] || [k, "--int"];
 const STAGE = {P:"Primary",S:"Secondary",T:"Tertiary"};
 const $ = (s,r=document)=>r.querySelector(s), $$ = (s,r=document)=>Array.from(r.querySelectorAll(s));
 const esc = s => String(s).replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -59,7 +58,7 @@ function toolTable(list, withLayer){
   let grp=null;
   list.forEach(t=>{
     if(!withLayer && t[2]!==grp){ grp=t[2]; html+='<tr class="grp"><td colspan="5">'+esc(grp)+'</td></tr>'; }
-    html+='<tr><td>'+esc(t[0])+'</td>'+(withLayer?'<td class="wrap" style="color:var('+L(t[1])[1]+')">'+L(t[1])[0]+'</td><td class="wrap">'+esc(t[2])+'</td>':'')+
+    html+='<tr><td>'+esc(t[0])+'</td>'+(withLayer?'<td class="wrap" style="color:var('+LAYER[t[1]][1]+')">'+LAYER[t[1]][0]+'</td><td class="wrap">'+esc(t[2])+'</td>':'')+
       '<td class="wrap">'+esc(t[6])+'</td><td>'+stagePill(t[3])+'</td><td>'+lvl(t[4])+'</td><td class="wrap mono" style="font-size:.74rem;color:var(--ink-2)">'+esc(t[5])+'</td></tr>';
   });
   return html+'</table>';
@@ -76,7 +75,7 @@ $$(".tooltable").forEach(el=>{
 const aQ=$("#atlasQ"), aO=$("#atlasOmics"), aS=$("#atlasStage"), aL=$("#atlasLvl");
 function renderAtlas(){}
 if(aQ){
-Object.keys(LAYER).forEach(k=>{ const o=document.createElement("option"); o.value=k; o.textContent=L(k)[0]; aO.appendChild(o); });
+Object.keys(LAYER).forEach(k=>{ const o=document.createElement("option"); o.value=k; o.textContent=LAYER[k][0]; aO.appendChild(o); });
 renderAtlas=function(){
   const q=aQ.value.trim().toLowerCase();
   const list=TOOLS.filter(t=>(!aO.value||t[1]===aO.value)&&(!aS.value||t[3]===aS.value)&&(!aL.value||String(t[4])===aL.value)&&(!q||(t[0]+" "+t[2]+" "+t[6]+" "+t[5]).toLowerCase().includes(q)));
@@ -92,7 +91,7 @@ fromHash(); if(MULTI) window.addEventListener("hashchange",fromHash);
 function benchTable(list, withLayer){
   let h='<table><tr><th>Study</th>'+(withLayer?'<th>Layer</th>':'')+'<th>What it found</th><th>Practical takeaway</th></tr>';
   list.forEach(b=>{ h+='<tr><td class="wrap" style="min-width:12rem"><a href="'+pubmed(b[1])+'" target="_blank" rel="noopener">'+esc(b[2])+'</a><div class="mono" style="font-weight:400;font-size:.7rem;color:var(--ink-3);margin-top:4px">'+esc(b[1])+'</div></td>'+
-    (withLayer?'<td class="wrap" style="color:var('+L(b[0])[1]+')">'+L(b[0])[0]+'</td>':'')+'<td class="wrap" style="min-width:16rem">'+esc(b[3])+'</td><td class="wrap" style="min-width:12rem">'+esc(b[4])+'</td></tr>'; });
+    (withLayer?'<td class="wrap" style="color:var('+LAYER[b[0]][1]+')">'+LAYER[b[0]][0]+'</td>':'')+'<td class="wrap" style="min-width:16rem">'+esc(b[3])+'</td><td class="wrap" style="min-width:12rem">'+esc(b[4])+'</td></tr>'; });
   return h+'</table>';
 }
 $$(".benchlist").forEach(el=>{
@@ -102,7 +101,7 @@ $$(".benchlist").forEach(el=>{
 });
 const bQ=$("#benchQ"), bO=$("#benchOmics"), hub=$('#benchmarks .benchlist');
 if(bQ){
-[...new Set(BENCH.map(b=>b[0]))].forEach(k=>{ const o=document.createElement("option"); o.value=k; o.textContent=L(k)[0]; bO.appendChild(o); });
+[...new Set(BENCH.map(b=>b[0]))].forEach(k=>{ const o=document.createElement("option"); o.value=k; o.textContent=LAYER[k][0]; bO.appendChild(o); });
 function renderBench(){ const q=bQ.value.trim().toLowerCase();
   const list=BENCH.filter(b=>(!bO.value||b[0]===bO.value)&&(!q||b.join(" ").toLowerCase().includes(q)));
   hub.innerHTML=list.length?benchTable(list,true):'<p style="padding:14px">No benchmarks match. Clear the filter to see all.</p>'; $("#benchCount").textContent=list.length+" of "+BENCH.length+" studies"; }
@@ -199,7 +198,7 @@ q.addEventListener("input",()=>{
   index.forEach(s=>{ const i=s.text.toLowerCase().indexOf(v); if(i>=0 && n<8){ n++;
     const sn=s.text.slice(Math.max(0,i-40),i+70); h+='<a href="'+pageUrl(s.id)+'"><b>'+esc(s.title)+'</b><span>…'+esc(sn)+'…</span></a>'; } });
   const tools=TOOLS.filter(t=>t[0].toLowerCase().includes(v)).slice(0,6);
-  tools.forEach(t=>{ h+='<a href="'+(MULTI?pageUrl("atlas")+"#tool="+encodeURIComponent(t[0]):"#atlas")+'" data-tool="'+esc(t[0])+'"><b>'+esc(t[0])+'</b><span>tool · '+L(t[1])[0]+' · '+esc(t[2])+'</span></a>'; });
+  tools.forEach(t=>{ h+='<a href="'+(MULTI?pageUrl("atlas")+"#tool="+encodeURIComponent(t[0]):"#atlas")+'" data-tool="'+esc(t[0])+'"><b>'+esc(t[0])+'</b><span>tool · '+LAYER[t[1]][0]+' · '+esc(t[2])+'</span></a>'; });
   res.innerHTML=h||'<div class="none">No matches. Try a tool name or a term such as "eQTL".</div>'; res.classList.add("on");
 });
 res.addEventListener("click",e=>{ const a=e.target.closest("a"); if(!a) return; if(MULTI){ res.classList.remove("on"); return; } if(a.dataset.tool){ aQ.value=a.dataset.tool; aO.value=""; aS.value=""; aL.value=""; renderAtlas(); }
