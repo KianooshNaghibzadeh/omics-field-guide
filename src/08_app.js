@@ -8,7 +8,6 @@ const STAGE = {P:"Primary",S:"Secondary",T:"Tertiary"};
 const $ = (s,r=document)=>r.querySelector(s), $$ = (s,r=document)=>Array.from(r.querySelectorAll(s));
 const esc = s => String(s).replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const pubmed = q => "https://pubmed.ncbi.nlm.nih.gov/?term=" + encodeURIComponent(q);
-const lvl = n => '<span class="lvl" title="'+["","Entry","Intermediate","Advanced"][n]+'">'+"●".repeat(n)+"<i>"+"●".repeat(3-n)+"</i></span>";
 const stagePill = s => '<span class="pill stage-'+s+'">'+STAGE[s]+'</span>';
 const sections = $$("section.chapter");
 // Multi-page mode: the static site defines PAGES (chapter list), SEARCH (text index) and ROOT (relative path to site root).
@@ -54,12 +53,12 @@ menuBtn.addEventListener("click",()=>{ const o=rail.classList.toggle("open"); me
 
 /* ---------- tool tables ---------- */
 function toolTable(list, withLayer){
-  let html='<table><tr><th>Tool</th>'+(withLayer?'<th>Layer</th><th>Task</th>':'')+'<th>Aim</th><th>Stage</th><th>Level</th><th>Interface</th></tr>';
+  let html='<table><tr><th>Tool</th>'+(withLayer?'<th>Layer</th><th>Task</th>':'')+'<th>Aim</th><th>Stage</th><th>Interface</th></tr>';
   let grp=null;
   list.forEach(t=>{
-    if(!withLayer && t[2]!==grp){ grp=t[2]; html+='<tr class="grp"><td colspan="5">'+esc(grp)+'</td></tr>'; }
+    if(!withLayer && t[2]!==grp){ grp=t[2]; html+='<tr class="grp"><td colspan="4">'+esc(grp)+'</td></tr>'; }
     html+='<tr><td>'+esc(t[0])+'</td>'+(withLayer?'<td class="wrap" style="color:var('+LAYER[t[1]][1]+')">'+LAYER[t[1]][0]+'</td><td class="wrap">'+esc(t[2])+'</td>':'')+
-      '<td class="wrap">'+esc(t[6])+'</td><td>'+stagePill(t[3])+'</td><td>'+lvl(t[4])+'</td><td class="wrap mono" style="font-size:.74rem;color:var(--ink-2)">'+esc(t[5])+'</td></tr>';
+      '<td class="wrap">'+esc(t[5])+'</td><td>'+stagePill(t[3])+'</td><td class="wrap mono" style="font-size:.74rem;color:var(--ink-2)">'+esc(t[4])+'</td></tr>';
   });
   return html+'</table>';
 }
@@ -72,18 +71,18 @@ $$(".tooltable").forEach(el=>{
 });
 
 /* ---------- atlas ---------- */
-const aQ=$("#atlasQ"), aO=$("#atlasOmics"), aS=$("#atlasStage"), aL=$("#atlasLvl");
+const aQ=$("#atlasQ"), aO=$("#atlasOmics"), aS=$("#atlasStage");
 function renderAtlas(){}
 if(aQ){
 Object.keys(LAYER).forEach(k=>{ const o=document.createElement("option"); o.value=k; o.textContent=LAYER[k][0]; aO.appendChild(o); });
 renderAtlas=function(){
   const q=aQ.value.trim().toLowerCase();
-  const list=TOOLS.filter(t=>(!aO.value||t[1]===aO.value)&&(!aS.value||t[3]===aS.value)&&(!aL.value||String(t[4])===aL.value)&&(!q||(t[0]+" "+t[2]+" "+t[6]+" "+t[5]).toLowerCase().includes(q)));
+  const list=TOOLS.filter(t=>(!aO.value||t[1]===aO.value)&&(!aS.value||t[3]===aS.value)&&(!q||(t[0]+" "+t[2]+" "+t[5]+" "+t[4]).toLowerCase().includes(q)));
   $("#atlasTable").innerHTML = list.length? toolTable(list,true) : '<p style="padding:14px">No tools match these filters. Clear the search or choose "All layers".</p>';
   $("#atlasCount").textContent=list.length+" of "+TOOLS.length+" tools";
 };
-[aQ,aO,aS,aL].forEach(e=>e.addEventListener("input",renderAtlas));
-const fromHash=()=>{ if(location.hash.indexOf("#tool=")===0){ aQ.value=decodeURIComponent(location.hash.slice(6)); aO.value=aS.value=aL.value=""; } renderAtlas(); };
+[aQ,aO,aS].forEach(e=>e.addEventListener("input",renderAtlas));
+const fromHash=()=>{ if(location.hash.indexOf("#tool=")===0){ aQ.value=decodeURIComponent(location.hash.slice(6)); aO.value=aS.value=""; } renderAtlas(); };
 fromHash(); if(MULTI) window.addEventListener("hashchange",fromHash);
 }
 
@@ -201,7 +200,7 @@ q.addEventListener("input",()=>{
   tools.forEach(t=>{ h+='<a href="'+(MULTI?pageUrl("atlas")+"#tool="+encodeURIComponent(t[0]):"#atlas")+'" data-tool="'+esc(t[0])+'"><b>'+esc(t[0])+'</b><span>tool · '+LAYER[t[1]][0]+' · '+esc(t[2])+'</span></a>'; });
   res.innerHTML=h||'<div class="none">No matches. Try a tool name or a term such as "eQTL".</div>'; res.classList.add("on");
 });
-res.addEventListener("click",e=>{ const a=e.target.closest("a"); if(!a) return; if(MULTI){ res.classList.remove("on"); return; } if(a.dataset.tool){ aQ.value=a.dataset.tool; aO.value=""; aS.value=""; aL.value=""; renderAtlas(); }
+res.addEventListener("click",e=>{ const a=e.target.closest("a"); if(!a) return; if(MULTI){ res.classList.remove("on"); return; } if(a.dataset.tool){ aQ.value=a.dataset.tool; aO.value=""; aS.value=""; renderAtlas(); }
   res.classList.remove("on"); q.value=""; if(a.getAttribute("href")==="#"+location.hash.slice(1)) show(location.hash.slice(1)); });
 document.addEventListener("click",e=>{ if(!e.target.closest(".search")) res.classList.remove("on"); });
 q.addEventListener("keydown",e=>{ if(e.key==="Escape"){ res.classList.remove("on"); q.blur(); } if(e.key==="Enter"){ const f=$("a",res); if(f) f.click(); } });
