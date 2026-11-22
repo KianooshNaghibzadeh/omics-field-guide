@@ -35,8 +35,8 @@ Every change saved to the `main` branch rebuilds and republishes the website aut
 
 - **Fix or add text:** edit the HTML in the chapter file. Each chapter is one `<section class="chapter" id="…">` block, with `<h2>` sections inside.
 - **Add a tool:** add a line to `TOOLS` in `src/07_data.js`:
-  `["Name","layer","Task","S",2,"CLI","What it does."],`
-  Stage is `P`, `S` or `T` (primary, secondary, tertiary); level is 1–3. Layers: genomics, epigenomics, transcriptomics, singlecell, proteomics, metabolomics, lipidomics, microbiome, integration, practice.
+  `["Name","layer","Task","S","CLI","What it does."],`
+  Stage is `P`, `S` or `T` (primary, secondary, tertiary). Layers: genomics, epigenomics, transcriptomics, singlecell, proteomics, metabolomics, lipidomics, microbiome, integration, practice.
 - **Add a benchmark:** add a line to `BENCH` in `src/07_data.js`: layer, paper title (used for the PubMed link), "Author et al. Year, Journal", finding, takeaway.
 - **Add a citation in the text:** `<cite data-q="exact paper title">Author et al. Year, Journal</cite>`
 - **Add a chapter:** copy an existing `<section>` block, give it a new `id`, and add that id with a web address to `SLUG` in `build_pages.py`.
